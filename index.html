@@ -18,21 +18,20 @@
     --text-muted: #64748B;
   }
 
-  * { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     -webkit-tap-highlight-color: transparent;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
-  body { 
-    background: var(--bg); 
-    color: var(--text); 
+  body {
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
   }
 
-  /* FULL-SCREEN ISOLATED LOGIN VIEW */
   #login-screen {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -48,40 +47,32 @@
     width: 100%;
     max-width: 380px;
     border-radius: 20px;
-    padding: 24px 20px;
+    padding: 26px 20px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     text-align: center;
+    position: relative;
   }
-  .login-card h2 { font-size: 22px; color: #1E3A8A; margin-bottom: 4px; font-weight: 800; }
-  .login-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+  .login-card h2 {
+    font-size: 22px;
+    color: #1E3A8A;
+    margin-bottom: 6px;
+    font-weight: 800;
+  }
 
-  .role-toggle {
-    display: flex;
-    gap: 6px;
-    background: #F1F5F9;
-    padding: 4px;
-    border-radius: 12px;
-    margin-bottom: 16px;
-  }
-  .role-btn {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    border-radius: 9px;
-    font-weight: 700;
-    font-size: 13px;
+  .secret-hand-btn {
     cursor: pointer;
-    background: transparent;
-    color: #64748B;
+    display: inline-block;
+    transition: transform 0.2s;
+    user-select: none;
   }
-  .role-btn.active {
-    background: #FFFFFF;
-    color: var(--primary);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  .secret-hand-btn:active {
+    transform: scale(1.3) rotate(15deg);
   }
 
-  .field-group { text-align: left; margin-bottom: 12px; }
-  .field-group label { font-size: 12px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px; }
+  .login-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+
+  .field-group { text-align: left; margin-bottom: 14px; }
+  .field-group label { font-size: 12px; font-weight: 700; color: #475569; display: block; margin-bottom: 5px; }
   .field-input {
     width: 100%;
     padding: 12px 14px;
@@ -105,7 +96,15 @@
     margin-top: 6px;
   }
 
-  /* MAIN APP CONTENT */
+  .admin-cancel-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
   #main-app {
     display: none;
     padding: 12px;
@@ -143,8 +142,8 @@
     cursor: pointer;
   }
 
-  header { 
-    text-align: center; 
+  header {
+    text-align: center;
     padding: 14px 10px;
     background: #FFFFFF;
     border-radius: 16px;
@@ -164,9 +163,9 @@
     text-align: center;
     font-weight: 700;
     margin-bottom: 12px;
+    transition: all 0.3s ease;
   }
 
-  /* Admin Exclusive Management Box */
   #admin-panel {
     display: none;
     background: #EDE9FE;
@@ -177,14 +176,14 @@
   }
   .admin-title { font-size: 13px; font-weight: 800; color: #5B21B6; margin-bottom: 8px; }
   .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-  .btn-sync { 
-    background: var(--purple); 
-    color: white; 
-    border: none; 
-    border-radius: 10px; 
-    padding: 8px 12px; 
-    font-size: 12px; 
-    font-weight: 700; 
+  .btn-sync {
+    background: var(--purple);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
     cursor: pointer;
   }
   .add-student-box {
@@ -212,7 +211,6 @@
     cursor: pointer;
   }
 
-  /* Category Slider Tabs */
   .tabs-wrapper {
     overflow-x: auto;
     white-space: nowrap;
@@ -242,7 +240,6 @@
   .content-section { display: none; }
   .content-section.active { display: block; }
 
-  /* Question Cards */
   .card {
     background: var(--card);
     border-radius: 16px;
@@ -285,7 +282,6 @@
     width: 100%;
   }
 
-  /* Big Touch Option Buttons */
   .opts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
@@ -306,7 +302,6 @@
   .opt-btn.correct { background: var(--success) !important; color: white !important; border-color: var(--success) !important; }
   .opt-btn.wrong { background: var(--danger) !important; color: white !important; border-color: var(--danger) !important; }
 
-  /* Audio Action Buttons */
   .action-row {
     display: flex;
     flex-wrap: wrap;
@@ -325,22 +320,34 @@
     justify-content: center;
     gap: 6px;
     cursor: pointer;
+    transition: all 0.2s ease;
   }
   .btn-ai { background: #EEF2FF; color: #3730A3; }
-  .btn-parent { 
-    background: #FAF5FF; 
-    color: #6B21A8; 
-    border: 1.5px solid #D8B4FE; 
-    display: none; 
+  .btn-parent {
+    background: #FAF5FF;
+    color: #6B21A8;
+    border: 1.5px solid #D8B4FE;
+    display: none;
   }
-  .btn-why { 
-    background: #FFFBEB; 
-    color: #92400E; 
-    border: 1px solid #FDE68A; 
+  .btn-why {
+    background: #FFFBEB;
+    color: #92400E;
+    border: 1px solid #FDE68A;
     flex-basis: 100%;
   }
 
-  /* Admin-Only Record Buttons */
+  .btn-touch.is-playing {
+    background: #FEF08A !important;
+    color: #854D0E !important;
+    border: 2px solid #EAB308 !important;
+    animation: audioPulse 1.2s infinite alternate;
+  }
+
+  @keyframes audioPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.03); }
+  }
+
   .btn-rec {
     display: none;
     background: #FEE2E2;
@@ -365,54 +372,52 @@
   .explain-box {
     display: none;
     background: #FFFBEB;
-    border: 1px solid #FCD34D;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 13px;
+    border: 1.5px solid #FCD34D;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 14px;
     color: #78350F;
     margin-top: 10px;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 </style>
 </head>
 <body onclick="unlockAudioOnce()">
 
-<!-- 1. FULLY ISOLATED LOGIN VIEW -->
 <div id="login-screen">
   <div class="login-card">
-    <h2>स्वागत है! 👋</h2>
-    <p>इंग्लिश ग्रामर पाठशाला में लॉगिन करें:</p>
+    <h2>
+      स्वागत है!
+      <span class="secret-hand-btn" onclick="toggleSecretAdmin()" title="शिक्षक मोड">👋</span>
+    </h2>
+    <p id="login-subtext">इंग्लिश ग्रामर पाठशाला में लॉगिन करें:</p>
 
-    <div class="role-toggle">
-      <button class="role-btn active" id="tab-student" onclick="setLoginTab('student')">👦 Student</button>
-      <button class="role-btn" id="tab-admin" onclick="setLoginTab('admin')">👑 Teacher/Admin</button>
-    </div>
-
-    <!-- Student Login -->
     <div id="student-login-box">
       <div class="field-group">
-        <label>यूज़रनेम / छात्र का नाम:</label>
+        <label>छात्र का नाम (Username):</label>
         <input type="text" id="stu-username" class="field-input" placeholder="उदा. arham">
       </div>
       <div class="field-group">
-        <label>पासवर्ड (डिफ़ॉल्ट: 123):</label>
+        <label>पासवर्ड:</label>
         <input type="password" id="stu-pass" class="field-input" placeholder="पासवर्ड लिखें">
       </div>
       <button class="btn-submit-login" onclick="loginStudent()">पढ़ाई शुरू करें 🚀</button>
     </div>
 
-    <!-- Admin Login -->
     <div id="admin-login-box" style="display:none;">
+      <div style="background:#EDE9FE;color:#5B21B6;font-size:12px;font-weight:800;padding:6px;border-radius:8px;margin-bottom:12px;">
+        👑 शिक्षक / एडमिन पोर्टल
+      </div>
       <div class="field-group">
-        <label>Admin Security PIN:</label>
-        <input type="password" id="admin-pin" class="field-input" placeholder="PIN दर्ज करें (डिफ़ॉल्ट: 1234)">
+        <label>Admin Security Password:</label>
+        <input type="password" id="admin-pin" class="field-input" placeholder="पासवर्ड दर्ज करें">
       </div>
       <button class="btn-submit-login" style="background:var(--purple);" onclick="loginAdmin()">Admin Login 🔓</button>
+      <span class="admin-cancel-link" onclick="toggleSecretAdmin()">← वापस छात्र लॉगिन पर जाएँ</span>
     </div>
   </div>
 </div>
 
-<!-- 2. MAIN APP CONTENT -->
 <div id="main-app">
   <div class="container">
 
@@ -431,7 +436,6 @@
 
     <div id="status-bar">🔊 आवाज़ रेडी है! किसी भी बटन पर टैप करें।</div>
 
-    <!-- Admin Tools -->
     <div id="admin-panel">
       <div class="admin-title">⚙️ Admin Controls (वॉइस और छात्र मैनेजमेंट)</div>
       <div class="admin-actions">
@@ -439,14 +443,13 @@
         <button class="btn-sync" onclick="document.getElementById('file-input').click()">📤 Upload Voices File</button>
         <input type="file" id="file-input" style="display:none" accept=".json" onchange="importVoices(event)">
       </div>
-      <div style="font-size:12px;font-weight:700;color:#5B21B6;margin-bottom:6px;">➕ नया छात्र जोड़ें (Default Password: 123):</div>
+      <div style="font-size:12px;font-weight:700;color:#5B21B6;margin-bottom:6px;">➕ नया छात्र जोड़ें:</div>
       <div class="add-student-box">
         <input type="text" id="new-stu-name" placeholder="छात्र का नाम लिखें">
         <button onclick="addNewStudent()">Add Student</button>
       </div>
     </div>
 
-    <!-- Tabs Navigation -->
     <div class="tabs-wrapper">
       <div class="tabs">
         <button class="tab-btn active" onclick="openTab(0)">🌟 Understanding</button>
@@ -467,8 +470,8 @@
           Verb का मतलब होता है कोई भी <b>काम</b>! जैसे खेलना (Play), खाना (Eat), सोना (Sleep), नाचना (Dance)। जब भी कोई वाक्य आए, तो पूछो: <i>यहाँ क्या काम हो रहा है?</i> वही Verb है।
         </p>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="sayText('Verb का मतलब होता है कोई भी काम! जैसे खेलना, खाना, सोना, नाचना। जब भी कोई वाक्य आए तो पूछो यहाँ क्या काम हो रहा है, वही Verb है!')">🔊 AI आवाज़ सुनो</button>
-          <button class="btn-touch btn-parent" id="play-und_verb" onclick="playCustomAudio('und_verb')">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-ai" onclick="toggleUnifiedTTS('Verb का मतलब होता है कोई भी काम! जैसे खेलना, खाना, सोना, नाचना। जब भी कोई वाक्य आए तो पूछो यहाँ क्या काम हो रहा है, वही Verb है!', this)">🔊 AI आवाज़ सुनो</button>
+          <button class="btn-touch btn-parent" id="play-und_verb" onclick="toggleUnifiedCustomAudio('und_verb', this)">▶️ शिक्षक की आवाज़</button>
           <button class="btn-rec" onclick="toggleRecord('und_verb', this)">🔴 Record अपनी आवाज़</button>
         </div>
       </div>
@@ -483,8 +486,8 @@
           <b>3. Present:</b> जो काम हम आज या रोज़ करते हैं।
         </p>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="sayText('दिनभर हम जो भी काम करते हैं वह तीन समय में होता है। पहला पास्ट जो हो चुका, दूसरा फ्यूचर जो आगे होगा, और तीसरा प्रेजेंट जो आज हो रहा है!')">🔊 AI आवाज़ सुनो</button>
-          <button class="btn-touch btn-parent" id="play-und_tense" onclick="playCustomAudio('und_tense')">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-ai" onclick="toggleUnifiedTTS('दिनभर हम जो भी काम करते हैं वह तीन समय में होता है। पहला पास्ट जो हो चुका, दूसरा फ्यूचर जो आगे होगा, और तीसरा प्रेजेंट जो आज हो रहा है!', this)">🔊 AI आवाज़ सुनो</button>
+          <button class="btn-touch btn-parent" id="play-und_tense" onclick="toggleUnifiedCustomAudio('und_tense', this)">▶️ शिक्षक की आवाज़</button>
           <button class="btn-rec" onclick="toggleRecord('und_tense', this)">🔴 Record अपनी आवाज़</button>
         </div>
       </div>
@@ -499,8 +502,8 @@
           👉 <b>Will भी नहीं, -ed भी नहीं?</b> तो <b>99% Present</b> है!
         </p>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="sayText('जादुई फॉर्मूला याद रखो। अगर वाक्य में विल दिखा तो फ्यूचर, ई डी दिखा तो पास्ट, और दोनों नहीं दिखे तो निन्यानवे परसेंट प्रेजेंट टेंस!')">🔊 AI आवाज़ सुनो</button>
-          <button class="btn-touch btn-parent" id="play-und_magic" onclick="playCustomAudio('und_magic')">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-ai" onclick="toggleUnifiedTTS('जादुई फॉर्मूला याद रखो। अगर वाक्य में विल दिखा तो फ्यूचर, ई डी दिखा तो पास्ट, और दोनों नहीं दिखे तो निन्यानवे परसेंट प्रेजेंट टेंस!', this)">🔊 AI आवाज़ सुनो</button>
+          <button class="btn-touch btn-parent" id="play-und_magic" onclick="toggleUnifiedCustomAudio('und_magic', this)">▶️ शिक्षक की आवाज़</button>
           <button class="btn-rec" onclick="toggleRecord('und_magic', this)">🔴 Record अपनी आवाज़</button>
         </div>
       </div>
@@ -509,18 +512,18 @@
     <!-- EXERCISE A -->
     <div id="tab-1" class="content-section">
       <!-- Q1 -->
-      <div class="card" id="card-a1" data-ans="P" data-exp="यहाँ काम boiled है। इसमें -ed लगा है, यानी दूध पहले ही उबलकर गिर गया। इसलिए यह Past Tense है।" data-spoken="द मिल्क बॉइल्ड ओवर। मतलब दूध उबलकर बाहर गिर गया।">
+      <div class="card" id="card-a1" data-ans="P" data-exp="बच्चों, यहाँ ध्यान से देखो: वाक्य में काम वाला शब्द है 'boiled'। boil का मतलब होता है उबलना, और इसमें अंत में लगा है -ed। जब किसी काम में -ed लग जाता है, तो वह क्रिया का दूसरा रूप यानी Verb 2 बन जाता है। इसका मतलब है कि दूध अभी नहीं उबल रहा, बल्कि पहले ही उबलकर बाहर गिर चुका है! बीता हुआ समय यानी Past Tense, इसलिए सही जवाब P होगा।" data-spoken="द मिल्क बॉइल्ड ओवर। मतलब दूध उबलकर बाहर गिर गया।">
         <div class="q-badge">Question 1</div>
         <div class="sentence">1. The milk boiled over.</div>
-        <div class="hindi-meaning">👉 हिंदी: दूध उबलकर बर्तन से बाहर गिर गया।</div>
+        <div class="hindi-meaning">👉 हिंदी: दूध उबलकर बाहर गिर गया।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr</button>
           <button class="opt-btn" onclick="check(this, 'P')">P (Past)</button>
           <button class="opt-btn" onclick="check(this, 'F')">F (Future)</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a1" onclick="playCustomAudio('a1')">▶️ आवाज़ सुनो</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a1" onclick="toggleUnifiedCustomAudio('a1', this)">▶️ शिक्षक की आवाज़</button>
           <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a1', this)">🔴 Record अपनी आवाज़</button>
         </div>
@@ -528,64 +531,64 @@
       </div>
 
       <!-- Q2 -->
-      <div class="card" id="card-a2" data-ans="F" data-exp="यहाँ will make लगा है। जहाँ will होता है वह हमेशा Future Tense होता है।" data-spoken="दे विल मेक अ ब्रिज हियर। मतलब वे यहाँ एक पुल बनाएंगे।">
+      <div class="card" id="card-a2" data-ans="F" data-exp="इस वाक्य में देखो लिखा है 'will make'। हमारा जादुई नियम याद करो: जहाँ भी वाक्य में will आ जाए, वहाँ हमेशा काम आगे होने वाला होता है। यानी पुल अभी बना नहीं है और न पहले बना था, वे आगे भविष्य में पुल बनाएंगे। इसलिए जहाँ will दिखे, बिना सोचे समझो कि वह Future Tense यानी F है!" data-spoken="दे विल मेक अ ब्रिज हियर। मतलब वे यहाँ एक पुल बनाएंगे।">
         <div class="q-badge">Question 2</div>
         <div class="sentence">2. They will make a bridge here.</div>
-        <div class="hindi-meaning">👉 हिंदी: वे यहाँ एक नया पुल बनाएंगे।</div>
+        <div class="hindi-meaning">👉 हिंदी: वे यहाँ एक पुल बनाएंगे।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr</button>
           <button class="opt-btn" onclick="check(this, 'P')">P (Past)</button>
           <button class="opt-btn" onclick="check(this, 'F')">F (Future)</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a2" onclick="playCustomAudio('a2')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a2" onclick="toggleUnifiedCustomAudio('a2', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a2', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q3 -->
-      <div class="card" id="card-a3" data-ans="Pr" data-exp="यहाँ काम है watch। इसमें न तो will है और न ही -ed, इसलिए यह Present Tense है।" data-spoken="आई वॉच टेलीविज़न ओनली ऑन वीकेंड्स। मतलब मैं केवल शनिवार-रविवार को टीवी देखता हूँ।">
+      <div class="card" id="card-a3" data-ans="Pr" data-exp="यहाँ काम वाला शब्द है 'watch'। अब गौर करो: क्या इसमें will लगा है? नहीं। क्या इसमें -ed लगा है? नहीं। यह क्रिया का पहला रूप (Verb 1) है और यह बता रहा है कि बच्चा हर शनिवार-रविवार को टीवी देखता है, यानी यह उसकी नियमित आदत है। जो काम वर्तमान में आदत के रूप में होता है, वह Present Tense यानी Pr कहलाता है।" data-spoken="आई वॉच टेलीविज़न ओनली ऑन वीकेंड्स। मतलब मैं केवल शनिवार और रविवार को टीवी देखता हूँ।">
         <div class="q-badge">Question 3</div>
         <div class="sentence">3. I watch television only on weekends.</div>
-        <div class="hindi-meaning">👉 हिंदी: मैं सिर्फ शनिवार और रविवार को टीवी देखता हूँ।</div>
+        <div class="hindi-meaning">👉 हिंदी: मैं केवल शनिवार और रविवार को टीवी देखता हूँ।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr (Present)</button>
           <button class="opt-btn" onclick="check(this, 'P')">P</button>
           <button class="opt-btn" onclick="check(this, 'F')">F</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a3" onclick="playCustomAudio('a3')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a3" onclick="toggleUnifiedCustomAudio('a3', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a3', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q4 -->
-      <div class="card" id="card-a4" data-ans="F" data-exp="यहाँ will visit लगा है। will का मतलब हमेशा Future Tense होता है।" data-spoken="माय ग्रैंडमदर विल विज़िट अस इन जनवरी। दादी जनवरी में मिलने आएँगी।">
+      <div class="card" id="card-a4" data-ans="F" data-exp="यहाँ वाक्य में लिखा है 'will visit'। will का मतलब होता है गा, गे, गी। यानी दादी अभी नहीं आई हैं, वे जनवरी के महीने में आने वाली हैं। जब भी आने वाले समय की बात हो और will लगा हो, तो वह हमेशा Future Tense यानी F होता है।" data-spoken="माय ग्रैंडमदर विल विज़िट अस इन जनवरी। दादी जनवरी में हमसे मिलने आएँगी।">
         <div class="q-badge">Question 4</div>
         <div class="sentence">4. My grandmother will visit us in January.</div>
-        <div class="hindi-meaning">👉 हिंदी: मेरी दादी जनवरी के महीने में हमसे मिलने आएँगी।</div>
+        <div class="hindi-meaning">👉 हिंदी: मेरी दादी जनवरी में हमसे मिलने आएँगी।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr</button>
           <button class="opt-btn" onclick="check(this, 'P')">P</button>
           <button class="opt-btn" onclick="check(this, 'F')">F (Future)</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a4" onclick="playCustomAudio('a4')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a4" onclick="toggleUnifiedCustomAudio('a4', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a4', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q5 -->
-      <div class="card" id="card-a5" data-ans="P" data-exp="started में -ed लगा है और पिछले साल की बात है। Past Tense!" data-spoken="आई स्टार्टेड माय डांस प्रैक्टिस लास्ट ईयर।">
+      <div class="card" id="card-a5" data-ans="P" data-exp="यहाँ क्रिया है 'started'। start में -ed लगकर क्रिया का दूसरा रूप (Verb 2) बना है। और साथ में 'last year' लिखा है, जिसका मतलब है पिछला साल। जो साल बीत गया और काम पहले ही शुरू हो चुका था, वह बीता हुआ समय होता है। इसलिए यह Past Tense यानी P है।" data-spoken="आई स्टार्टेड माय डांस प्रैक्टिस लास्ट ईयर।">
         <div class="q-badge">Question 5</div>
         <div class="sentence">5. I started my dance practice last year.</div>
         <div class="hindi-meaning">👉 हिंदी: मैंने पिछले साल डांस की प्रैक्टिस शुरू की थी।</div>
@@ -595,104 +598,104 @@
           <button class="opt-btn" onclick="check(this, 'F')">F</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a5" onclick="playCustomAudio('a5')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a5" onclick="toggleUnifiedCustomAudio('a5', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a5', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q6 -->
-      <div class="card" id="card-a6" data-ans="P" data-exp="called में -ed लगा है। काम पहले ही हो चुका है।" data-spoken="टॉम सॉयर कॉल्ड ऑल हिज़ फ्रेंड्स। टॉम ने दोस्तों को बुलाया।">
+      <div class="card" id="card-a6" data-ans="P" data-exp="इस वाक्य में क्रिया है 'called'। call का मतलब बुलाना होता है और -ed लगने से यह बन गया Verb 2। टॉम ने अपने दोस्तों को पहले ही बुला लिया, काम खत्म हो चुका है। काम खत्म होने का मतलब Past Tense, इसलिए P पर टिक करेंगे।" data-spoken="टॉम सॉयर कॉल्ड ऑल हिज़ फ्रेंड्स। टॉम सॉयर ने अपने सभी दोस्तों को बुलाया।">
         <div class="q-badge">Question 6</div>
         <div class="sentence">6. Tom Sawyer called all his friends.</div>
-        <div class="hindi-meaning">👉 हिंदी: टॉम सॉयर ने अपने सभी दोस्तों को आवाज़ देकर बुलाया।</div>
+        <div class="hindi-meaning">👉 हिंदी: टॉम सॉयर ने अपने सभी दोस्तों को बुलाया।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr</button>
           <button class="opt-btn" onclick="check(this, 'P')">P (Past)</button>
           <button class="opt-btn" onclick="check(this, 'F')">F</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a6" onclick="playCustomAudio('a6')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a6" onclick="toggleUnifiedCustomAudio('a6', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a6', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q7 -->
-      <div class="card" id="card-a7" data-ans="P" data-exp="freeze का Past रूप froze होता है। नदी पहले जमी थी।" data-spoken="द रिवर फ़्रोज़ इन विंटर। सर्दियों में नदी जम गई।">
+      <div class="card" id="card-a7" data-ans="P" data-exp="यहाँ ध्यान देने वाली बात है: freeze का मतलब जमना होता है। लेकिन यहाँ 'froze' लिखा है। जैसे sing का sang होता है, वैसे ही freeze का Verb 2 'froze' होता है। यानी नदी सर्दियों में पहले ही जम गई थी। Verb 2 हमेशा बीते हुए समय यानी Past Tense (P) को दिखाता है।" data-spoken="द रिवर फ़्रोज़ इन विंटर। सर्दियों में नदी जम गई।">
         <div class="q-badge">Question 7</div>
         <div class="sentence">7. The river froze in winter.</div>
-        <div class="hindi-meaning">👉 हिंदी: सर्दियों के मौसम में नदी का पानी बर्फ बनकर जम गया।</div>
+        <div class="hindi-meaning">👉 हिंदी: सर्दियों में नदी जम गई।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr</button>
           <button class="opt-btn" onclick="check(this, 'P')">P (Past)</button>
           <button class="opt-btn" onclick="check(this, 'F')">F</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a7" onclick="playCustomAudio('a7')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a7" onclick="toggleUnifiedCustomAudio('a7', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a7', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q8 -->
-      <div class="card" id="card-a8" data-ans="P" data-exp="arrived में -d लगा है और कल की बात है। Past Tense!" data-spoken="द पैकेज अराइव्ड यस्टरडे। पार्सल कल ही आ गया था।">
+      <div class="card" id="card-a8" data-ans="P" data-exp="यहाँ लिखा है 'arrived' और 'yesterday'। arrive में -d लगा है यानी यह Verb 2 है, और yesterday का मतलब होता है बीता हुआ कल। पार्सल कल ही आ चुका था, इसलिए यह Past Tense यानी P है।" data-spoken="द पैकेज अराइव्ड यस्टरडे। पार्सल कल पहुँचा।">
         <div class="q-badge">Question 8</div>
         <div class="sentence">8. The package arrived yesterday.</div>
-        <div class="hindi-meaning">👉 हिंदी: वह पार्सल कल ही हमारे घर पहुँच गया था।</div>
+        <div class="hindi-meaning">👉 हिंदी: पार्सल कल पहुँचा।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr</button>
           <button class="opt-btn" onclick="check(this, 'P')">P (Past)</button>
           <button class="opt-btn" onclick="check(this, 'F')">F</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a8" onclick="playCustomAudio('a8')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a8" onclick="toggleUnifiedCustomAudio('a8', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a8', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q9 -->
-      <div class="card" id="card-a9" data-ans="Pr" data-exp="revolves में न will है न -ed। यह बात हमेशा सच रहती है।" data-spoken="द अर्थ रिवॉल्व्स अराउंड द सन। पृथ्वी सूरज के चारों ओर घूमती है।">
+      <div class="card" id="card-a9" data-ans="Pr" data-exp="पृथ्वी सूरज के चारों ओर घूमती है। क्या यह कल घूमकर रुक गई? नहीं, यह कल भी घूमती थी, आज भी घूमती है और हमेशा घूमती रहेगी। जो बात हमेशा सच रहती है, उसमें हमेशा Verb 1 (revolves) लगता है। इसलिए यह Present Tense यानी Pr है।" data-spoken="द अर्थ रिवॉल्व्स अराउंड द सन। पृथ्वी सूरज के चारों ओर घूमती है।">
         <div class="q-badge">Question 9</div>
         <div class="sentence">9. The Earth revolves around the Sun.</div>
-        <div class="hindi-meaning">👉 हिंदी: पृथ्वी सूरज के चारों तरफ गोल-गोल चक्कर लगाती है।</div>
+        <div class="hindi-meaning">👉 हिंदी: पृथ्वी सूरज के चारों ओर घूमती है।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr (Present)</button>
           <button class="opt-btn" onclick="check(this, 'P')">P</button>
           <button class="opt-btn" onclick="check(this, 'F')">F</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a9" onclick="playCustomAudio('a9')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a9" onclick="toggleUnifiedCustomAudio('a9', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a9', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
       <!-- Q10 -->
-      <div class="card" id="card-a10" data-ans="Pr" data-exp="feel में न will है न -ed, शाम को भूख लगना आदत है।" data-spoken="आई फील वेरी हंग्री इन द ईवनिंग। मुझे शाम को बहुत भूख लगती है।">
+      <div class="card" id="card-a10" data-ans="Pr" data-exp="यहाँ काम वाला शब्द है 'feel'। इसमें न will है और न -ed। शाम को भूख लगना रोज की बात है, एक सामान्य अहसास है। सामान्य अनुभव और आदत हमेशा Present Tense यानी Pr में आते हैं।" data-spoken="आई फील वेरी हंग्री इन द ईवनिंग। मुझे शाम को बहुत भूख लगती है।">
         <div class="q-badge">Question 10</div>
         <div class="sentence">10. I feel very hungry in the evening.</div>
-        <div class="hindi-meaning">👉 हिंदी: मुझे शाम के समय बहुत ज़ोरों की भूख लगती है।</div>
+        <div class="hindi-meaning">👉 हिंदी: मुझे शाम को बहुत भूख लगती है।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'Pr')">Pr (Present)</button>
           <button class="opt-btn" onclick="check(this, 'P')">P</button>
           <button class="opt-btn" onclick="check(this, 'F')">F</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-a10" onclick="playCustomAudio('a10')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-a10" onclick="toggleUnifiedCustomAudio('a10', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('a10', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
@@ -701,171 +704,171 @@
 
     <!-- EXERCISE B -->
     <div id="tab-2" class="content-section">
-      <div class="card" id="card-b1" data-ans="brushed" data-exp="brush का Past Form 'brushed' होता है।" data-spoken="शिया ब्रश्ड हर टीथ एट नाइट। शिया ने रात को ब्रश किया।">
+      <div class="card" id="card-b1" data-ans="brushed" data-exp="यहाँ दो ऑप्शन हैं: 'brushed' और 'brushing'। ध्यान से समझो: brushing में -ing लगा है। -ing वाले शब्द कभी अकेले नहीं आते, उनके पहले is, am या are होना ज़रूरी होता है। लेकिन Shia के तुरंत बाद कोई is या was नहीं है! इसका मतलब है कि यहाँ काम हो चुका है। इसलिए brush का Verb 2 'brushed' सही उत्तर होगा।" data-spoken="शिया ब्रश्ड हर टीथ एट नाइट। शिया ने रात में दाँत ब्रश किए।">
         <div class="q-badge">Question 1</div>
         <div class="sentence">1. Shia _______ (brush) her teeth at night.</div>
-        <div class="hindi-meaning">👉 हिंदी: शिया ने रात को सोने से पहले अपने दाँत ब्रश किए।</div>
+        <div class="hindi-meaning">👉 हिंदी: शिया ने रात में दाँत ब्रश किए।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'brushed')">brushed</button>
           <button class="opt-btn" onclick="check(this, 'brushing')">brushing</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b1" onclick="playCustomAudio('b1')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b1" onclick="toggleUnifiedCustomAudio('b1', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b1', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b2" data-ans="played" data-exp="play में -ed लगाने से 'played' बनता है।" data-spoken="दीज़ म्यूज़िशियंस प्लेड रॉक म्यूज़िक।">
+      <div class="card" id="card-b2" data-ans="played" data-exp="यहाँ संगीतकारों द्वारा गाना बजाने की बात है। 'playes' नाम की कोई सही स्पेलिंग अंग्रेजी में नहीं होती। play का बीता हुआ समय (Verb 2) हमेशा -ed लगाकर 'played' बनता है, जिसका अर्थ है कि संगीतकारों ने संगीत बजाया।" data-spoken="दीज़ म्यूज़िशियंस प्लेड रॉक म्यूज़िक।">
         <div class="q-badge">Question 2</div>
         <div class="sentence">2. These musicians _______ (play) rock music.</div>
-        <div class="hindi-meaning">👉 हिंदी: इन संगीतकारों ने स्टेज पर रॉक संगीत बजाया।</div>
+        <div class="hindi-meaning">👉 हिंदी: इन संगीतकारों ने रॉक संगीत बजाया।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'played')">played</button>
           <button class="opt-btn" onclick="check(this, 'playes')">playes</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b2" onclick="playCustomAudio('b2')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b2" onclick="toggleUnifiedCustomAudio('b2', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b2', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b3" data-ans="landed" data-exp="land में -ed लगाने से 'landed' बनता है।" data-spoken="दी एस्ट्रोनॉट्स लैंडेड ऑन द मून।">
+      <div class="card" id="card-b3" data-ans="landed" data-exp="अंतरिक्ष यात्री चाँद पर उतर चुके हैं। यहाँ 'landing' गलत है क्योंकि उसके पहले were या are नहीं लगा हुआ है। काम समाप्त हो चुका है, इसलिए land का Past रूप (Verb 2) 'landed' सही जवाब है।" data-spoken="दी एस्ट्रोनॉट्स लैंडेड ऑन द मून।">
         <div class="q-badge">Question 3</div>
         <div class="sentence">3. The astronauts _______ (land) on the moon.</div>
-        <div class="hindi-meaning">👉 हिंदी: वे अंतरिक्ष यात्री चाँद की ज़मीन पर सुरक्षित उतरे।</div>
+        <div class="hindi-meaning">👉 हिंदी: अंतरिक्ष यात्री चाँद पर उतरे।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'landed')">landed</button>
           <button class="opt-btn" onclick="check(this, 'landing')">landing</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b3" onclick="playCustomAudio('b3')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b3" onclick="toggleUnifiedCustomAudio('b3', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b3', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b4" data-ans="sang" data-exp="sing का Past हमेशा sang होता है।" data-spoken="द लिटिल गर्ल सैंग हैप्पी सॉन्ग्स।">
+      <div class="card" id="card-b4" data-ans="sang" data-exp="बहुत ध्यान से सुनो: बच्चे अक्सर सोचते हैं कि पास्ट बनाने के लिए सिर्फ -ed लगाते हैं, पर अंग्रेजी में कई शब्द बदलते हैं! sing में कभी singed नहीं लगता, singed गलत शब्द है। sing का Verb 2 'sang' होता है और Verb 3 'sung' होता है। लड़की ने गाना गा लिया, इसलिए यहाँ 'sang' आएगा।" data-spoken="द लिटिल गर्ल सैंग हैप्पी सॉन्ग्स।">
         <div class="q-badge">Question 4</div>
         <div class="sentence">4. The little girl _______ (sing) happy songs.</div>
-        <div class="hindi-meaning">👉 हिंदी: उस छोटी बच्ची ने खुशी भरे प्यारे-प्यारे गाने गाए।</div>
+        <div class="hindi-meaning">👉 हिंदी: छोटी लड़की ने खुशी के गाने गाए।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'singed')">singed</button>
           <button class="opt-btn" onclick="check(this, 'sang')">sang</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b4" onclick="playCustomAudio('b4')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b4" onclick="toggleUnifiedCustomAudio('b4', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b4', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b5" data-ans="was" data-exp="I के साथ be का Past हमेशा was होता है।" data-spoken="आई वॉज़ पोलाइट टू एवरीवन।">
+      <div class="card" id="card-b5" data-ans="was" data-exp="नियम याद रखो: I के साथ पास्ट टेंस में हमेशा 'was' लगता है। 'were' बहुवचन (We, They) के साथ लगता है। I के साथ were केवल तब लगता है जब हम कोई काल्पनिक इच्छा करते हैं, जैसे 'If I were a bird' (काश मैं पक्षी होता)। यहाँ साधारण बीते समय की बात है, इसलिए I was polite होगा।" data-spoken="आई वॉज़ पोलाइट टू एवरीवन।">
         <div class="q-badge">Question 5</div>
         <div class="sentence">5. I _______ (be) polite to everyone.</div>
-        <div class="hindi-meaning">👉 हिंदी: मैं सभी लोगों के साथ बहुत विनम्र और अच्छा था।</div>
+        <div class="hindi-meaning">👉 हिंदी: मैं हर किसी के प्रति विनम्र था।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'was')">was</button>
           <button class="opt-btn" onclick="check(this, 'were')">were</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b5" onclick="playCustomAudio('b5')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b5" onclick="toggleUnifiedCustomAudio('b5', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b5', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b6" data-ans="wrote" data-exp="write का Past 'wrote' होता है।" data-spoken="माय फादर रोट स्टोरीज़।">
+      <div class="card" id="card-b6" data-ans="wrote" data-exp="write में -ed लगाकर 'writed' कभी नहीं बनता। write का Verb 2 होता है 'wrote' और Verb 3 होता है 'written'। पिताजी ने कहानियाँ लिखीं, यानी काम पूरा हो गया। इसलिए सही उत्तर 'wrote' है।" data-spoken="माय फादर रोट स्टोरीज़।">
         <div class="q-badge">Question 6</div>
         <div class="sentence">6. My father _______ (write) stories for children.</div>
-        <div class="hindi-meaning">👉 हिंदी: मेरे पिताजी ने छोटे बच्चों के लिए सुंदर कहानियाँ लिखीं।</div>
+        <div class="hindi-meaning">👉 हिंदी: मेरे पिताजी ने बच्चों के लिए कहानियाँ लिखीं।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'writed')">writed</button>
           <button class="opt-btn" onclick="check(this, 'wrote')">wrote</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b6" onclick="playCustomAudio('b6')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b6" onclick="toggleUnifiedCustomAudio('b6', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b6', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b7" data-ans="studied" data-exp="study में y हटाकर -ied लगकर 'studied' बनता है।" data-spoken="वी स्टडीड फ्रेंच इन स्कूल।">
+      <div class="card" id="card-b7" data-ans="studied" data-exp="अंग्रेजी व्याकरण का स्पेलिंग नियम: जब किसी शब्द के अंत में y हो और उससे पहले कोई व्यंजन (Consonant) हो, तो पास्ट बनाते समय y को हटाकर -ied लगाया जाता है। इसलिए studyed गलत है और 'studied' बिल्कुल सही है।" data-spoken="वी स्टडीड फ्रेंच इन स्कूल।">
         <div class="q-badge">Question 7</div>
         <div class="sentence">7. We _______ (study) French in school.</div>
-        <div class="hindi-meaning">👉 हिंदी: हमने अपने स्कूल में फ्रेंच भाषा की पढ़ाई की थी।</div>
+        <div class="hindi-meaning">👉 हिंदी: हमने स्कूल में फ्रेंच भाषा पढ़ी।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'studyed')">studyed</button>
           <button class="opt-btn" onclick="check(this, 'studied')">studied</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b7" onclick="playCustomAudio('b7')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b7" onclick="toggleUnifiedCustomAudio('b7', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b7', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b8" data-ans="met" data-exp="meet का Past रूप 'met' होता है।" data-spoken="द प्रेसिडेंट मेट ऑल द मिनिस्टर्स।">
+      <div class="card" id="card-b8" data-ans="met" data-exp="meet का मतलब मिलना होता है। लेकिन पास्ट में कभी 'meeted' नहीं होता! meet का Verb 2 एक 'e' हटाकर 'met' बन जाता है। राष्ट्रपति मंत्रियों से मिले, काम खत्म हो चुका है, इसलिए 'met' सही है।" data-spoken="द प्रेसिडेंट मेट ऑल द मिनिस्टर्स।">
         <div class="q-badge">Question 8</div>
         <div class="sentence">8. The President _______ (meet) all the ministers.</div>
-        <div class="hindi-meaning">👉 हिंदी: राष्ट्रपति ने सभी मंत्रियों से मुलाकात की।</div>
+        <div class="hindi-meaning">👉 हिंदी: राष्ट्रपति सभी मंत्रियों से मिले।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'meeted')">meeted</button>
           <button class="opt-btn" onclick="check(this, 'met')">met</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b8" onclick="playCustomAudio('b8')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b8" onclick="toggleUnifiedCustomAudio('b8', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b8', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b9" data-ans="dropped" data-exp="drop में डबल 'p' होकर 'dropped' बनता है।" data-spoken="दे ड्रॉप्ड फ़्लायर्स।">
+      <div class="card" id="card-b9" data-ans="dropped" data-exp="drop शब्द में एक छोटा स्वर (Vowel 'o') और अंत में 'p' है। ऐसे शब्दों में जब -ed जोड़ते हैं, तो अंतिम अक्षर डबल हो जाता है। इसलिए droped गलत है और डबल 'p' वाला 'dropped' सही है।" data-spoken="दे ड्रॉप्ड फ़्लायर्स।">
         <div class="q-badge">Question 9</div>
         <div class="sentence">9. They _______ (drop) flyers from the hot-air balloon.</div>
-        <div class="hindi-meaning">👉 हिंदी: उन्होंने उड़ते हुए गुब्बारे से नीचे विज्ञापन पर्चे गिराए।</div>
+        <div class="hindi-meaning">👉 हिंदी: उन्होंने हॉट-एयर बैलून से फ़्लायर्स (पर्चे) गिराए।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'droped')">droped</button>
           <button class="opt-btn" onclick="check(this, 'dropped')">dropped</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b9" onclick="playCustomAudio('b9')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b9" onclick="toggleUnifiedCustomAudio('b9', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b9', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b10" data-ans="grew" data-exp="grow का Past रूप 'grew' होता है।" data-spoken="द सैपलिंग्स ग्रू इन टू ट्रीज़।">
+      <div class="card" id="card-b10" data-ans="grew" data-exp="grow (बड़ा होना या उगना) का पास्ट रूप कभी 'growed' नहीं होता। जैसे know का knew होता है, वैसे ही grow का Verb 2 'grew' होता है। पौधे बड़े होकर पेड़ बन गए, इसलिए 'grew' सही विकल्प है।" data-spoken="द सैपलिंग्स ग्रू इन टू ट्रीज़।">
         <div class="q-badge">Question 10</div>
         <div class="sentence">10. The saplings _______ (grow) into trees.</div>
-        <div class="hindi-meaning">👉 हिंदी: वे छोटे-छोटे पौधे बड़े होकर छायादार पेड़ बन गए।</div>
+        <div class="hindi-meaning">👉 हिंदी: छोटे पौधे बड़े होकर पेड़ बन गए।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'growed')">growed</button>
           <button class="opt-btn" onclick="check(this, 'grew')">grew</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-b10" onclick="playCustomAudio('b10')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-b10" onclick="toggleUnifiedCustomAudio('b10', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('b10', this)">🔴 Record अपनी आवाज़</button>
         </div>
         <div class="explain-box"></div>
@@ -874,171 +877,171 @@
 
     <!-- EXERCISE C -->
     <div id="tab-3" class="content-section">
-      <div class="card" id="card-c1" data-ans="am running" data-exp="Present Continuous में I के साथ 'am running' लगता है।" data-spoken="आई ऐम रनिंग टू कैच द ट्रेन।">
+      <div class="card" id="card-c1" data-ans="am running" data-exp="यहाँ काम अभी जारी है। I के साथ वर्तमान में हमेशा 'am' आता है और क्रिया में -ing लगता है। 'was running' तब आता जब कल की बात होती। अभी ट्रेन पकड़ने दौड़ रहा है, इसलिए 'am running' बिल्कुल सही है।" data-spoken="आई ऐम रनिंग टू कैच द ट्रेन।">
         <div class="q-badge">Question 1</div>
         <div class="sentence">1. I _______ (run) to catch the train.</div>
-        <div class="hindi-meaning">👉 हिंदी: मैं अपनी ट्रेन पकड़ने के लिए तेज़ी से दौड़ रहा हूँ।</div>
+        <div class="hindi-meaning">👉 हिंदी: मैं ट्रेन पकड़ने के लिए दौड़ रहा हूँ।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'am running')">am running</button>
           <button class="opt-btn" onclick="check(this, 'was running')">was running</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c1" onclick="playCustomAudio('c1')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c1" onclick="toggleUnifiedCustomAudio('c1', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c1', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c2" data-ans="will be harvesting" data-exp="Future Continuous में 'will be harvesting' होगा।" data-spoken="द फार्मर्स विल बी हार्वेस्टिंग।">
+      <div class="card" id="card-c2" data-ans="will be harvesting" data-exp="वाक्य में लिखा है 'in April' (अप्रैल में)। अप्रैल का महीना भविष्य में आएगा। जब भविष्य में कोई काम लगातार चल रहा होगा, तो वहाँ 'will be' के साथ -ing लगता है। इसलिए 'will be harvesting' सही है।" data-spoken="द फार्मर्स विल बी हार्वेस्टिंग।">
         <div class="q-badge">Question 2</div>
         <div class="sentence">2. The farmers _______ (harvest) the crop in April.</div>
-        <div class="hindi-meaning">👉 हिंदी: किसान अप्रैल के महीने में अपनी पकी फसल काट रहे होंगे।</div>
+        <div class="hindi-meaning">👉 हिंदी: किसान अप्रैल में फसल काट रहे होंगे।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'are harvesting')">are harvesting</button>
           <button class="opt-btn" onclick="check(this, 'will be harvesting')">will be harvesting</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c2" onclick="playCustomAudio('c2')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c2" onclick="toggleUnifiedCustomAudio('c2', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c2', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c3" data-ans="was shining" data-exp="Past Continuous में Sun के साथ 'was shining' लगेगा।" data-spoken="द सन वॉज़ शाइनिंग।">
+      <div class="card" id="card-c3" data-ans="was shining" data-exp="सूरज अकेला (एकवचन) है। एकवचन के साथ पास्ट में 'was' आता है और बहुवचन के साथ 'were' आता है। क्योंकि सूरज एक है, इसलिए 'were shining' गलत होगा और 'was shining' सही होगा।" data-spoken="द सन वॉज़ शाइनिंग।">
         <div class="q-badge">Question 3</div>
         <div class="sentence">3. The sun _______ (shine) brightly.</div>
-        <div class="hindi-meaning">👉 हिंदी: सूरज आसमान में बहुत तेज़ी से चमक रहा था।</div>
+        <div class="hindi-meaning">👉 हिंदी: सूरज तेज़ी से चमक रहा था।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'was shining')">was shining</button>
           <button class="opt-btn" onclick="check(this, 'were shining')">were shining</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c3" onclick="playCustomAudio('c3')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c3" onclick="toggleUnifiedCustomAudio('c3', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c3', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c4" data-ans="will be learning" data-exp="Future Continuous में 'will be learning' आएगा।" data-spoken="आई विल बी लर्निंग डांस।">
+      <div class="card" id="card-c4" data-ans="will be learning" data-exp="वाक्य में लिखा है 'tomorrow' यानी आने वाला कल। जब कल इसी समय काम जारी रहेगा, तो Future Continuous Tense बनता है। इसमें 'will be' के साथ क्रिया में -ing लगता है, इसलिए 'will be learning' आएगा।" data-spoken="आई विल बी लर्निंग डांस।">
         <div class="q-badge">Question 4</div>
         <div class="sentence">4. I _______ (learn) a Spanish dance at this time tomorrow.</div>
-        <div class="hindi-meaning">👉 हिंदी: मैं कल इसी समय स्पैनिश डांस सीख रहा हूँगा।</div>
+        <div class="hindi-meaning">👉 हिंदी: मैं कल इस समय स्पैनिश डांस सीख रहा हूँगा।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'will be learning')">will be learning</button>
           <button class="opt-btn" onclick="check(this, 'am learning')">am learning</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c4" onclick="playCustomAudio('c4')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c4" onclick="toggleUnifiedCustomAudio('c4', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c4', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c5" data-ans="is watching" data-exp="Present Continuous में hunter के साथ 'is watching' लगेगा।" data-spoken="द हंटर इज़ वॉचिंग।">
+      <div class="card" id="card-c5" data-ans="is watching" data-exp="The hunter केवल एक शिकारी है (एकवचन)। जब एक व्यक्ति काम कर रहा होता है, तो 'is' लगता है, 'are' नहीं। शिकारी अभी पेड़ की चोटी से देख रहा है, इसलिए 'is watching' सही उत्तर है।" data-spoken="द हंटर इज़ वॉचिंग।">
         <div class="q-badge">Question 5</div>
         <div class="sentence">5. The hunter _______ (watch) from the treetop.</div>
-        <div class="hindi-meaning">👉 हिंदी: वह शिकारी पेड़ की चोटी पर बैठकर नीचे देख रहा है।</div>
+        <div class="hindi-meaning">👉 हिंदी: शिकारी पेड़ की चोटी से देख रहा है।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'is watching')">is watching</button>
           <button class="opt-btn" onclick="check(this, 'are watching')">are watching</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c5" onclick="playCustomAudio('c5')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c5" onclick="toggleUnifiedCustomAudio('c5', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c5', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c6" data-ans="was looking" data-exp="Past Continuous में Rhea के साथ 'was looking'।" data-spoken="रिया वॉज़ लुकिंग।">
+      <div class="card" id="card-c6" data-ans="was looking" data-exp="रिया एक लड़की का नाम है (एकवचन)। पास्ट टेंस में एकवचन के साथ 'was' आता है और बहुवचन के साथ 'were' आता है। रिया एक है, इसलिए 'were looking' नहीं बल्कि 'was looking' सही होगा।" data-spoken="रिया वॉज़ लुकिंग।">
         <div class="q-badge">Question 6</div>
         <div class="sentence">6. Rhea _______ (look) for her lost ring.</div>
-        <div class="hindi-meaning">👉 हिंदी: रिया कमरे में अपनी खोई हुई सोने की अँगूठी ढूँढ रही थी।</div>
+        <div class="hindi-meaning">👉 हिंदी: रिया अपनी खोई हुई अँगूठी ढूँढ रही थी।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'was looking')">was looking</button>
           <button class="opt-btn" onclick="check(this, 'were looking')">were looking</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c6" onclick="playCustomAudio('c6')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c6" onclick="toggleUnifiedCustomAudio('c6', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c6', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c7" data-ans="were practising" data-exp="They बहुवचन है, Past में 'were practising' लगेगा।" data-spoken="दे वर प्रैक्टिसिंग हॉकी।">
+      <div class="card" id="card-c7" data-ans="were practising" data-exp="They का मतलब होता है 'वे सब' (बहुत सारे लोग)। बहुवचन के साथ बीते समय में हमेशा 'were' लगता है। एकवचन होता तो was लगता, पर यहाँ They है, इसलिए 'were practising' सही उत्तर है।" data-spoken="दे वर प्रैक्टिसिंग हॉकी।">
         <div class="q-badge">Question 7</div>
         <div class="sentence">7. They _______ (practise) hockey early in the morning.</div>
-        <div class="hindi-meaning">👉 हिंदी: वे सब सुबह-सुबह मैदान में हॉकी का अभ्यास कर रहे थे।</div>
+        <div class="hindi-meaning">👉 हिंदी: वे सुबह-सुबह हॉकी का अभ्यास कर रहे थे।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'was practising')">was practising</button>
           <button class="opt-btn" onclick="check(this, 'were practising')">were practising</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c7" onclick="playCustomAudio('c7')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c7" onclick="toggleUnifiedCustomAudio('c7', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c7', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c8" data-ans="will be performing" data-exp="Future Continuous में 'will be performing' लगेगा।" data-spoken="यू विल बी परफॉर्मिंग ऑन स्टेज।">
+      <div class="card" id="card-c8" data-ans="will be performing" data-exp="एनुअल डे का कार्यक्रम आगे आने वाला है। भविष्य में जब कोई काम स्टेज पर चल रहा होगा, तो Future Continuous बनेगा। इसलिए 'will be performing' सही होगा।" data-spoken="यू विल बी परफॉर्मिंग ऑन स्टेज।">
         <div class="q-badge">Question 8</div>
         <div class="sentence">8. You _______ (perform) on stage for the annual day.</div>
-        <div class="hindi-meaning">👉 हिंदी: तुम एनुअल डे के दिन स्टेज पर अपना नाटक/डांस कर रहे होगे।</div>
+        <div class="hindi-meaning">👉 हिंदी: तुम एनुअल डे के लिए स्टेज पर परफॉर्म कर रहे होगे।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'are performing')">are performing</button>
           <button class="opt-btn" onclick="check(this, 'will be performing')">will be performing</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c8" onclick="playCustomAudio('c8')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c8" onclick="toggleUnifiedCustomAudio('c8', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c8', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c9" data-ans="were trumpeting" data-exp="हाथी बहुवचन हैं, Past में 'were trumpeting' लगेगा।" data-spoken="दी एलिफेंट्स वर ट्रम्पेटिंग।">
+      <div class="card" id="card-c9" data-ans="were trumpeting" data-exp="The elephants में 's' लगा है, यानी बहुत सारे हाथी (बहुवचन)। बहुवचन के साथ पास्ट टेंस में 'were' आता है। अगर सिर्फ an elephant होता तो was आता, पर यहाँ बहुत सारे हाथी हैं इसलिए 'were trumpeting' सही है।" data-spoken="दी एलिफेंट्स वर ट्रम्पेटिंग।">
         <div class="q-badge">Question 9</div>
         <div class="sentence">9. The elephants _______ (trumpet) to warn them off.</div>
-        <div class="hindi-meaning">👉 हिंदी: हाथी सबको चेतावनी देने के लिए ज़ोर-ज़ोर से चिंघाड़ रहे थे।</div>
+        <div class="hindi-meaning">👉 हिंदी: हाथी उन्हें चेतावनी देने के लिए चिंघाड़ रहे थे।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'was trumpeting')">was trumpeting</button>
           <button class="opt-btn" onclick="check(this, 'were trumpeting')">were trumpeting</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c9" onclick="playCustomAudio('c9')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c9" onclick="toggleUnifiedCustomAudio('c9', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c9', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c10" data-ans="is basking" data-exp="भेड़ धूप सेक रही है, Present Continuous में 'is basking'। " data-spoken="द शीप इज़ बास्किंग इन द सन।">
+      <div class="card" id="card-c10" data-ans="is basking" data-exp="भेड़ अभी धूप में आराम कर रही है। काम वर्तमान में चल रहा है, इसलिए Present Continuous में 'is basking' सही है। will be basking तब होता जब कल धूप सेकने की बात होती।" data-spoken="द शीप इज़ बास्किंग इन द सन।">
         <div class="q-badge">Question 10</div>
         <div class="sentence">10. The sheep _______ (bask) in the sun.</div>
-        <div class="hindi-meaning">👉 हिंदी: वह भेड़ आराम से बैठकर मीठी-मीठी धूप सेक रही है।</div>
+        <div class="hindi-meaning">👉 हिंदी: भेड़ धूप सेक रही है।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'is basking')">is basking</button>
           <button class="opt-btn" onclick="check(this, 'will be basking')">will be basking</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-c10" onclick="playCustomAudio('c10')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-c10" onclick="toggleUnifiedCustomAudio('c10', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('c10', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
@@ -1047,7 +1050,7 @@
 
     <!-- EXERCISE D -->
     <div id="tab-4" class="content-section">
-      <div class="card" id="card-d1" data-ans="do not use" data-exp="मंकीज़ बहुत सारे हैं, इसलिए 'do not use' लगेगा।" data-spoken="मंकीज़ डू नॉट यूज़ देयर टंग।">
+      <div class="card" id="card-d1" data-ans="do not use" data-exp="Monkeys बहुवचन (Plural) हैं। अंग्रेजी का नियम है: एकवचन (He, She, It) के साथ 'does' लगता है, और बहुवचन (They, Monkeys) के साथ 'do' लगता है। इसलिए monkeys के साथ 'does not' गलत होगा और 'do not use' बिल्कुल सही होगा।" data-spoken="मंकीज़ डू नॉट यूज़ देयर टंग।">
         <div class="q-badge">Question 1</div>
         <div class="sentence">1. Monkeys _______ (use) their tongue to lap up water.</div>
         <div class="hindi-meaning">👉 हिंदी: बंदर पानी पीने के लिए अपनी जीभ का उपयोग नहीं करते हैं।</div>
@@ -1056,162 +1059,162 @@
           <button class="opt-btn" onclick="check(this, 'does not use')">does not use</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d1" onclick="playCustomAudio('d1')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d1" onclick="toggleUnifiedCustomAudio('d1', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d1', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d2" data-ans="do not harness" data-exp="लोग बहुवचन हैं, इसलिए 'do not harness' आएगा।" data-spoken="मोस्ट पीपल डू नॉट हार्नेस सोलर पावर।">
+      <div class="card" id="card-d2" data-ans="do not harness" data-exp="Most people का मतलब है बहुत सारे लोग (बहुवचन)। जब हम सामान्य सत्य बताते हैं, तो क्रिया के पहले 'do not' लगाते हैं। 'are not harness' व्याकरण के हिसाब से गलत है क्योंकि are के बाद या तो ing आता है या थर्ड फॉर्म। सही आदत बताने के लिए 'do not harness' आएगा।" data-spoken="मोस्ट पीपल डू नॉट हार्नेस सोलर पावर।">
         <div class="q-badge">Question 2</div>
         <div class="sentence">2. Most people _______ solar power.</div>
-        <div class="hindi-meaning">👉 हिंदी: ज्यादातर लोग सौर ऊर्जा (Solar Power) का उपयोग नहीं करते।</div>
+        <div class="hindi-meaning">👉 हिंदी: ज्यादातर लोग सोलर पावर का उपयोग नहीं करते हैं।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'do not harness')">do not harness</button>
           <button class="opt-btn" onclick="check(this, 'are not harness')">are not harness</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d2" onclick="playCustomAudio('d2')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d2" onclick="toggleUnifiedCustomAudio('d2', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d2', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d3" data-ans="are not free" data-exp="समुद्र बहुवचन हैं: 'are not free'। " data-spoken="आर ओशन्स आर नॉट फ्री ऑफ गार्बेज।">
+      <div class="card" id="card-d3" data-ans="are not free" data-exp="यहाँ 'free' कोई काम (Verb) नहीं है, बल्कि एक विशेषता (Adjective) है। विशेषता बताने के लिए do not नहीं, बल्कि is/am/are लगाते हैं। Oceans बहुत सारे हैं, इसलिए 'are not free' सही होगा।" data-spoken="आर ओशन्स आर नॉट फ्री ऑफ गार्बेज।">
         <div class="q-badge">Question 3</div>
         <div class="sentence">3. Our oceans _______ of oil and garbage.</div>
-        <div class="hindi-meaning">👉 हिंदी: हमारे समुद्र तेल और गंदे कचरे से मुक्त नहीं हैं।</div>
+        <div class="hindi-meaning">👉 हिंदी: हमारे समुद्र तेल और कचरे से मुक्त नहीं हैं।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'are not free')">are not free</button>
           <button class="opt-btn" onclick="check(this, 'do not free')">do not free</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d3" onclick="playCustomAudio('d3')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d3" onclick="toggleUnifiedCustomAudio('d3', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d3', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d4" data-ans="will not help" data-exp="will के बाद not लगाते हैं: 'will not help'।" data-spoken="कटिंग डाउन ट्रीज़ विल नॉट हेल्प।">
+      <div class="card" id="card-d4" data-ans="will not help" data-exp="पेड़ काटने से पर्यावरण को आगे कोई फायदा नहीं होगा। भविष्य की बात है, इसलिए will लगेगा और नकारात्मक के लिए not: 'will not help' सही उत्तर है।" data-spoken="कटिंग डाउन ट्रीज़ विल नॉट हेल्प।">
         <div class="q-badge">Question 4</div>
         <div class="sentence">4. Cutting down trees _______ the environment.</div>
-        <div class="hindi-meaning">👉 हिंदी: हरे-भरे पेड़ों को काटना पर्यावरण की मदद नहीं करेगा।</div>
+        <div class="hindi-meaning">👉 हिंदी: पेड़ों को काटना पर्यावरण की मदद नहीं करेगा।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'will not help')">will not help</button>
           <button class="opt-btn" onclick="check(this, 'did not help')">did not help</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d4" onclick="playCustomAudio('d4')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d4" onclick="toggleUnifiedCustomAudio('d4', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d4', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d5" data-ans="are not helpful" data-exp="थैलियाँ बहुत सारी हैं: 'are not helpful'। " data-spoken="प्लास्टिक बैग्स आर नॉट हेल्पफुल।">
+      <div class="card" id="card-d5" data-ans="are not helpful" data-exp="Bags and bottles दो चीज़ें मिलकर बहुवचन बनाती हैं। बहुवचन के साथ हमेशा 'are' का प्रयोग होता है, 'is' का नहीं। इसलिए 'are not helpful' सही उत्तर है।" data-spoken="प्लास्टिक बैग्स आर नॉट हेल्पफुल।">
         <div class="q-badge">Question 5</div>
         <div class="sentence">5. Plastic bags and bottles _______ for the well-being of sea creatures.</div>
-        <div class="hindi-meaning">👉 हिंदी: प्लास्टिक बैग और बोतलें समुद्री जीवों के जीवन के लिए अच्छी नहीं हैं।</div>
+        <div class="hindi-meaning">👉 हिंदी: प्लास्टिक बैग और बोतलें समुद्री जीवों की भलाई के लिए उपयोगी नहीं हैं।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'are not helpful')">are not helpful</button>
           <button class="opt-btn" onclick="check(this, 'is not helpful')">is not helpful</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d5" onclick="playCustomAudio('d5')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d5" onclick="toggleUnifiedCustomAudio('d5', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d5', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d6" data-ans="is not easy" data-exp="कचरा प्रबंधन एकवचन है: 'is not easy'।" data-spoken="वेस्ट मैनेजमेंट इज़ नॉट ईज़ी।">
+      <div class="card" id="card-d6" data-ans="is not easy" data-exp="Waste management (कचरा प्रबंधन) एक पूरी व्यवस्था का नाम है जो एकवचन है। एकवचन के साथ 'is' लगता है, 'are' नहीं। इसलिए 'is not easy' सही विकल्प है।" data-spoken="वेस्ट मैनेजमेंट इज़ नॉट ईज़ी।">
         <div class="q-badge">Question 6</div>
         <div class="sentence">6. Waste management _______ easy.</div>
-        <div class="hindi-meaning">👉 हिंदी: पूरे शहर के कचरे को संभालना कोई आसान काम नहीं है।</div>
+        <div class="hindi-meaning">👉 हिंदी: वेस्ट मैनेजमेंट आसान नहीं है।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'is not easy')">is not easy</button>
           <button class="opt-btn" onclick="check(this, 'are not easy')">are not easy</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d6" onclick="playCustomAudio('d6')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d6" onclick="toggleUnifiedCustomAudio('d6', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d6', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d7" data-ans="is not healthy" data-exp="हवा के साथ 'is not healthy' लगेगा।" data-spoken="दी एयर वी ब्रीद इज़ नॉट हेल्दी।">
+      <div class="card" id="card-d7" data-ans="is not healthy" data-exp="The air (हवा) एक अगणनीय संज्ञा (Uncountable Noun) है जिसे हम गिन नहीं सकते। जिसे गिन नहीं सकते, वह हमेशा एकवचन माना जाता है और उसके साथ 'is' लगता है। 'does not healthy' गलत है क्योंकि healthy क्रिया नहीं गुण है।" data-spoken="दी एयर वी ब्रीद इज़ नॉट हेल्दी।">
         <div class="q-badge">Question 7</div>
         <div class="sentence">7. The air we breathe _______ for us because of pollution.</div>
-        <div class="hindi-meaning">👉 हिंदी: प्रदूषण के कारण जिस हवा में हम साँस लेते हैं वह सेहतमंद नहीं है।</div>
+        <div class="hindi-meaning">👉 हिंदी: प्रदूषण के कारण जो हवा हम साँस में लेते हैं वह हमारे लिए स्वास्थ्यवर्धक नहीं है।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'is not healthy')">is not healthy</button>
           <button class="opt-btn" onclick="check(this, 'does not healthy')">does not healthy</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d7" onclick="playCustomAudio('d7')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d7" onclick="toggleUnifiedCustomAudio('d7', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d7', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d8" data-ans="are not using" data-exp="लोग बहुत सारे हैं: 'are not using' सही उत्तर है।" data-spoken="पीपल आर नॉट यूज़िंग फ्रेशवॉटर केयरफुली।">
+      <div class="card" id="card-d8" data-ans="are not using" data-exp="People का मतलब बहुत सारे लोग (बहुवचन) होता है। लोग पानी का सही उपयोग नहीं कर रहे हैं। बहुवचन के साथ 'are' लगता है, 'is' नहीं। इसलिए 'are not using' सही है।" data-spoken="पीपल आर नॉट यूज़िंग फ्रेशवॉटर केयरफुली।">
         <div class="q-badge">Question 8</div>
         <div class="sentence">8. People _______ freshwater very carefully.</div>
-        <div class="hindi-meaning">👉 हिंदी: लोग पीने के साफ पानी का उपयोग सावधानी से नहीं कर रहे हैं।</div>
+        <div class="hindi-meaning">👉 हिंदी: लोग ताज़े पानी का उपयोग बहुत सावधानी से नहीं कर रहे हैं।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'are not using')">are not using</button>
           <button class="opt-btn" onclick="check(this, 'is not using')">is not using</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d8" onclick="playCustomAudio('d8')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d8" onclick="toggleUnifiedCustomAudio('d8', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d8', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d9" data-ans="is not being" data-exp="कचरे के साथ 'is not being' recycled लगेगा।" data-spoken="ऑल ट्रैश इज़ नॉट बीइंग रीसायकल्ड।">
+      <div class="card" id="card-d9" data-ans="is not being" data-exp="Trash (कचरा) भी हवा की तरह अगणनीय (Uncountable) है। इसके साथ हमेशा एकवचन सहायक क्रिया 'is' लगती है। इसलिए 'is not being' recycled सही उत्तर होगा।" data-spoken="ऑल ट्रैश इज़ नॉट बीइंग रीसायकल्ड।">
         <div class="q-badge">Question 9</div>
         <div class="sentence">9. All trash _______ recycled.</div>
-        <div class="hindi-meaning">👉 हिंदी: घरों से निकलने वाले सारे कचरे को रीसायकल नहीं किया जा रहा है।</div>
+        <div class="hindi-meaning">👉 हिंदी: सभी कचरे को रीसायकल नहीं किया जा रहा है।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'is not being')">is not being</button>
           <button class="opt-btn" onclick="check(this, 'are not being')">are not being</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d9" onclick="playCustomAudio('d9')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d9" onclick="toggleUnifiedCustomAudio('d9', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d9', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d10" data-ans="are not taking" data-exp="The people के साथ 'are not taking' care of forests होगा।" data-spoken="द पीपल आर नॉट टेकिंग केयर ऑफ फॉरेस्ट्स।">
+      <div class="card" id="card-d10" data-ans="are not taking" data-exp="यहाँ सब्जेक्ट है 'The people of the world' (दुनिया के लोग)। लोग बहुत सारे हैं, इसलिए बहुवचन के साथ 'are' लगेगा। 'is not taking' गलत है और 'are not taking' बिल्कुल सही है।" data-spoken="द पीपल आर नॉट टेकिंग केयर ऑफ फॉरेस्ट्स।">
         <div class="q-badge">Question 10</div>
         <div class="sentence">10. The people of the world _______ care of their forests.</div>
-        <div class="hindi-meaning">👉 हिंदी: दुनिया के लोग अपने हरे-भरे जंगलों की अच्छी देखभाल नहीं कर रहे हैं।</div>
+        <div class="hindi-meaning">👉 हिंदी: दुनिया के लोग अपने जंगलों की देखभाल नहीं कर रहे हैं।</div>
         <div class="opts">
           <button class="opt-btn" onclick="check(this, 'are not taking')">are not taking</button>
           <button class="opt-btn" onclick="check(this, 'is not taking')">is not taking</button>
         </div>
         <div class="action-row">
-          <button class="btn-touch btn-ai" onclick="playVoice(this)">🔊 AI आवाज़</button>
-          <button class="btn-touch btn-parent" id="play-d10" onclick="playCustomAudio('d10')">▶️ आवाज़ सुनो</button>
-          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand</button>
+          <button class="btn-touch btn-ai" onclick="playQuestionVoice(this)">🔊 AI आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-d10" onclick="toggleUnifiedCustomAudio('d10', this)">▶️ शिक्षक की आवाज़</button>
+          <button class="btn-touch btn-why" onclick="toggleExp(this)">💡 Understand (कारण)</button>
           <button class="btn-rec" onclick="toggleRecord('d10', this)">🔴 Record</button>
         </div>
         <div class="explain-box"></div>
@@ -1224,9 +1227,8 @@
 <script>
   let isAudioUnlocked = false;
   let currentUserRole = null;
-  const ADMIN_PIN = "1234";
+  const ADMIN_PIN = "Sarfaraz1234";
 
-  // Pre-configured students database (Local memory)
   let studentsList = JSON.parse(localStorage.getItem('grammar_students')) || [
     { name: "arham", pass: "123" },
     { name: "aarav", pass: "123" },
@@ -1234,11 +1236,20 @@
     { name: "ananya", pass: "123" }
   ];
 
-  function setLoginTab(role) {
-    document.getElementById('tab-student').classList.toggle('active', role === 'student');
-    document.getElementById('tab-admin').classList.toggle('active', role === 'admin');
-    document.getElementById('student-login-box').style.display = role === 'student' ? 'block' : 'none';
-    document.getElementById('admin-login-box').style.display = role === 'admin' ? 'block' : 'none';
+  function toggleSecretAdmin() {
+    const studentBox = document.getElementById('student-login-box');
+    const adminBox = document.getElementById('admin-login-box');
+    const subtext = document.getElementById('login-subtext');
+
+    if (adminBox.style.display === 'none') {
+      studentBox.style.display = 'none';
+      adminBox.style.display = 'block';
+      subtext.innerText = "शिक्षक/एडमिन पोर्टल में लॉगिन करें:";
+    } else {
+      adminBox.style.display = 'none';
+      studentBox.style.display = 'block';
+      subtext.innerText = "इंग्लिश ग्रामर पाठशाला में लॉगिन करें:";
+    }
   }
 
   function loginStudent() {
@@ -1255,7 +1266,7 @@
       if (found.pass === pass) {
         authenticateSuccess('student', found.name);
       } else {
-        alert("❌ गलत पासवर्ड! (डिफ़ॉल्ट पासवर्ड 123 है)");
+        alert("❌ पासवर्ड सही नहीं है!");
       }
     } else {
       if (pass === "123") {
@@ -1263,7 +1274,7 @@
         localStorage.setItem('grammar_students', JSON.stringify(studentsList));
         authenticateSuccess('student', user);
       } else {
-        alert("❌ नए छात्र का डिफ़ॉल्ट पासवर्ड 123 होना चाहिए।");
+        alert("❌ पासवर्ड सही नहीं है!");
       }
     }
   }
@@ -1274,7 +1285,7 @@
       authenticateSuccess('admin', 'Admin/Teacher');
       document.getElementById('admin-pin').value = "";
     } else {
-      alert("❌ गलत PIN! (Default PIN: 1234)");
+      alert("❌ गलत पासवर्ड!");
     }
   }
 
@@ -1301,19 +1312,21 @@
       adminPanel.style.display = 'none';
       recButtons.forEach(b => b.style.display = 'none');
     }
-    
-    // लोड की गई सभी ऑडियो बटन्स को स्क्रीन पर दिखाएं
+
     loadAllSavedAudios();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function logout() {
+    stopAllPlayback();
     currentUserRole = null;
     document.getElementById('main-app').style.display = 'none';
     document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('admin-login-box').style.display = 'none';
+    document.getElementById('student-login-box').style.display = 'block';
+    document.getElementById('login-subtext').innerText = "इंग्लिश ग्रामर पाठशाला में लॉगिन करें:";
     document.getElementById('stu-username').value = "";
     document.getElementById('stu-pass').value = "";
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   }
 
   function addNewStudent() {
@@ -1326,7 +1339,7 @@
     studentsList.push({ name: name, pass: "123" });
     localStorage.setItem('grammar_students', JSON.stringify(studentsList));
     document.getElementById('new-stu-name').value = "";
-    alert("✅ नया छात्र '" + name + "' जुड़ गया! (Password: 123)");
+    alert("✅ नया छात्र '" + name + "' जुड़ गया!");
   }
 
   function unlockAudioOnce() {
@@ -1338,56 +1351,77 @@
   }
 
   function openTab(idx) {
+    stopAllPlayback();
     document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
     document.querySelectorAll('.content-section').forEach((s, i) => s.classList.toggle('active', i === idx));
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function check(btn, ans) {
-    const card = btn.closest('.card');
-    const target = card.getAttribute('data-ans');
-    const all = card.querySelectorAll('.opt-btn');
+  /* UNIFIED SINGLE-AUDIO MANAGER (PLAY / PAUSE) */
+  let currentSoundType = null;
+  let currentActiveBtn = null;
+  let currentCustomPlayer = null;
+  let defaultBtnHtml = "";
+  let isTTSPaused = false;
+  let currentTTSText = "";
 
-    all.forEach(b => {
-      b.classList.remove('correct', 'wrong');
-      if (b.textContent.trim().startsWith(target)) {
-        b.classList.add('correct');
-      }
-    });
-
-    if (ans === target) {
-      sayText("शाबाश बेटा! बिल्कुल सही जवाब!");
-    } else {
-      btn.classList.add('wrong');
-      sayText("अरे, गलत हो गया! अंडरस्टैंड बटन दबाकर सुनो ऐसा क्यों हुआ।");
+  function resetActiveButtonState() {
+    if (currentActiveBtn && defaultBtnHtml) {
+      currentActiveBtn.innerHTML = defaultBtnHtml;
+      currentActiveBtn.classList.remove('is-playing');
+    }
+    const statusBar = document.getElementById('status-bar');
+    if (statusBar) {
+      statusBar.style.background = '#DCFCE7';
+      statusBar.style.color = '#166534';
+      statusBar.innerText = "🔊 आवाज़ रेडी है!";
     }
   }
 
-  function toggleExp(btn) {
-    const card = btn.closest('.card');
-    const box = card.querySelector('.explain-box');
-    const exp = card.getAttribute('data-exp');
-
-    if (box.style.display === 'block') {
-      box.style.display = 'none';
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-    } else {
-      box.textContent = exp;
-      box.style.display = 'block';
-      sayText(exp);
+  function stopAllPlayback() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      isTTSPaused = false;
     }
+    if (currentCustomPlayer) {
+      currentCustomPlayer.pause();
+      currentCustomPlayer.currentTime = 0;
+      currentCustomPlayer = null;
+    }
+    resetActiveButtonState();
+    currentSoundType = null;
+    currentActiveBtn = null;
+    defaultBtnHtml = "";
   }
 
-  function playVoice(btn) {
-    const card = btn.closest('.card');
-    const spoken = card.getAttribute('data-spoken');
-    sayText(spoken);
-  }
-
-  function sayText(txt) {
-    const statusBox = document.getElementById('status-bar');
+  function toggleUnifiedTTS(txt, btn) {
     if (!('speechSynthesis' in window)) return;
+    const statusBar = document.getElementById('status-bar');
+
+    if (currentActiveBtn === btn && currentSoundType === 'tts') {
+      if (!isTTSPaused && window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
+        isTTSPaused = true;
+        btn.innerHTML = "▶️ चालू करें (Resume)";
+        btn.classList.remove('is-playing');
+        statusBar.innerText = "⏸️ आवाज़ रुकी हुई है (Paused)";
+      } else if (isTTSPaused) {
+        window.speechSynthesis.resume();
+        isTTSPaused = false;
+        btn.innerHTML = "⏸️ पॉज़ करें";
+        btn.classList.add('is-playing');
+        statusBar.innerText = "🗣️ बोल रहा है...";
+      }
+      return;
+    }
+
+    stopAllPlayback();
+
+    currentSoundType = 'tts';
+    currentActiveBtn = btn;
+    defaultBtnHtml = btn.innerHTML;
+    currentTTSText = txt;
+    isTTSPaused = false;
 
     window.speechSynthesis.resume();
     window.speechSynthesis.cancel();
@@ -1411,21 +1445,122 @@
     u.pitch = 1.05;
 
     u.onstart = function() {
-      statusBox.style.background = '#FEF08A';
-      statusBox.style.color = '#854D0E';
-      statusBox.innerText = "🗣️ बोल रहा है: " + txt.substring(0, 32) + "...";
+      btn.innerHTML = "⏸️ पॉज़ करें";
+      btn.classList.add('is-playing');
+      statusBar.style.background = '#FEF08A';
+      statusBar.style.color = '#854D0E';
+      statusBar.innerText = "🗣️ बोल रहा है: " + txt.substring(0, 30) + "...";
     };
 
-    u.onend = function() {
-      statusBox.style.background = '#DCFCE7';
-      statusBox.style.color = '#166534';
-      statusBox.innerText = "🔊 आवाज़ रेडी है!";
-    };
+    u.onend = function() { stopAllPlayback(); };
+    u.onerror = function() { stopAllPlayback(); };
 
     window.speechSynthesis.speak(u);
   }
 
-  // --- IndexedDB Database Engine ---
+  function toggleUnifiedCustomAudio(id, btn) {
+    if (!db) return;
+    const statusBar = document.getElementById('status-bar');
+
+    if (currentActiveBtn === btn && currentSoundType === 'custom' && currentCustomPlayer) {
+      if (!currentCustomPlayer.paused) {
+        currentCustomPlayer.pause();
+        btn.innerHTML = "▶️ चालू करें (Resume)";
+        btn.classList.remove('is-playing');
+        statusBar.innerText = "⏸️ शिक्षक की आवाज़ रुकी हुई है";
+      } else {
+        currentCustomPlayer.play();
+        btn.innerHTML = "⏸️ पॉज़ करें";
+        btn.classList.add('is-playing');
+        statusBar.innerText = "▶️ शिक्षक की आवाज़ चल रही है...";
+      }
+      return;
+    }
+
+    stopAllPlayback();
+
+    const tx = db.transaction("recordings", "readonly");
+    const req = tx.objectStore("recordings").get(id);
+
+    req.onsuccess = function() {
+      if (req.result && req.result.data) {
+        currentSoundType = 'custom';
+        currentActiveBtn = btn;
+        defaultBtnHtml = btn.innerHTML;
+
+        currentCustomPlayer = new Audio(req.result.data);
+
+        currentCustomPlayer.onplay = function() {
+          btn.innerHTML = "⏸️ पॉज़ करें";
+          btn.classList.add('is-playing');
+          statusBar.style.background = '#FEF08A';
+          statusBar.style.color = '#854D0E';
+          statusBar.innerText = "▶️ शिक्षक की आवाज़ चल रही है...";
+        };
+
+        currentCustomPlayer.onended = function() { stopAllPlayback(); };
+        currentCustomPlayer.onerror = function() { stopAllPlayback(); };
+
+        currentCustomPlayer.play();
+      } else {
+        alert("इस प्रश्न के लिए अभी शिक्षक की आवाज़ रिकॉर्ड नहीं है!");
+      }
+    };
+  }
+
+  function playQuestionVoice(btn) {
+    const card = btn.closest('.card');
+    const spoken = card.getAttribute('data-spoken');
+    toggleUnifiedTTS(spoken, btn);
+  }
+
+  function toggleExp(btn) {
+    const card = btn.closest('.card');
+    const box = card.querySelector('.explain-box');
+    const exp = card.getAttribute('data-exp');
+
+    if (box.style.display === 'block') {
+      box.style.display = 'none';
+      if (currentActiveBtn === btn) stopAllPlayback();
+    } else {
+      box.textContent = exp;
+      box.style.display = 'block';
+      toggleUnifiedTTS(exp, btn);
+    }
+  }
+
+  function check(btn, ans) {
+    const card = btn.closest('.card');
+    const target = card.getAttribute('data-ans');
+    const all = card.querySelectorAll('.opt-btn');
+
+    all.forEach(b => {
+      b.classList.remove('correct', 'wrong');
+      if (b.textContent.trim().startsWith(target)) {
+        b.classList.add('correct');
+      }
+    });
+
+    if (ans === target) {
+      sayInstantFeedback("शाबाश बेटा! बिल्कुल सही जवाब!");
+    } else {
+      btn.classList.add('wrong');
+      sayInstantFeedback("अरे गलत हो गया! अंडरस्टैंड बटन दबाकर सुनो ऐसा क्यों हुआ।");
+    }
+  }
+
+  function sayInstantFeedback(msg) {
+    stopAllPlayback();
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(msg);
+    const voices = window.speechSynthesis.getVoices();
+    let pickedVoice = voices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi'));
+    if (pickedVoice) u.voice = pickedVoice;
+    u.lang = 'hi-IN';
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+  }
+
   let db;
   const dbReq = indexedDB.open("KidsGrammarFinalSecuredDB", 1);
   dbReq.onupgradeneeded = function(e) {
@@ -1434,25 +1569,23 @@
       db.createObjectStore("recordings", { keyPath: "id" });
     }
   };
-  
+
   dbReq.onsuccess = function(e) {
     db = e.target.result;
     loadAllSavedAudios();
-    // GitHub से आवाज़ लोड करने का ऑटोमैटिक कॉल
     loadCloudVoices();
   };
 
-  // GitHub से 'My_Grammar_Voices.json' अपने आप लोड करने वाला फंक्शन (Cache-Busting Enabled)
   async function loadCloudVoices() {
     try {
       const response = await fetch('My_Grammar_Voices.json?v=' + new Date().getTime());
       if (!response.ok) return;
       const items = await response.json();
-      
+
       const tx = db.transaction("recordings", "readwrite");
       const store = tx.objectStore("recordings");
       items.forEach(item => store.put(item));
-      
+
       tx.oncomplete = () => {
         loadAllSavedAudios();
         const statusBar = document.getElementById('status-bar');
@@ -1461,7 +1594,7 @@
         }
       };
     } catch (e) {
-      console.log("Offline mode or cloud voices not synced yet:", e);
+      console.log("Offline or cloud voices not synced yet:", e);
     }
   }
 
@@ -1520,18 +1653,6 @@
   function showPlayButton(id) {
     const playBtn = document.getElementById('play-' + id);
     if (playBtn) playBtn.style.display = 'flex';
-  }
-
-  function playCustomAudio(id) {
-    if (!db) return;
-    const tx = db.transaction("recordings", "readonly");
-    const req = tx.objectStore("recordings").get(id);
-    req.onsuccess = function() {
-      if (req.result && req.result.data) {
-        const player = new Audio(req.result.data);
-        player.play();
-      }
-    };
   }
 
   function loadAllSavedAudios() {
