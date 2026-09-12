@@ -1562,6 +1562,38 @@
       window.speechSynthesis.getVoices();
     };
   }
+
+// GitHub से आपकी रिकॉर्ड की हुई आवाज़ें ऑटोमैटिक लोड करने का कोड
+  async function loadCloudVoices() {
+    try {
+      const response = await fetch('My_Grammar_Voices.json');
+      if (!response.ok) return;
+      const items = await response.json();
+      
+      const tx = db.transaction("recordings", "readwrite");
+      const store = tx.objectStore("recordings");
+      items.forEach(item => store.put(item));
+      
+      tx.oncomplete = () => {
+        loadAllSavedAudios();
+        const statusBar = document.getElementById('status-bar');
+        if (statusBar) {
+          statusBar.innerText = "🎉 शिक्षक की आवाज़ लोड हो चुकी है! सुनने के लिए बैंगनी बटन दबाएं।";
+        }
+      };
+    } catch (e) {
+      console.log("Offline mode or cloud voices not synced yet:", e);
+    }
+  }
+
+  // जैसे ही डेटाबेस खुले, आवाज़ें अपने आप खींच लो
+  const originalOnSuccess = dbReq.onsuccess;
+  dbReq.onsuccess = function(e) {
+    db = e.target.result;
+    loadAllSavedAudios();
+    loadCloudVoices(); // <-- यह लाइन आपकी आवाज़ GitHub से लाएगी
+  };
+  
 </script>
 
 </body>
