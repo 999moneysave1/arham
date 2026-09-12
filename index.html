@@ -18,17 +18,17 @@
     --text-muted: #64748B;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
     -webkit-tap-highlight-color: transparent;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
+  body { 
+    background: var(--bg); 
+    color: var(--text); 
     min-height: 100vh;
   }
 
@@ -105,7 +105,7 @@
     margin-top: 6px;
   }
 
-  /* MAIN APP CONTENT (Hidden Until Authenticated) */
+  /* MAIN APP CONTENT */
   #main-app {
     display: none;
     padding: 12px;
@@ -114,7 +114,6 @@
 
   .container { max-width: 600px; margin: 0 auto; }
 
-  /* Top User Bar */
   .user-bar {
     display: flex;
     justify-content: space-between;
@@ -144,8 +143,8 @@
     cursor: pointer;
   }
 
-  header {
-    text-align: center;
+  header { 
+    text-align: center; 
     padding: 14px 10px;
     background: #FFFFFF;
     border-radius: 16px;
@@ -178,14 +177,14 @@
   }
   .admin-title { font-size: 13px; font-weight: 800; color: #5B21B6; margin-bottom: 8px; }
   .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-  .btn-sync {
-    background: var(--purple);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 8px 12px;
-    font-size: 12px;
-    font-weight: 700;
+  .btn-sync { 
+    background: var(--purple); 
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    padding: 8px 12px; 
+    font-size: 12px; 
+    font-weight: 700; 
     cursor: pointer;
   }
   .add-student-box {
@@ -328,16 +327,16 @@
     cursor: pointer;
   }
   .btn-ai { background: #EEF2FF; color: #3730A3; }
-  .btn-parent {
-    background: #FAF5FF;
-    color: #6B21A8;
-    border: 1.5px solid #D8B4FE;
-    display: none;
+  .btn-parent { 
+    background: #FAF5FF; 
+    color: #6B21A8; 
+    border: 1.5px solid #D8B4FE; 
+    display: none; 
   }
-  .btn-why {
-    background: #FFFBEB;
-    color: #92400E;
-    border: 1px solid #FDE68A;
+  .btn-why { 
+    background: #FFFBEB; 
+    color: #92400E; 
+    border: 1px solid #FDE68A; 
     flex-basis: 100%;
   }
 
@@ -393,7 +392,7 @@
     <div id="student-login-box">
       <div class="field-group">
         <label>यूज़रनेम / छात्र का नाम:</label>
-        <input type="text" id="stu-username" class="field-input" placeholder="उदा. aarav">
+        <input type="text" id="stu-username" class="field-input" placeholder="उदा. arham">
       </div>
       <div class="field-group">
         <label>पासवर्ड (डिफ़ॉल्ट: 123):</label>
@@ -432,7 +431,7 @@
 
     <div id="status-bar">🔊 आवाज़ रेडी है! किसी भी बटन पर टैप करें।</div>
 
-    <!-- Admin Tools (Hidden from Students) -->
+    <!-- Admin Tools -->
     <div id="admin-panel">
       <div class="admin-title">⚙️ Admin Controls (वॉइस और छात्र मैनेजमेंट)</div>
       <div class="admin-actions">
@@ -447,7 +446,7 @@
       </div>
     </div>
 
-    <!-- Slider Tabs -->
+    <!-- Tabs Navigation -->
     <div class="tabs-wrapper">
       <div class="tabs">
         <button class="tab-btn active" onclick="openTab(0)">🌟 Understanding</button>
@@ -469,7 +468,7 @@
         </p>
         <div class="action-row">
           <button class="btn-touch btn-ai" onclick="sayText('Verb का मतलब होता है कोई भी काम! जैसे खेलना, खाना, सोना, नाचना। जब भी कोई वाक्य आए तो पूछो यहाँ क्या काम हो रहा है, वही Verb है!')">🔊 AI आवाज़ सुनो</button>
-          <button class="btn-touch btn-parent" id="play-und_verb" onclick="playCustomAudio('und_verb')">▶️ माता-पिता की आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-und_verb" onclick="playCustomAudio('und_verb')">▶️ शिक्षक की आवाज़</button>
           <button class="btn-rec" onclick="toggleRecord('und_verb', this)">🔴 Record अपनी आवाज़</button>
         </div>
       </div>
@@ -485,7 +484,7 @@
         </p>
         <div class="action-row">
           <button class="btn-touch btn-ai" onclick="sayText('दिनभर हम जो भी काम करते हैं वह तीन समय में होता है। पहला पास्ट जो हो चुका, दूसरा फ्यूचर जो आगे होगा, और तीसरा प्रेजेंट जो आज हो रहा है!')">🔊 AI आवाज़ सुनो</button>
-          <button class="btn-touch btn-parent" id="play-und_tense" onclick="playCustomAudio('und_tense')">▶️ माता-पिता की आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-und_tense" onclick="playCustomAudio('und_tense')">▶️ शिक्षक की आवाज़</button>
           <button class="btn-rec" onclick="toggleRecord('und_tense', this)">🔴 Record अपनी आवाज़</button>
         </div>
       </div>
@@ -501,7 +500,7 @@
         </p>
         <div class="action-row">
           <button class="btn-touch btn-ai" onclick="sayText('जादुई फॉर्मूला याद रखो। अगर वाक्य में विल दिखा तो फ्यूचर, ई डी दिखा तो पास्ट, और दोनों नहीं दिखे तो निन्यानवे परसेंट प्रेजेंट टेंस!')">🔊 AI आवाज़ सुनो</button>
-          <button class="btn-touch btn-parent" id="play-und_magic" onclick="playCustomAudio('und_magic')">▶️ माता-पिता की आवाज़</button>
+          <button class="btn-touch btn-parent" id="play-und_magic" onclick="playCustomAudio('und_magic')">▶️ शिक्षक की आवाज़</button>
           <button class="btn-rec" onclick="toggleRecord('und_magic', this)">🔴 Record अपनी आवाज़</button>
         </div>
       </div>
@@ -1229,6 +1228,7 @@
 
   // Pre-configured students database (Local memory)
   let studentsList = JSON.parse(localStorage.getItem('grammar_students')) || [
+    { name: "arham", pass: "123" },
     { name: "aarav", pass: "123" },
     { name: "rohit", pass: "123" },
     { name: "ananya", pass: "123" }
@@ -1258,7 +1258,6 @@
         alert("❌ गलत पासवर्ड! (डिफ़ॉल्ट पासवर्ड 123 है)");
       }
     } else {
-      // Auto-register student if new with default pass 123
       if (pass === "123") {
         studentsList.push({ name: user, pass: "123" });
         localStorage.setItem('grammar_students', JSON.stringify(studentsList));
@@ -1302,6 +1301,9 @@
       adminPanel.style.display = 'none';
       recButtons.forEach(b => b.style.display = 'none');
     }
+    
+    // लोड की गई सभी ऑडियो बटन्स को स्क्रीन पर दिखाएं
+    loadAllSavedAudios();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1383,7 +1385,6 @@
     sayText(spoken);
   }
 
-  // Pure Indian First Voice
   function sayText(txt) {
     const statusBox = document.getElementById('status-bar');
     if (!('speechSynthesis' in window)) return;
@@ -1424,7 +1425,7 @@
     window.speechSynthesis.speak(u);
   }
 
-  // IndexedDB Storage for Voice
+  // --- IndexedDB Database Engine ---
   let db;
   const dbReq = indexedDB.open("KidsGrammarFinalSecuredDB", 1);
   dbReq.onupgradeneeded = function(e) {
@@ -1433,10 +1434,36 @@
       db.createObjectStore("recordings", { keyPath: "id" });
     }
   };
+  
   dbReq.onsuccess = function(e) {
     db = e.target.result;
     loadAllSavedAudios();
+    // GitHub से आवाज़ लोड करने का ऑटोमैटिक कॉल
+    loadCloudVoices();
   };
+
+  // GitHub से 'My_Grammar_Voices.json' अपने आप लोड करने वाला फंक्शन (Cache-Busting Enabled)
+  async function loadCloudVoices() {
+    try {
+      const response = await fetch('My_Grammar_Voices.json?v=' + new Date().getTime());
+      if (!response.ok) return;
+      const items = await response.json();
+      
+      const tx = db.transaction("recordings", "readwrite");
+      const store = tx.objectStore("recordings");
+      items.forEach(item => store.put(item));
+      
+      tx.oncomplete = () => {
+        loadAllSavedAudios();
+        const statusBar = document.getElementById('status-bar');
+        if (statusBar) {
+          statusBar.innerText = "🎉 शिक्षक की रिकॉर्ड की हुई आवाज़ लोड हो चुकी है!";
+        }
+      };
+    } catch (e) {
+      console.log("Offline mode or cloud voices not synced yet:", e);
+    }
+  }
 
   let mediaRecorder;
   let audioChunks = [];
@@ -1496,6 +1523,7 @@
   }
 
   function playCustomAudio(id) {
+    if (!db) return;
     const tx = db.transaction("recordings", "readonly");
     const req = tx.objectStore("recordings").get(id);
     req.onsuccess = function() {
@@ -1507,6 +1535,7 @@
   }
 
   function loadAllSavedAudios() {
+    if (!db) return;
     const tx = db.transaction("recordings", "readonly");
     const req = tx.objectStore("recordings").getAll();
     req.onsuccess = function() {
@@ -1517,6 +1546,7 @@
   }
 
   function exportVoices() {
+    if (!db) return;
     const tx = db.transaction("recordings", "readonly");
     const req = tx.objectStore("recordings").getAll();
     req.onsuccess = function() {
@@ -1562,38 +1592,6 @@
       window.speechSynthesis.getVoices();
     };
   }
-
-// GitHub से आपकी रिकॉर्ड की हुई आवाज़ें ऑटोमैटिक लोड करने का कोड
-  async function loadCloudVoices() {
-    try {
-      const response = await fetch('My_Grammar_Voices.json');
-      if (!response.ok) return;
-      const items = await response.json();
-      
-      const tx = db.transaction("recordings", "readwrite");
-      const store = tx.objectStore("recordings");
-      items.forEach(item => store.put(item));
-      
-      tx.oncomplete = () => {
-        loadAllSavedAudios();
-        const statusBar = document.getElementById('status-bar');
-        if (statusBar) {
-          statusBar.innerText = "🎉 शिक्षक की आवाज़ लोड हो चुकी है! सुनने के लिए बैंगनी बटन दबाएं।";
-        }
-      };
-    } catch (e) {
-      console.log("Offline mode or cloud voices not synced yet:", e);
-    }
-  }
-
-  // जैसे ही डेटाबेस खुले, आवाज़ें अपने आप खींच लो
-  const originalOnSuccess = dbReq.onsuccess;
-  dbReq.onsuccess = function(e) {
-    db = e.target.result;
-    loadAllSavedAudios();
-    loadCloudVoices(); // <-- यह लाइन आपकी आवाज़ GitHub से लाएगी
-  };
-  
 </script>
 
 </body>
