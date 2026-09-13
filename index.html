@@ -65,10 +65,7 @@
     transition: transform 0.2s;
     user-select: none;
   }
-  .secret-hand-btn:active {
-    transform: scale(1.3) rotate(15deg);
-  }
-
+  .secret-hand-btn:active { transform: scale(1.3) rotate(15deg); }
   .login-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
 
   .field-group { text-align: left; margin-bottom: 14px; }
@@ -153,6 +150,30 @@
   header h1 { font-size: 20px; color: #1E3A8A; font-weight: 800; }
   header p { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
 
+  .voice-picker-box {
+    background: #FFFFFF;
+    padding: 10px 14px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    border: 1px solid #E2E8F0;
+  }
+  .voice-picker-box label { font-size: 12px; font-weight: 800; color: #1E293B; }
+  .voice-select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1.5px solid #CBD5E1;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1E3A8A;
+    background: #F8FAFC;
+    outline: none;
+    cursor: pointer;
+  }
+
   #status-bar {
     background: #DCFCE7;
     color: #166534;
@@ -164,6 +185,34 @@
     font-weight: 700;
     margin-bottom: 12px;
     transition: all 0.3s ease;
+  }
+
+  /* EXERCISE GUIDANCE BANNER */
+  .exercise-guidance {
+    background: linear-gradient(135deg, #EEF2FF, #E0E7FF);
+    border: 2px solid #C7D2FE;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .guidance-text { font-size: 13px; color: #312E81; font-weight: 700; line-height: 1.4; }
+  .btn-guidance-voice {
+    background: #4338CA;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   #admin-panel {
@@ -267,7 +316,7 @@
     font-size: 17px;
     font-weight: 700;
     color: #0F172A;
-    line-height: 1.4;
+    line-height: 1.5;
     margin-bottom: 6px;
   }
   .hindi-meaning {
@@ -369,6 +418,7 @@
     100% { transform: scale(1); }
   }
 
+  /* EXPLANATION BOX & WORD HIGHLIGHTING */
   .explain-box {
     display: none;
     background: #FFFBEB;
@@ -378,7 +428,17 @@
     font-size: 14px;
     color: #78350F;
     margin-top: 10px;
-    line-height: 1.6;
+    line-height: 1.8;
+  }
+
+  .word-highlight {
+    background-color: #FEF08A !important;
+    color: #92400E !important;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: 800;
+    box-shadow: 0 0 4px rgba(234, 179, 8, 0.4);
+    transition: background 0.15s ease;
   }
 </style>
 </head>
@@ -433,6 +493,16 @@
       <h1>🎓 इंग्लिश ग्रामर पाठशाला 🎓</h1>
       <p>सुनो, समझो और खेल-खेल में सीखो!</p>
     </header>
+
+    <!-- वॉइस सिलेक्टर बार -->
+    <div class="voice-picker-box">
+      <label>🎙️ AI आवाज़ चुनें:</label>
+      <select id="selected-voice" class="voice-select" onchange="stopAllPlayback()">
+        <option value="en-IN-NeerjaNeural">🇮🇳 Neerja (English - Indian Accent)</option>
+        <option value="hi-IN-MadhurNeural" selected>🇮🇳 Madhur (हिंदी - Male Accent)</option>
+        <option value="hi-IN-SwaraNeural">🇮🇳 Swara (हिंदी - Female Accent)</option>
+      </select>
+    </div>
 
     <div id="status-bar">🔊 आवाज़ रेडी है! किसी भी बटन पर टैप करें।</div>
 
@@ -511,6 +581,14 @@
 
     <!-- EXERCISE A -->
     <div id="tab-1" class="content-section">
+      <div class="exercise-guidance">
+        <div class="guidance-text">
+          🎯 <b>एक्सरसाइज A में क्या करना है:</b><br>
+          वाक्य को ध्यान से पढ़ो और पहचानो कि यह कौन-सा Tense है—Present (Pr), Past (P), या Future (F)!
+        </div>
+        <button class="btn-guidance-voice" onclick="toggleUnifiedTTS('बच्चों, एक्सरसाइज ए में आपको वाक्य को ध्यान से पढ़ना है और बताना है कि यह काम प्रेजेंट में हो रहा है, पास्ट में हो चुका है, या फ्यूचर में होगा! सही विकल्प पर टैप करें।', this)">🔊 निर्देश सुनो</button>
+      </div>
+
       <!-- Q1 -->
       <div class="card" id="card-a1" data-ans="P" data-exp="बच्चों, यहाँ ध्यान से देखो: वाक्य में काम वाला शब्द है 'boiled'। boil का मतलब होता है उबलना, और इसमें अंत में लगा है -ed। जब किसी काम में -ed लग जाता है, तो वह क्रिया का दूसरा रूप यानी Verb 2 बन जाता है। इसका मतलब है कि दूध अभी नहीं उबल रहा, बल्कि पहले ही उबलकर बाहर गिर चुका है! बीता हुआ समय यानी Past Tense, इसलिए सही जवाब P होगा।" data-spoken="द मिल्क बॉइल्ड ओवर। मतलब दूध उबलकर बाहर गिर गया।">
         <div class="q-badge">Question 1</div>
@@ -704,7 +782,15 @@
 
     <!-- EXERCISE B -->
     <div id="tab-2" class="content-section">
-      <div class="card" id="card-b1" data-ans="brushed" data-exp="यहाँ दो ऑप्शन हैं: 'brushed' और 'brushing'। ध्यान से समझो: brushing में -ing लगा है। -ing वाले शब्द कभी अकेले नहीं आते, उनके पहले is, am या are होना ज़रूरी होता है। लेकिन Shia के तुरंत बाद कोई is या was नहीं है! इसका मतलब है कि यहाँ काम हो चुका है। इसलिए brush का Verb 2 'brushed' सही उत्तर होगा।" data-spoken="शिया ब्रश्ड हर टीथ एट नाइट। शिया ने रात में दाँत ब्रश किए।">
+      <div class="exercise-guidance">
+        <div class="guidance-text">
+          🎯 <b>एक्सरसाइज B में क्या करना है:</b><br>
+          ब्रैकेट में दी गई क्रिया (Verb) को देखकर खाली जगह (डैश) में उसका सही <b>Simple Past Tense</b> रूप चुनकर भरो!
+        </div>
+        <button class="btn-guidance-voice" onclick="toggleUnifiedTTS('बच्चों, एक्सरसाइज बी में आपको खाली जगह यानी डैश में सही पास्ट टेंस का रूप चुनकर भरना है!', this)">🔊 निर्देश सुनो</button>
+      </div>
+
+      <div class="card" id="card-b1" data-ans="brushed" data-exp="यहाँ दो ऑप्शन हैं: 'brushed' और 'brushing'। ध्यान से समझो: brushing में -ing लगा है। -ing वाले शब्द कभी अकेले नहीं आते, उनके पहले is, am या are होना ज़रूरी होता है। लेकिन Shia के तुरंत बाद कोई is या was नहीं है! इसका मतलब है कि यहाँ काम हो चुका है। इसलिए brush का Verb 2 'brushed' सही उत्तर होगा।">
         <div class="q-badge">Question 1</div>
         <div class="sentence">1. Shia _______ (brush) her teeth at night.</div>
         <div class="hindi-meaning">👉 हिंदी: शिया ने रात में दाँत ब्रश किए।</div>
@@ -721,7 +807,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b2" data-ans="played" data-exp="यहाँ संगीतकारों द्वारा गाना बजाने की बात है। 'playes' नाम की कोई सही स्पेलिंग अंग्रेजी में नहीं होती। play का बीता हुआ समय (Verb 2) हमेशा -ed लगाकर 'played' बनता है, जिसका अर्थ है कि संगीतकारों ने संगीत बजाया।" data-spoken="दीज़ म्यूज़िशियंस प्लेड रॉक म्यूज़िक।">
+      <div class="card" id="card-b2" data-ans="played" data-exp="यहाँ संगीतकारों द्वारा गाना बजाने की बात है। 'playes' नाम की कोई सही स्पेलिंग अंग्रेजी में नहीं होती। play का बीता हुआ समय (Verb 2) हमेशा -ed लगाकर 'played' बनता है, जिसका अर्थ है कि संगीतकारों ने संगीत बजाया।">
         <div class="q-badge">Question 2</div>
         <div class="sentence">2. These musicians _______ (play) rock music.</div>
         <div class="hindi-meaning">👉 हिंदी: इन संगीतकारों ने रॉक संगीत बजाया।</div>
@@ -738,7 +824,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b3" data-ans="landed" data-exp="अंतरिक्ष यात्री चाँद पर उतर चुके हैं। यहाँ 'landing' गलत है क्योंकि उसके पहले were या are नहीं लगा हुआ है। काम समाप्त हो चुका है, इसलिए land का Past रूप (Verb 2) 'landed' सही जवाब है।" data-spoken="दी एस्ट्रोनॉट्स लैंडेड ऑन द मून।">
+      <div class="card" id="card-b3" data-ans="landed" data-exp="अंतरिक्ष यात्री चाँद पर उतर चुके हैं। यहाँ 'landing' गलत है क्योंकि उसके पहले were या are नहीं लगा हुआ है। काम समाप्त हो चुका है, इसलिए land का Past रूप (Verb 2) 'landed' सही जवाब है।">
         <div class="q-badge">Question 3</div>
         <div class="sentence">3. The astronauts _______ (land) on the moon.</div>
         <div class="hindi-meaning">👉 हिंदी: अंतरिक्ष यात्री चाँद पर उतरे।</div>
@@ -755,7 +841,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b4" data-ans="sang" data-exp="बहुत ध्यान से सुनो: बच्चे अक्सर सोचते हैं कि पास्ट बनाने के लिए सिर्फ -ed लगाते हैं, पर अंग्रेजी में कई शब्द बदलते हैं! sing में कभी singed नहीं लगता, singed गलत शब्द है। sing का Verb 2 'sang' होता है और Verb 3 'sung' होता है। लड़की ने गाना गा लिया, इसलिए यहाँ 'sang' आएगा।" data-spoken="द लिटिल गर्ल सैंग हैप्पी सॉन्ग्स।">
+      <div class="card" id="card-b4" data-ans="sang" data-exp="बहुत ध्यान से सुनो: बच्चे अक्सर सोचते हैं कि पास्ट बनाने के लिए सिर्फ -ed लगाते हैं, पर अंग्रेजी में कई शब्द बदलते हैं! sing में कभी singed नहीं लगता, singed गलत शब्द है। sing का Verb 2 'sang' होता है और Verb 3 'sung' होता है। लड़की ने गाना गा लिया, इसलिए यहाँ 'sang' आएगा।">
         <div class="q-badge">Question 4</div>
         <div class="sentence">4. The little girl _______ (sing) happy songs.</div>
         <div class="hindi-meaning">👉 हिंदी: छोटी लड़की ने खुशी के गाने गाए।</div>
@@ -772,7 +858,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b5" data-ans="was" data-exp="नियम याद रखो: I के साथ पास्ट टेंस में हमेशा 'was' लगता है। 'were' बहुवचन (We, They) के साथ लगता है। I के साथ were केवल तब लगता है जब हम कोई काल्पनिक इच्छा करते हैं, जैसे 'If I were a bird' (काश मैं पक्षी होता)। यहाँ साधारण बीते समय की बात है, इसलिए I was polite होगा।" data-spoken="आई वॉज़ पोलाइट टू एवरीवन।">
+      <div class="card" id="card-b5" data-ans="was" data-exp="नियम याद रखो: I के साथ पास्ट टेंस में हमेशा 'was' लगता है। 'were' बहुवचन (We, They) के साथ लगता है। I के साथ were केवल तब लगता है जब हम कोई काल्पनिक इच्छा करते हैं, जैसे 'If I were a bird'। यहाँ साधारण बीते समय की बात है, इसलिए I was polite होगा।">
         <div class="q-badge">Question 5</div>
         <div class="sentence">5. I _______ (be) polite to everyone.</div>
         <div class="hindi-meaning">👉 हिंदी: मैं हर किसी के प्रति विनम्र था।</div>
@@ -789,7 +875,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b6" data-ans="wrote" data-exp="write में -ed लगाकर 'writed' कभी नहीं बनता। write का Verb 2 होता है 'wrote' और Verb 3 होता है 'written'। पिताजी ने कहानियाँ लिखीं, यानी काम पूरा हो गया। इसलिए सही उत्तर 'wrote' है।" data-spoken="माय फादर रोट स्टोरीज़।">
+      <div class="card" id="card-b6" data-ans="wrote" data-exp="write में -ed लगाकर 'writed' कभी नहीं बनता। write का Verb 2 होता है 'wrote' और Verb 3 होता है 'written'। पिताजी ने कहानियाँ लिखीं, यानी काम पूरा हो गया। इसलिए सही उत्तर 'wrote' है।">
         <div class="q-badge">Question 6</div>
         <div class="sentence">6. My father _______ (write) stories for children.</div>
         <div class="hindi-meaning">👉 हिंदी: मेरे पिताजी ने बच्चों के लिए कहानियाँ लिखीं।</div>
@@ -806,7 +892,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b7" data-ans="studied" data-exp="अंग्रेजी व्याकरण का स्पेलिंग नियम: जब किसी शब्द के अंत में y हो और उससे पहले कोई व्यंजन (Consonant) हो, तो पास्ट बनाते समय y को हटाकर -ied लगाया जाता है। इसलिए studyed गलत है और 'studied' बिल्कुल सही है।" data-spoken="वी स्टडीड फ्रेंच इन स्कूल।">
+      <div class="card" id="card-b7" data-ans="studied" data-exp="अंग्रेजी व्याकरण का स्पेलिंग नियम: जब किसी शब्द के अंत में y हो और उससे पहले कोई व्यंजन (Consonant) हो, तो पास्ट बनाते समय y को हटाकर -ied लगाया जाता है। इसलिए studyed गलत है और 'studied' बिल्कुल सही है।">
         <div class="q-badge">Question 7</div>
         <div class="sentence">7. We _______ (study) French in school.</div>
         <div class="hindi-meaning">👉 हिंदी: हमने स्कूल में फ्रेंच भाषा पढ़ी।</div>
@@ -823,7 +909,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b8" data-ans="met" data-exp="meet का मतलब मिलना होता है। लेकिन पास्ट में कभी 'meeted' नहीं होता! meet का Verb 2 एक 'e' हटाकर 'met' बन जाता है। राष्ट्रपति मंत्रियों से मिले, काम खत्म हो चुका है, इसलिए 'met' सही है।" data-spoken="द प्रेसिडेंट मेट ऑल द मिनिस्टर्स।">
+      <div class="card" id="card-b8" data-ans="met" data-exp="meet का मतलब मिलना होता है। लेकिन पास्ट में कभी 'meeted' नहीं होता! meet का Verb 2 एक 'e' हटाकर 'met' बन जाता है। राष्ट्रपति मंत्रियों से मिले, काम खत्म हो चुका है, इसलिए 'met' सही है।">
         <div class="q-badge">Question 8</div>
         <div class="sentence">8. The President _______ (meet) all the ministers.</div>
         <div class="hindi-meaning">👉 हिंदी: राष्ट्रपति सभी मंत्रियों से मिले।</div>
@@ -840,7 +926,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b9" data-ans="dropped" data-exp="drop शब्द में एक छोटा स्वर (Vowel 'o') और अंत में 'p' है। ऐसे शब्दों में जब -ed जोड़ते हैं, तो अंतिम अक्षर डबल हो जाता है। इसलिए droped गलत है और डबल 'p' वाला 'dropped' सही है।" data-spoken="दे ड्रॉप्ड फ़्लायर्स।">
+      <div class="card" id="card-b9" data-ans="dropped" data-exp="drop शब्द में एक छोटा स्वर (Vowel 'o') और अंत में 'p' है। ऐसे शब्दों में जब -ed जोड़ते हैं, तो अंतिम अक्षर डबल हो जाता है। इसलिए droped गलत है और डबल 'p' वाला 'dropped' सही है।">
         <div class="q-badge">Question 9</div>
         <div class="sentence">9. They _______ (drop) flyers from the hot-air balloon.</div>
         <div class="hindi-meaning">👉 हिंदी: उन्होंने हॉट-एयर बैलून से फ़्लायर्स (पर्चे) गिराए।</div>
@@ -857,7 +943,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-b10" data-ans="grew" data-exp="grow (बड़ा होना या उगना) का पास्ट रूप कभी 'growed' नहीं होता। जैसे know का knew होता है, वैसे ही grow का Verb 2 'grew' होता है। पौधे बड़े होकर पेड़ बन गए, इसलिए 'grew' सही विकल्प है।" data-spoken="द सैपलिंग्स ग्रू इन टू ट्रीज़।">
+      <div class="card" id="card-b10" data-ans="grew" data-exp="grow का पास्ट रूप कभी 'growed' नहीं होता। जैसे know का knew होता है, वैसे ही grow का Verb 2 'grew' होता है। पौधे बड़े होकर पेड़ बन गए, इसलिए 'grew' सही विकल्प है।">
         <div class="q-badge">Question 10</div>
         <div class="sentence">10. The saplings _______ (grow) into trees.</div>
         <div class="hindi-meaning">👉 हिंदी: छोटे पौधे बड़े होकर पेड़ बन गए।</div>
@@ -877,7 +963,15 @@
 
     <!-- EXERCISE C -->
     <div id="tab-3" class="content-section">
-      <div class="card" id="card-c1" data-ans="am running" data-exp="यहाँ काम अभी जारी है। I के साथ वर्तमान में हमेशा 'am' आता है और क्रिया में -ing लगता है। 'was running' तब आता जब कल की बात होती। अभी ट्रेन पकड़ने दौड़ रहा है, इसलिए 'am running' बिल्कुल सही है।" data-spoken="आई ऐम रनिंग टू कैच द ट्रेन।">
+      <div class="exercise-guidance">
+        <div class="guidance-text">
+          🎯 <b>एक्सरसाइज C में क्या करना है:</b><br>
+          वाक्य के समय को पहचानकर खाली जगह (डैश) में सही <b>Continuous Tense (is/was/will be + ing)</b> रूप भरो!
+        </div>
+        <button class="btn-guidance-voice" onclick="toggleUnifiedTTS('बच्चों, एक्सरसाइज सी में आपको देखना है कि काम किस समय लगातार चल रहा है, और खाली जगह यानी डैश में सही कंटीन्यूअस टेंस भरना है!', this)">🔊 निर्देश सुनो</button>
+      </div>
+
+      <div class="card" id="card-c1" data-ans="am running" data-exp="यहाँ काम अभी जारी है। I के साथ वर्तमान में हमेशा 'am' आता है और क्रिया में -ing लगता है। 'was running' तब आता जब कल की बात होती। अभी ट्रेन पकड़ने दौड़ रहा है, इसलिए 'am running' बिल्कुल सही है।">
         <div class="q-badge">Question 1</div>
         <div class="sentence">1. I _______ (run) to catch the train.</div>
         <div class="hindi-meaning">👉 हिंदी: मैं ट्रेन पकड़ने के लिए दौड़ रहा हूँ।</div>
@@ -894,7 +988,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c2" data-ans="will be harvesting" data-exp="वाक्य में लिखा है 'in April' (अप्रैल में)। अप्रैल का महीना भविष्य में आएगा। जब भविष्य में कोई काम लगातार चल रहा होगा, तो वहाँ 'will be' के साथ -ing लगता है। इसलिए 'will be harvesting' सही है।" data-spoken="द फार्मर्स विल बी हार्वेस्टिंग।">
+      <div class="card" id="card-c2" data-ans="will be harvesting" data-exp="वाक्य में लिखा है 'in April' (अप्रैल में)। अप्रैल का महीना भविष्य में आएगा। जब भविष्य में कोई काम लगातार चल रहा होगा, तो वहाँ 'will be' के साथ -ing लगता है। इसलिए 'will be harvesting' सही है।">
         <div class="q-badge">Question 2</div>
         <div class="sentence">2. The farmers _______ (harvest) the crop in April.</div>
         <div class="hindi-meaning">👉 हिंदी: किसान अप्रैल में फसल काट रहे होंगे।</div>
@@ -911,7 +1005,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c3" data-ans="was shining" data-exp="सूरज अकेला (एकवचन) है। एकवचन के साथ पास्ट में 'was' आता है और बहुवचन के साथ 'were' आता है। क्योंकि सूरज एक है, इसलिए 'were shining' गलत होगा और 'was shining' सही होगा।" data-spoken="द सन वॉज़ शाइनिंग।">
+      <div class="card" id="card-c3" data-ans="was shining" data-exp="सूरज अकेला (एकवचन) है। एकवचन के साथ पास्ट में 'was' आता है और बहुवचन के साथ 'were' आता है। क्योंकि सूरज एक है, इसलिए 'were shining' गलत होगा और 'was shining' सही होगा।">
         <div class="q-badge">Question 3</div>
         <div class="sentence">3. The sun _______ (shine) brightly.</div>
         <div class="hindi-meaning">👉 हिंदी: सूरज तेज़ी से चमक रहा था।</div>
@@ -928,7 +1022,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c4" data-ans="will be learning" data-exp="वाक्य में लिखा है 'tomorrow' यानी आने वाला कल। जब कल इसी समय काम जारी रहेगा, तो Future Continuous Tense बनता है। इसमें 'will be' के साथ क्रिया में -ing लगता है, इसलिए 'will be learning' आएगा।" data-spoken="आई विल बी लर्निंग डांस।">
+      <div class="card" id="card-c4" data-ans="will be learning" data-exp="वाक्य में लिखा है 'tomorrow' यानी आने वाला कल। जब कल इसी समय काम जारी रहेगा, तो Future Continuous Tense बनता है। इसमें 'will be' के साथ क्रिया में -ing लगता है, इसलिए 'will be learning' आएगा।">
         <div class="q-badge">Question 4</div>
         <div class="sentence">4. I _______ (learn) a Spanish dance at this time tomorrow.</div>
         <div class="hindi-meaning">👉 हिंदी: मैं कल इस समय स्पैनिश डांस सीख रहा हूँगा।</div>
@@ -945,7 +1039,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c5" data-ans="is watching" data-exp="The hunter केवल एक शिकारी है (एकवचन)। जब एक व्यक्ति काम कर रहा होता है, तो 'is' लगता है, 'are' नहीं। शिकारी अभी पेड़ की चोटी से देख रहा है, इसलिए 'is watching' सही उत्तर है।" data-spoken="द हंटर इज़ वॉचिंग।">
+      <div class="card" id="card-c5" data-ans="is watching" data-exp="The hunter केवल एक शिकारी है (एकवचन)। जब एक व्यक्ति काम कर रहा होता है, तो 'is' लगता है, 'are' नहीं। शिकारी अभी पेड़ की चोटी से देख रहा है, इसलिए 'is watching' सही उत्तर है।">
         <div class="q-badge">Question 5</div>
         <div class="sentence">5. The hunter _______ (watch) from the treetop.</div>
         <div class="hindi-meaning">👉 हिंदी: शिकारी पेड़ की चोटी से देख रहा है।</div>
@@ -962,7 +1056,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c6" data-ans="was looking" data-exp="रिया एक लड़की का नाम है (एकवचन)। पास्ट टेंस में एकवचन के साथ 'was' आता है और बहुवचन के साथ 'were' आता है। रिया एक है, इसलिए 'were looking' नहीं बल्कि 'was looking' सही होगा।" data-spoken="रिया वॉज़ लुकिंग।">
+      <div class="card" id="card-c6" data-ans="was looking" data-exp="रिया एक लड़की का नाम है (एकवचन)। पास्ट टेंस में एकवचन के साथ 'was' आता है और बहुवचन के साथ 'were' आता है। रिया एक है, इसलिए 'were looking' नहीं बल्कि 'was looking' सही होगा।">
         <div class="q-badge">Question 6</div>
         <div class="sentence">6. Rhea _______ (look) for her lost ring.</div>
         <div class="hindi-meaning">👉 हिंदी: रिया अपनी खोई हुई अँगूठी ढूँढ रही थी।</div>
@@ -979,7 +1073,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c7" data-ans="were practising" data-exp="They का मतलब होता है 'वे सब' (बहुत सारे लोग)। बहुवचन के साथ बीते समय में हमेशा 'were' लगता है। एकवचन होता तो was लगता, पर यहाँ They है, इसलिए 'were practising' सही उत्तर है।" data-spoken="दे वर प्रैक्टिसिंग हॉकी।">
+      <div class="card" id="card-c7" data-ans="were practising" data-exp="They का मतलब होता है 'वे सब'। बहुवचन के साथ बीते समय में हमेशा 'were' लगता है। इसलिए 'were practising' सही उत्तर है।">
         <div class="q-badge">Question 7</div>
         <div class="sentence">7. They _______ (practise) hockey early in the morning.</div>
         <div class="hindi-meaning">👉 हिंदी: वे सुबह-सुबह हॉकी का अभ्यास कर रहे थे।</div>
@@ -996,7 +1090,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c8" data-ans="will be performing" data-exp="एनुअल डे का कार्यक्रम आगे आने वाला है। भविष्य में जब कोई काम स्टेज पर चल रहा होगा, तो Future Continuous बनेगा। इसलिए 'will be performing' सही होगा।" data-spoken="यू विल बी परफॉर्मिंग ऑन स्टेज।">
+      <div class="card" id="card-c8" data-ans="will be performing" data-exp="एनुअल डे का कार्यक्रम भविष्य में आने वाला है। भविष्य में जब कोई काम स्टेज पर चल रहा होगा, तो Future Continuous बनेगा। इसलिए 'will be performing' सही होगा।">
         <div class="q-badge">Question 8</div>
         <div class="sentence">8. You _______ (perform) on stage for the annual day.</div>
         <div class="hindi-meaning">👉 हिंदी: तुम एनुअल डे के लिए स्टेज पर परफॉर्म कर रहे होगे।</div>
@@ -1013,7 +1107,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c9" data-ans="were trumpeting" data-exp="The elephants में 's' लगा है, यानी बहुत सारे हाथी (बहुवचन)। बहुवचन के साथ पास्ट टेंस में 'were' आता है। अगर सिर्फ an elephant होता तो was आता, पर यहाँ बहुत सारे हाथी हैं इसलिए 'were trumpeting' सही है।" data-spoken="दी एलिफेंट्स वर ट्रम्पेटिंग।">
+      <div class="card" id="card-c9" data-ans="were trumpeting" data-exp="The elephants बहुवचन है। बहुवचन के साथ पास्ट टेंस में 'were' आता है। इसलिए 'were trumpeting' सही है।">
         <div class="q-badge">Question 9</div>
         <div class="sentence">9. The elephants _______ (trumpet) to warn them off.</div>
         <div class="hindi-meaning">👉 हिंदी: हाथी उन्हें चेतावनी देने के लिए चिंघाड़ रहे थे।</div>
@@ -1030,7 +1124,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-c10" data-ans="is basking" data-exp="भेड़ अभी धूप में आराम कर रही है। काम वर्तमान में चल रहा है, इसलिए Present Continuous में 'is basking' सही है। will be basking तब होता जब कल धूप सेकने की बात होती।" data-spoken="द शीप इज़ बास्किंग इन द सन।">
+      <div class="card" id="card-c10" data-ans="is basking" data-exp="भेड़ अभी वर्तमान में धूप सेक रही है। काम अभी चल रहा है, इसलिए 'is basking' सही है।">
         <div class="q-badge">Question 10</div>
         <div class="sentence">10. The sheep _______ (bask) in the sun.</div>
         <div class="hindi-meaning">👉 हिंदी: भेड़ धूप सेक रही है।</div>
@@ -1050,7 +1144,15 @@
 
     <!-- EXERCISE D -->
     <div id="tab-4" class="content-section">
-      <div class="card" id="card-d1" data-ans="do not use" data-exp="Monkeys बहुवचन (Plural) हैं। अंग्रेजी का नियम है: एकवचन (He, She, It) के साथ 'does' लगता है, और बहुवचन (They, Monkeys) के साथ 'do' लगता है। इसलिए monkeys के साथ 'does not' गलत होगा और 'do not use' बिल्कुल सही होगा।" data-spoken="मंकीज़ डू नॉट यूज़ देयर टंग।">
+      <div class="exercise-guidance">
+        <div class="guidance-text">
+          🎯 <b>एक्सरसाइज D में क्या करना है:</b><br>
+          सब्जेक्ट को देखो—एकवचन है या बहुवचन? उसके अनुसार खाली जगह (डैश) में सही <b>नकारात्मक (Negative: do not / does not / is not / are not)</b> रूप चुनो!
+        </div>
+        <button class="btn-guidance-voice" onclick="toggleUnifiedTTS('बच्चों, एक्सरसाइज डी में आपको सब्जेक्ट देखकर सही नकारात्मक रूप चुनना है, जैसे डू नॉट, डज़ नॉट, या इज़ नॉट!', this)">🔊 निर्देश सुनो</button>
+      </div>
+
+      <div class="card" id="card-d1" data-ans="do not use" data-exp="Monkeys बहुवचन हैं। एकवचन के साथ does लगता है, और बहुवचन के साथ do लगता है। इसलिए 'do not use' बिल्कुल सही उत्तर होगा।">
         <div class="q-badge">Question 1</div>
         <div class="sentence">1. Monkeys _______ (use) their tongue to lap up water.</div>
         <div class="hindi-meaning">👉 हिंदी: बंदर पानी पीने के लिए अपनी जीभ का उपयोग नहीं करते हैं।</div>
@@ -1067,7 +1169,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d2" data-ans="do not harness" data-exp="Most people का मतलब है बहुत सारे लोग (बहुवचन)। जब हम सामान्य सत्य बताते हैं, तो क्रिया के पहले 'do not' लगाते हैं। 'are not harness' व्याकरण के हिसाब से गलत है क्योंकि are के बाद या तो ing आता है या थर्ड फॉर्म। सही आदत बताने के लिए 'do not harness' आएगा।" data-spoken="मोस्ट पीपल डू नॉट हार्नेस सोलर पावर।">
+      <div class="card" id="card-d2" data-ans="do not harness" data-exp="Most people बहुवचन हैं। सामान्य आदत या सत्य बताने के लिए बहुवचन के साथ 'do not' लगाते हैं। इसलिए 'do not harness' सही है।">
         <div class="q-badge">Question 2</div>
         <div class="sentence">2. Most people _______ solar power.</div>
         <div class="hindi-meaning">👉 हिंदी: ज्यादातर लोग सोलर पावर का उपयोग नहीं करते हैं।</div>
@@ -1084,7 +1186,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d3" data-ans="are not free" data-exp="यहाँ 'free' कोई काम (Verb) नहीं है, बल्कि एक विशेषता (Adjective) है। विशेषता बताने के लिए do not नहीं, बल्कि is/am/are लगाते हैं। Oceans बहुत सारे हैं, इसलिए 'are not free' सही होगा।" data-spoken="आर ओशन्स आर नॉट फ्री ऑफ गार्बेज।">
+      <div class="card" id="card-d3" data-ans="are not free" data-exp="यहाँ 'free' विशेषता है। विशेषता बताने के लिए is/am/are लगाते हैं। Oceans बहुवचन है, इसलिए 'are not free' सही है।">
         <div class="q-badge">Question 3</div>
         <div class="sentence">3. Our oceans _______ of oil and garbage.</div>
         <div class="hindi-meaning">👉 हिंदी: हमारे समुद्र तेल और कचरे से मुक्त नहीं हैं।</div>
@@ -1101,7 +1203,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d4" data-ans="will not help" data-exp="पेड़ काटने से पर्यावरण को आगे कोई फायदा नहीं होगा। भविष्य की बात है, इसलिए will लगेगा और नकारात्मक के लिए not: 'will not help' सही उत्तर है।" data-spoken="कटिंग डाउन ट्रीज़ विल नॉट हेल्प।">
+      <div class="card" id="card-d4" data-ans="will not help" data-exp="पेड़ काटने से पर्यावरण को आगे कोई फायदा नहीं होगा। भविष्य की बात है, इसलिए will लगेगा: 'will not help' सही उत्तर है।">
         <div class="q-badge">Question 4</div>
         <div class="sentence">4. Cutting down trees _______ the environment.</div>
         <div class="hindi-meaning">👉 हिंदी: पेड़ों को काटना पर्यावरण की मदद नहीं करेगा।</div>
@@ -1118,7 +1220,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d5" data-ans="are not helpful" data-exp="Bags and bottles दो चीज़ें मिलकर बहुवचन बनाती हैं। बहुवचन के साथ हमेशा 'are' का प्रयोग होता है, 'is' का नहीं। इसलिए 'are not helpful' सही उत्तर है।" data-spoken="प्लास्टिक बैग्स आर नॉट हेल्पफुल।">
+      <div class="card" id="card-d5" data-ans="are not helpful" data-exp="Bags and bottles बहुवचन हैं। बहुवचन के साथ हमेशा 'are' का प्रयोग होता है। इसलिए 'are not helpful' सही है।">
         <div class="q-badge">Question 5</div>
         <div class="sentence">5. Plastic bags and bottles _______ for the well-being of sea creatures.</div>
         <div class="hindi-meaning">👉 हिंदी: प्लास्टिक बैग और बोतलें समुद्री जीवों की भलाई के लिए उपयोगी नहीं हैं।</div>
@@ -1135,7 +1237,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d6" data-ans="is not easy" data-exp="Waste management (कचरा प्रबंधन) एक पूरी व्यवस्था का नाम है जो एकवचन है। एकवचन के साथ 'is' लगता है, 'are' नहीं। इसलिए 'is not easy' सही विकल्प है।" data-spoken="वेस्ट मैनेजमेंट इज़ नॉट ईज़ी।">
+      <div class="card" id="card-d6" data-ans="is not easy" data-exp="Waste management एकवचन है। इसलिए 'is not easy' सही उत्तर है।">
         <div class="q-badge">Question 6</div>
         <div class="sentence">6. Waste management _______ easy.</div>
         <div class="hindi-meaning">👉 हिंदी: वेस्ट मैनेजमेंट आसान नहीं है।</div>
@@ -1152,7 +1254,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d7" data-ans="is not healthy" data-exp="The air (हवा) एक अगणनीय संज्ञा (Uncountable Noun) है जिसे हम गिन नहीं सकते। जिसे गिन नहीं सकते, वह हमेशा एकवचन माना जाता है और उसके साथ 'is' लगता है। 'does not healthy' गलत है क्योंकि healthy क्रिया नहीं गुण है।" data-spoken="दी एयर वी ब्रीद इज़ नॉट हेल्दी।">
+      <div class="card" id="card-d7" data-ans="is not healthy" data-exp="The air (हवा) एकवचन मानी जाती है। इसके साथ 'is' लगता है, इसलिए 'is not healthy' सही है।">
         <div class="q-badge">Question 7</div>
         <div class="sentence">7. The air we breathe _______ for us because of pollution.</div>
         <div class="hindi-meaning">👉 हिंदी: प्रदूषण के कारण जो हवा हम साँस में लेते हैं वह हमारे लिए स्वास्थ्यवर्धक नहीं है।</div>
@@ -1169,7 +1271,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d8" data-ans="are not using" data-exp="People का मतलब बहुत सारे लोग (बहुवचन) होता है। लोग पानी का सही उपयोग नहीं कर रहे हैं। बहुवचन के साथ 'are' लगता है, 'is' नहीं। इसलिए 'are not using' सही है।" data-spoken="पीपल आर नॉट यूज़िंग फ्रेशवॉटर केयरफुली।">
+      <div class="card" id="card-d8" data-ans="are not using" data-exp="People बहुवचन होता है। बहुवचन के साथ 'are' लगता है, इसलिए 'are not using' सही है।">
         <div class="q-badge">Question 8</div>
         <div class="sentence">8. People _______ freshwater very carefully.</div>
         <div class="hindi-meaning">👉 हिंदी: लोग ताज़े पानी का उपयोग बहुत सावधानी से नहीं कर रहे हैं।</div>
@@ -1186,7 +1288,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d9" data-ans="is not being" data-exp="Trash (कचरा) भी हवा की तरह अगणनीय (Uncountable) है। इसके साथ हमेशा एकवचन सहायक क्रिया 'is' लगती है। इसलिए 'is not being' recycled सही उत्तर होगा।" data-spoken="ऑल ट्रैश इज़ नॉट बीइंग रीसायकल्ड।">
+      <div class="card" id="card-d9" data-ans="is not being" data-exp="Trash (कचरा) अगणनीय है। इसके साथ हमेशा 'is' लगता है, इसलिए 'is not being' सही उत्तर होगा।">
         <div class="q-badge">Question 9</div>
         <div class="sentence">9. All trash _______ recycled.</div>
         <div class="hindi-meaning">👉 हिंदी: सभी कचरे को रीसायकल नहीं किया जा रहा है।</div>
@@ -1203,7 +1305,7 @@
         <div class="explain-box"></div>
       </div>
 
-      <div class="card" id="card-d10" data-ans="are not taking" data-exp="यहाँ सब्जेक्ट है 'The people of the world' (दुनिया के लोग)। लोग बहुत सारे हैं, इसलिए बहुवचन के साथ 'are' लगेगा। 'is not taking' गलत है और 'are not taking' बिल्कुल सही है।" data-spoken="द पीपल आर नॉट टेकिंग केयर ऑफ फॉरेस्ट्स।">
+      <div class="card" id="card-d10" data-ans="are not taking" data-exp="यहाँ सब्जेक्ट 'The people of the world' है जो कि बहुवचन है। इसलिए 'are not taking' बिल्कुल सही है।">
         <div class="q-badge">Question 10</div>
         <div class="sentence">10. The people of the world _______ care of their forests.</div>
         <div class="hindi-meaning">👉 हिंदी: दुनिया के लोग अपने जंगलों की देखभाल नहीं कर रहे हैं।</div>
@@ -1357,18 +1459,80 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* UNIFIED SINGLE-AUDIO MANAGER (PLAY / PAUSE) */
+  /* ----------------------------------------------------
+     STRICT VOICE MATCHING & AUDIO ENGINE (FIXED)
+  ---------------------------------------------------- */
   let currentSoundType = null;
   let currentActiveBtn = null;
   let currentCustomPlayer = null;
   let defaultBtnHtml = "";
   let isTTSPaused = false;
-  let currentTTSText = "";
+  let availableBrowserVoices = [];
+  let currentHighlightContainer = null;
+  let originalContainerText = "";
+
+  function populateVoices() {
+    if ('speechSynthesis' in window) {
+      availableBrowserVoices = window.speechSynthesis.getVoices();
+    }
+  }
+
+  populateVoices();
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = populateVoices;
+  }
+
+  function getTargetVoice(selectedVal) {
+    if (!availableBrowserVoices.length) {
+      availableBrowserVoices = window.speechSynthesis.getVoices();
+    }
+
+    let found = null;
+
+    if (selectedVal.includes("Madhur")) {
+      // 1. Exact Madhur Natural
+      found = availableBrowserVoices.find(v => v.name.toLowerCase().includes("madhur"));
+      // 2. Any Hindi Male / Hindi voice
+      if (!found) {
+        found = availableBrowserVoices.find(v => (v.lang === 'hi-IN' || v.lang === 'hi_IN') && v.name.toLowerCase().includes("male"));
+      }
+      if (!found) {
+        found = availableBrowserVoices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi'));
+      }
+    } else if (selectedVal.includes("Swara")) {
+      // 1. Exact Swara Natural
+      found = availableBrowserVoices.find(v => v.name.toLowerCase().includes("swara"));
+      // 2. Any Hindi Female
+      if (!found) {
+        found = availableBrowserVoices.find(v => (v.lang === 'hi-IN' || v.lang === 'hi_IN') && v.name.toLowerCase().includes("female"));
+      }
+      if (!found) {
+        found = availableBrowserVoices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi'));
+      }
+    } else if (selectedVal.includes("Neerja")) {
+      // 1. Exact Neerja Natural
+      found = availableBrowserVoices.find(v => v.name.toLowerCase().includes("neerja"));
+      // 2. Any Indian English
+      if (!found) {
+        found = availableBrowserVoices.find(v => (v.lang === 'en-IN' || v.lang === 'en_IN') && v.name.toLowerCase().includes("natural"));
+      }
+      if (!found) {
+        found = availableBrowserVoices.find(v => v.lang === 'en-IN' || v.lang === 'en_IN');
+      }
+    }
+
+    return found;
+  }
 
   function resetActiveButtonState() {
     if (currentActiveBtn && defaultBtnHtml) {
       currentActiveBtn.innerHTML = defaultBtnHtml;
       currentActiveBtn.classList.remove('is-playing');
+    }
+    if (currentHighlightContainer) {
+      currentHighlightContainer.innerHTML = originalContainerText;
+      currentHighlightContainer = null;
+      originalContainerText = "";
     }
     const statusBar = document.getElementById('status-bar');
     if (statusBar) {
@@ -1394,9 +1558,15 @@
     defaultBtnHtml = "";
   }
 
-  function toggleUnifiedTTS(txt, btn) {
-    if (!('speechSynthesis' in window)) return;
+  function toggleUnifiedTTS(txt, btn, highlightEl = null) {
+    if (!('speechSynthesis' in window)) {
+      alert("यह ब्राउज़र आवाज़ को सपोर्ट नहीं करता!");
+      return;
+    }
+
     const statusBar = document.getElementById('status-bar');
+    const voicePicker = document.getElementById('selected-voice');
+    const selectedVal = voicePicker ? voicePicker.value : 'hi-IN-MadhurNeural';
 
     if (currentActiveBtn === btn && currentSoundType === 'tts') {
       if (!isTTSPaused && window.speechSynthesis.speaking) {
@@ -1420,36 +1590,60 @@
     currentSoundType = 'tts';
     currentActiveBtn = btn;
     defaultBtnHtml = btn.innerHTML;
-    currentTTSText = txt;
     isTTSPaused = false;
 
     window.speechSynthesis.resume();
     window.speechSynthesis.cancel();
 
-    const u = new SpeechSynthesisUtterance(txt);
-    const voices = window.speechSynthesis.getVoices();
+    // खाली जगह को 'डैश' बोलना
+    let spokenText = txt.replace(/_{2,}/g, ' डैश ');
 
-    let pickedVoice = voices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi'));
-    if (!pickedVoice) {
-      pickedVoice = voices.find(v => v.lang === 'en-IN' || v.name.toLowerCase().includes('india'));
-    }
+    const u = new SpeechSynthesisUtterance(spokenText);
+    const targetVoice = getTargetVoice(selectedVal);
 
-    if (pickedVoice) {
-      u.voice = pickedVoice;
-      u.lang = pickedVoice.lang;
+    if (targetVoice) {
+      u.voice = targetVoice;
+      u.lang = targetVoice.lang;
     } else {
-      u.lang = 'hi-IN';
+      // Force language code to prevent falling back to device default English
+      u.lang = selectedVal.startsWith('hi') ? 'hi-IN' : 'en-IN';
     }
 
-    u.rate = 0.85;
-    u.pitch = 1.05;
+    u.rate = 0.88;
+    u.pitch = 1.0;
+
+    // Word highlighting setup
+    if (highlightEl) {
+      currentHighlightContainer = highlightEl;
+      originalContainerText = highlightEl.textContent;
+      const words = originalContainerText.split(/\s+/);
+      highlightEl.innerHTML = words.map((w, i) => `<span id="word-span-${i}">${w}</span>`).join(' ');
+
+      u.onboundary = function(e) {
+        if (e.name === 'word') {
+          const charIndex = e.charIndex;
+          let sum = 0;
+          for (let i = 0; i < words.length; i++) {
+            sum += words[i].length + 1;
+            if (sum > charIndex) {
+              document.querySelectorAll('.word-highlight').forEach(el => el.classList.remove('word-highlight'));
+              const targetSpan = document.getElementById(`word-span-${i}`);
+              if (targetSpan) targetSpan.classList.add('word-highlight');
+              break;
+            }
+          }
+        }
+      };
+    }
 
     u.onstart = function() {
       btn.innerHTML = "⏸️ पॉज़ करें";
       btn.classList.add('is-playing');
       statusBar.style.background = '#FEF08A';
       statusBar.style.color = '#854D0E';
-      statusBar.innerText = "🗣️ बोल रहा है: " + txt.substring(0, 30) + "...";
+      const speakerName = selectedVal.includes('Madhur') ? 'Madhur (हिंदी पुरुष)' :
+                          selectedVal.includes('Swara') ? 'Swara (हिंदी महिला)' : 'Neerja (Indian English)';
+      statusBar.innerText = "🗣️ " + speakerName + " बोल रहा है...";
     };
 
     u.onend = function() { stopAllPlayback(); };
@@ -1510,8 +1704,14 @@
 
   function playQuestionVoice(btn) {
     const card = btn.closest('.card');
-    const spoken = card.getAttribute('data-spoken');
-    toggleUnifiedTTS(spoken, btn);
+    const sentenceEl = card.querySelector('.sentence');
+    let textToSpeak = card.getAttribute('data-spoken');
+
+    if (!textToSpeak) {
+      textToSpeak = sentenceEl.textContent.replace(/_{2,}/g, ' डैश ');
+    }
+
+    toggleUnifiedTTS(textToSpeak, btn, sentenceEl);
   }
 
   function toggleExp(btn) {
@@ -1525,7 +1725,7 @@
     } else {
       box.textContent = exp;
       box.style.display = 'block';
-      toggleUnifiedTTS(exp, btn);
+      toggleUnifiedTTS(exp, btn, box);
     }
   }
 
@@ -1553,11 +1753,18 @@
     stopAllPlayback();
     if (!('speechSynthesis' in window)) return;
     const u = new SpeechSynthesisUtterance(msg);
-    const voices = window.speechSynthesis.getVoices();
-    let pickedVoice = voices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi'));
-    if (pickedVoice) u.voice = pickedVoice;
-    u.lang = 'hi-IN';
-    u.rate = 0.9;
+    const voicePicker = document.getElementById('selected-voice');
+    const selectedVal = voicePicker ? voicePicker.value : 'hi-IN-MadhurNeural';
+
+    const targetVoice = getTargetVoice(selectedVal);
+    if (targetVoice) {
+      u.voice = targetVoice;
+      u.lang = targetVoice.lang;
+    } else {
+      u.lang = selectedVal.startsWith('hi') ? 'hi-IN' : 'en-IN';
+    }
+
+    u.rate = 0.95;
     window.speechSynthesis.speak(u);
   }
 
@@ -1706,12 +1913,6 @@
       }
     };
     reader.readAsText(file);
-  }
-
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.onvoiceschanged = () => {
-      window.speechSynthesis.getVoices();
-    };
   }
 </script>
 
