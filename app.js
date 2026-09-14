@@ -99,60 +99,27 @@ function initChapterDropdown() {
     return `<option value="${key}">${title}</option>`;
   }).join('');
 }
-
 function switchChapter(chapterKey) {
-  // 1. अगर ALL_CHAPTERS में डेटा पहले से मौजूद है (data.js से)
-  if (typeof ALL_CHAPTERS !== "undefined" && ALL_CHAPTERS[chapterKey]) {
-    APP_DATA = ALL_CHAPTERS[chapterKey];
+  if (typeof ALL_CHAPTERS === "undefined" || !ALL_CHAPTERS[chapterKey]) return;
 
-    if (typeof stopAllPlayback === "function") stopAllPlayback();
-    if (typeof openTab === "function") openTab(0);
+  APP_DATA = ALL_CHAPTERS[chapterKey];
 
-    renderAppContent();
+  if (typeof stopAllPlayback === "function") stopAllPlayback();
+  if (typeof openTab === "function") openTab(0);
 
-    // शिक्षक की आवाज़ लोड करें
-    if (typeof loadCloudVoices === "function") {
-      loadCloudVoices();
-    }
+  renderAppContent();
 
-    const statusBar = document.getElementById("status-bar");
-    if (statusBar) {
-      statusBar.style.background = '#DCFCE7';
-      statusBar.style.color = '#166534';
-      statusBar.innerText = `📖 ${ALL_CHAPTERS[chapterKey].name} लोड हो गया!`;
-    }
-    return;
+  // 🔊 Naye chapter ki aawaz GitHub se turant mangwayein
+  if (typeof loadCloudVoices === "function") {
+    loadCloudVoices();
   }
 
-  // 2. अगर data.js में नहीं है, तब GitHub / लोकल JSON फ़ाइल से ढूँढें
-  fetch(`${chapterKey}_data.json?v=${new Date().getTime()}`)
-    .then(res => {
-      if (!res.ok) throw new Error("डेटा फ़ाइल नहीं मिली");
-      return res.json();
-    })
-    .then(data => {
-      APP_DATA = data;
-      if (typeof stopAllPlayback === "function") stopAllPlayback();
-      if (typeof openTab === "function") openTab(0);
-      renderAppContent();
-      if (typeof loadCloudVoices === "function") loadCloudVoices();
-
-      const statusBar = document.getElementById("status-bar");
-      if (statusBar) {
-        statusBar.style.background = '#DCFCE7';
-        statusBar.style.color = '#166534';
-        statusBar.innerText = `📖 ${APP_DATA.name} लोड हो गया!`;
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      const statusBar = document.getElementById("status-bar");
-      if (statusBar) {
-        statusBar.style.background = '#FEE2E2';
-        statusBar.style.color = '#991B1B';
-        statusBar.innerText = `❌ ${chapterKey.toUpperCase()} data not found!`;
-      }
-    });
+  const statusBar = document.getElementById("status-bar");
+  if (statusBar) {
+    statusBar.style.background = '#DCFCE7';
+    statusBar.style.color = '#166534';
+    statusBar.innerText = `📖 ${ALL_CHAPTERS[chapterKey].name} load ho gaya!`;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
