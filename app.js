@@ -100,25 +100,86 @@ function initChapterDropdown() {
   }).join('');
 }
 
-
-
 function switchChapter(chapterKey) {
-  if (typeof ALL_CHAPTERS === "undefined" || !ALL_CHAPTERS[chapterKey]) return;
+  // 1. अगर ALL_CHAPTERS में डेटा पहले से मौजूद है (data.js से)
+  if (typeof ALL_CHAPTERS !== "undefined" && ALL_CHAPTERS[chapterKey]) {
+    APP_DATA = ALL_CHAPTERS[chapterKey];
 
-  APP_DATA = ALL_CHAPTERS[chapterKey];
+    if (typeof stopAllPlayback === "function") stopAllPlayback();
+    if (typeof openTab === "function") openTab(0);
 
-  if (typeof stopAllPlayback === "function") stopAllPlayback();
-  if (typeof openTab === "function") openTab(0);
+    renderAppContent();
 
-  renderAppContent();
+    // शिक्षक की आवाज़ लोड करें
+    if (typeof loadCloudVoices === "function") {
+      loadCloudVoices();
+    }
 
-  const statusBar = document.getElementById("status-bar");
-  if (statusBar) {
-    statusBar.innerText = `📖 ${ALL_CHAPTERS[chapterKey].name} लोड हो गया!`;
+    const statusBar = document.getElementById("status-bar");
+    if (statusBar) {
+      statusBar.style.background = '#DCFCE7';
+      statusBar.style.color = '#166534';
+      statusBar.innerText = `📖 ${ALL_CHAPTERS[chapterKey].name} लोड हो गया!`;
+    }
+    return;
   }
+
+  // 2. अगर data.js में नहीं है, तब GitHub / लोकल JSON फ़ाइल से ढूँढें
+  fetch(`${chapterKey}_data.json?v=${new Date().getTime()}`)
+    .then(res => {
+      if (!res.ok) throw new Error("डेटा फ़ाइल नहीं मिली");
+      return res.json();
+    })
+    .then(data => {
+      APP_DATA = data;
+      if (typeof stopAllPlayback === "function") stopAllPlayback();
+      if (typeof openTab === "function") openTab(0);
+      renderAppContent();
+      if (typeof loadCloudVoices === "function") loadCloudVoices();
+
+      const statusBar = document.getElementById("status-bar");
+      if (statusBar) {
+        statusBar.style.background = '#DCFCE7';
+        statusBar.style.color = '#166534';
+        statusBar.innerText = `📖 ${APP_DATA.name} लोड हो गया!`;
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      const statusBar = document.getElementById("status-bar");
+      if (statusBar) {
+        statusBar.style.background = '#FEE2E2';
+        statusBar.style.color = '#991B1B';
+        statusBar.innerText = `❌ ${chapterKey.toUpperCase()} data not found!`;
+      }
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   initChapterDropdown();
   renderAppContent();
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  initChapterDropdown();
+  switchChapter("ch1"); // शुरुआत में Chapter 1 लोड होगा
+});
+
+
+// ✅ ऐप पूरी तरह लोड होने पर प्री-लोडर को हटाना
+function hideGlobalLoader() {
+  const loader = document.getElementById("app-global-loader");
+  if (loader) {
+    loader.classList.add("hide-loader");
+    setTimeout(() => {
+      loader.remove(); // DOM से पूरी तरह हटा दें
+    }, 550);
+  }
+}
+
+// विंडो और रिसोर्स लोड होते ही हटाएँ
+window.addEventListener("load", () => {
+  // अगर डेटा लोड होने में 1 सेकंड भी लगे, तो लोडर दिखेगा
+  setTimeout(hideGlobalLoader, 600);
 });
