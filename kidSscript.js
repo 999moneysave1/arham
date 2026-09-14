@@ -623,15 +623,19 @@ function getCurrentChapterKey() {
   return "ch1";
 }
 
-// ✅ हर चैप्टर की अलग-अलग वॉइस फाइल GitHub से अपने-आप लोड करने वाला इंजन
+// ✅ Dynamic Voice Loader: Jo chapter khulega, usi ki file fetch hogi
 async function loadCloudVoices() {
-  const currentCh = getCurrentChapterKey();
-  const fileName = `${currentCh}_voices.json`; // उदा. ch1_voices.json, ch19_voices.json
+  const currentCh = (typeof getCurrentChapterKey === "function")
+    ? getCurrentChapterKey()
+    : ((document.getElementById("selected-chapter")?.value) || "ch1");
+
+  // Agar Chapter 1 hai to ch1_voices.json ya purani My_Grammar_Voices.json dekhega
+  const fileName = (currentCh === "ch1") ? "My_Grammar_Voices.json" : `${currentCh}_voices.json`;
 
   try {
     const response = await fetch(`${fileName}?v=${new Date().getTime()}`);
     if (!response.ok) {
-      console.log(`ℹ️ इस चैप्टर (${fileName}) की रिकॉर्डिंग GitHub पर अभी नहीं है।`);
+      console.log(`ℹ️ ${fileName} abhi nahi mili.`);
       return;
     }
     const items = await response.json();
@@ -645,13 +649,14 @@ async function loadCloudVoices() {
       loadAllSavedAudios();
       const statusBar = document.getElementById('status-bar');
       if (statusBar) {
-        statusBar.innerText = `🎉 ${currentCh.toUpperCase()} की शिक्षक रिकॉर्डिंग लोड हो गई!`;
+        statusBar.innerText = `🎉 ${currentCh.toUpperCase()} ki aawaz load ho gayi!`;
       }
     };
   } catch (e) {
-    console.log("Offline or cloud voices not synced yet:", e);
+    console.log("Cloud voice load error:", e);
   }
 }
+
 
 // ✅ केवल उसी चैप्टर की आवाज़ें एक्सपोर्ट करना जो अभी खुला है
 function exportVoices() {
