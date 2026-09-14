@@ -1,4 +1,6 @@
-  :root {
+
+
+:root {
     --primary: #2563EB;
     --primary-light: #EFF6FF;
     --accent: #F59E0B;
@@ -536,4 +538,9 @@
   .app-header h1 {
     font-size: 15px;
   }
+}
+
+/* ✅ Admin mode mein Record buttons hamesha dikhenge */
+body.admin-mode .btn-rec {
+  display: block !important;
 }
