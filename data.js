@@ -1,5 +1,5 @@
 const ALL_CHAPTERS = {
-  "ch1": {
+ "ch1": {
     name: "Chapter 1: Verbs and Simple Tenses",
     understanding: [
       {
@@ -891,6 +891,1234 @@ const ALL_CHAPTERS = {
             spoken: "हेन्स हैड रिफ्यूज्ड टू ले एग्स।",
             exp: "मुर्गियाँ पहले ही डर के मारे बैठ गई थीं! पहले के काम के लिए 'had refused' बिल्कुल सही है।",
             options: [{label: "had refused", val: "had refused"}, {label: "have refused", val: "have refused"}]
+          }
+        ]
+      }
+    ]
+  },
+
+  "ch19": {
+    name: "Chapter 19: Voice (Active and Passive)",
+    understanding: [
+      {
+        id: "und_active",
+        type: "concept",
+        badge: "नियम 1 (हीरो आगे)",
+        sentence: "Active Voice क्या होता है?",
+        meaning: "👉 काम करने वाला राजा (Doer) सबसे आगे!",
+        desc: "जब काम करने वाला (जैसे रोहन, मम्मी या बिल्ली) सबसे आगे खड़ा हो, तो उसे <b>Active Voice</b> कहते हैं! जैसे: <i>रोहन ने सेब खाया।</i> यहाँ रोहन हीरो है!",
+        tts: "एक्टिव वॉइस में काम करने वाला हीरो सबसे आगे खड़ा होता है! जैसे रोहन ने गेंद फेंकी।"
+      },
+      {
+        id: "und_passive",
+        type: "concept",
+        badge: "नियम 2 (चीज़ आगे)",
+        sentence: "Passive Voice क्या होता है?",
+        meaning: "👉 जिस चीज़ पर काम हुआ (Receiver) वो आगे!",
+        desc: "जब जिस खिलौने, खाने या चीज़ पर काम हुआ, वो आगे आ जाए तो उसे <b>Passive Voice</b> कहते हैं! जैसे: <i>सेब रोहन द्वारा खाया गया।</i> बात वही है, बस बोलने का मज़ा बदल गया!",
+        tts: "पैसिव वॉइस में खिलौना या चीज़ आगे आ जाती है! जैसे गेंद रोहन ने पकड़ी।"
+      },
+      {
+        id: "und_voice_magic",
+        type: "magic",
+        badge: "जादुई फॉर्मूला",
+        badgeStyle: "background:#D1FAE5;color:#047857;",
+        sentence: "⭐ Active से Passive का 3-स्टेप जादू",
+        meaning: "👉 कुर्सी की अदला-बदली!",
+        desc: "👉 <b>स्टेप 1:</b> पीछे वाले को आगे बैठाओ!<br>👉 <b>स्टेप 2:</b> Be का रूप (is/am/are/was/were) + Verb की 3rd Form लगाओ!<br>👉 <b>स्टेप 3:</b> 'by' लगाकर पुराने हीरो को पीछे भेज दो!",
+        tts: "पीछे वाले को आगे लाओ, हेल्पिंग वर्ब के साथ तीसरी फॉर्म लगाओ, और बाय लगाकर पुराने दोस्त को पीछे बैठा दो!"
+      }
+    ],
+    exercises: [
+      {
+        tabId: "tab-warmup",
+        guidance: "🎯 <b>Warm-up:</b> सही मतलब वाला वाक्य चुनो!",
+        guidanceVoice: "बच्चों, दिए गए वाक्य का सही मतलब कौन सा है? सही विकल्प पर टैप करो!",
+        questions: [
+          {
+            id: "w1",
+            qNo: "Warm-up",
+            sentence: "You must switch off your mobile.",
+            meaning: "👉 हिंदी: तुम्हें अपना मोबाइल बंद कर देना चाहिए।",
+            ans: "opt2",
+            spoken: "यू मस्ट स्विच ऑफ योर मोबाइल।",
+            exp: "मोबाइल खुद से अपने बटन नहीं दबा सकता! मोबाइल को तुम्हारे द्वारा बंद किया जाना चाहिए, इसलिए 'Your mobile must be switched off' सही है।",
+            options: [
+              {label: "1. Your mobile must switch you off.", val: "opt1"},
+              {label: "2. Your mobile must be switched off.", val: "opt2"}
+            ]
+          }
+        ]
+      },
+      {
+        tabId: "tab-1",
+        guidance: "🎯 <b>Exercise A:</b> पहचानो कि आगे खड़ा शब्द Doer (काम करने वाला - D) है या Receiver (जिस पर काम हुआ - R)!",
+        guidanceVoice: "बच्चों, देखो जो आगे खड़ा है वो खुद काम कर रहा है (डी), या उस पर काम हो रहा है (आर)!",
+        questions: [
+          {
+            id: "a1",
+            qNo: "Question 1",
+            sentence: "1. Our gardener is growing flowers.",
+            meaning: "👉 हिंदी: हमारे माली अंकल फूल उगा रहे हैं।",
+            ans: "D",
+            spoken: "आर गार्डनर इज़ ग्रोइंग फ्लावर्स।",
+            exp: "माली अंकल अपने हाथों से पौधे लगा रहे हैं! वो खुद काम कर रहे हैं, इसलिए वो Doer (D) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a2",
+            qNo: "Question 2",
+            sentence: "2. My sister bought a crossword book for me.",
+            meaning: "👉 हिंदी: मेरी बहन मेरे लिए किताब खरीद कर लाई।",
+            ans: "D",
+            spoken: "माय सिस्टर बॉट अ क्रॉसवर्ड बुक फॉर मी।",
+            exp: "दीदी खुद दुकान गईं और किताब खरीदी! दीदी काम करने वाली हैं, इसलिए Doer (D) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a3",
+            qNo: "Question 3",
+            sentence: "3. The cheese has been nibbled by the mouse.",
+            meaning: "👉 हिंदी: चूहे ने पनीर को कुतर दिया।",
+            ans: "R",
+            spoken: "द चीज़ हैज़ बीन निबल्ड बाय द माउस।",
+            exp: "पनीर (The cheese) बेचारा चुपचाप रखा था, चूहे ने आकर उसे खाया! पनीर पर काम हुआ, इसलिए वो Receiver (R) है।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a4",
+            qNo: "Question 4",
+            sentence: "4. Parents love their children.",
+            meaning: "👉 हिंदी: मम्मी-पापा अपने बच्चों से प्यार करते हैं।",
+            ans: "D",
+            spoken: "पेरेंट्स लव देयर चिल्ड्रन।",
+            exp: "मम्मी-पापा प्यार करने वाले हीरो हैं! वे खुद काम कर रहे हैं, इसलिए Doer (D) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a5",
+            qNo: "Question 5",
+            sentence: "5. Some children donate their toys.",
+            meaning: "👉 हिंदी: कुछ प्यारे बच्चे अपने खिलौने दूसरों को देते हैं।",
+            ans: "D",
+            spoken: "सम चिल्ड्रन डोनेट देयर टॉयज़।",
+            exp: "बच्चे खुद खुशी-खुशी अपने खिलौने दे रहे हैं! वे खुद काम कर रहे हैं, इसलिए Doer (D) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a6",
+            qNo: "Question 6",
+            sentence: "6. These fruits were picked by us.",
+            meaning: "👉 हिंदी: ये फल हमारे द्वारा तोड़े गए।",
+            ans: "R",
+            spoken: "दीज़ फ्रूट्स वर पिक्ड बाय अस।",
+            exp: "मीठे फल (Fruits) पेड़ पर लटके थे, उन्हें तोड़ा गया! फलों पर काम हुआ, इसलिए वे Receiver (R) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a7",
+            qNo: "Question 7",
+            sentence: "7. Roosters and crows make the most noise.",
+            meaning: "👉 हिंदी: मुर्गे और कौवे बहुत शोर मचाते हैं।",
+            ans: "D",
+            spoken: "रूस्टर्स एंड क्रोज़ मेक द मोस्ट नॉइज़।",
+            exp: "मुर्गे कुकड़ू-कूँ और कौवे काँव-काँव खुद बोल रहे हैं! वे आवाज़ निकाल रहे हैं, इसलिए Doer (D) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a8",
+            qNo: "Question 8",
+            sentence: "8. The criminals were punished by the police.",
+            meaning: "👉 हिंदी: चोरों को पुलिस अंकल ने सज़ा दी।",
+            ans: "R",
+            spoken: "द क्रिमिनल्स वर पनिश्ड बाय द पुलिस।",
+            exp: "बदमाशों को पुलिस ने पकड़ा और सज़ा दी! सज़ा बदमाशों पर पड़ी, इसलिए वे Receiver (R) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a9",
+            qNo: "Question 9",
+            sentence: "9. Apples are grown in Himachal Pradesh.",
+            meaning: "👉 हिंदी: सेब हिमाचल प्रदेश में उगाए जाते हैं।",
+            ans: "R",
+            spoken: "एप्पल्स आर ग्रोन इन हिमाचल प्रदेश।",
+            exp: "लाल सेब खुद नहीं उगते, किसान उन्हें उगाते हैं! सेब पर काम हुआ, इसलिए वे Receiver (R) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          },
+          {
+            id: "a10",
+            qNo: "Question 10",
+            sentence: "10. The tourists made a big snowman.",
+            meaning: "👉 हिंदी: घूमने आए लोगों ने बर्फ का बड़ा पुतला बनाया।",
+            ans: "D",
+            spoken: "द टूरिस्ट्स मेड अ बिग स्नोमैन।",
+            exp: "लोगों ने अपने हाथों से बर्फ का स्नोमैन बनाया! वे बनाने वाले हैं, इसलिए Doer (D) हैं।",
+            options: [{label: "D (Doer)", val: "D"}, {label: "R (Receiver)", val: "R"}]
+          }
+        ]
+      },
+      {
+        tabId: "tab-2",
+        guidance: "🎯 <b>Exercise B:</b> पहचानो कि वाक्य Active Voice (A) है या Passive Voice (P)!",
+        guidanceVoice: "बच्चों, अगर काम करने वाला आगे है तो ए चुनो, और अगर चीज़ आगे है तो पी चुनो!",
+        questions: [
+          {
+            id: "b1",
+            qNo: "Question 1",
+            sentence: "1. Shah Jahan built the Red Fort in Delhi.",
+            meaning: "👉 हिंदी: शाहजहाँ ने दिल्ली का लाल किला बनवाया।",
+            ans: "A",
+            spoken: "शाहजहाँ बिल्ट द रेड फोर्ट इन दिल्ली।",
+            exp: "राजा शाहजहाँ (काम करने वाला) सबसे आगे खड़ा है! इसलिए यह Active Voice (A) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b2",
+            qNo: "Question 2",
+            sentence: "2. The Sanchi Stupa is surrounded by four gateways.",
+            meaning: "👉 हिंदी: साँची स्तूप चार दरवाजों से घिरा हुआ है।",
+            ans: "P",
+            spoken: "द साँची स्तूपा इज़ सराउंडेड बाय फोर गेटवेज़।",
+            exp: "स्तूप इमारत आगे है और साथ में 'is surrounded by' लगा है! इसलिए यह Passive Voice (P) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b3",
+            qNo: "Question 3",
+            sentence: "3. Many historical monuments have been declared Heritage sites.",
+            meaning: "👉 हिंदी: कई पुरानी इमारतों को हेरिटेज घोषित किया गया है।",
+            ans: "P",
+            spoken: "मैनी हिस्टोरिकल मॉन्यूमेंट्स हैव बीन डिक्लेयर्ड हेरिटेज साइट्स।",
+            exp: "पुरानी इमारतें खुद कुछ नहीं कहतीं, उन्हें घोषित किया गया है! 'have been declared' लगा है, इसलिए Passive (P) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b4",
+            qNo: "Question 4",
+            sentence: "4. The India Gate was designed by the famous British architect, Edwin Lutyens.",
+            meaning: "👉 हिंदी: इंडिया गेट का नक्शा एडविन लुटियंस ने बनाया था।",
+            ans: "P",
+            spoken: "द इंडिया गेट वॉज़ डिज़ाइन्ड बाय द फेमस ब्रिटिश आर्किटेक्ट।",
+            exp: "इंडिया गेट आगे बैठा है और बनाने वाले अंकल पीछे 'by' के साथ हैं! इसलिए यह Passive Voice (P) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b5",
+            qNo: "Question 5",
+            sentence: "5. Santiniketan in West Bengal was set up by Rabindranath Tagore.",
+            meaning: "👉 हिंदी: शांतिनिकेतन की स्थापना रवींद्रनाथ टैगोर ने की थी।",
+            ans: "P",
+            spoken: "शांतिनिकेतन इन वेस्ट बंगाल वॉज़ सेट अप बाय रवींद्रनाथ टैगोर।",
+            exp: "शांतिनिकेतन स्कूल आगे है और टैगोर जी 'by' के साथ हैं! इसलिए यह Passive Voice (P) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b6",
+            qNo: "Question 6",
+            sentence: "6. Sir Malcolm Hailey developed the Jim Corbett National Park in Nainital.",
+            meaning: "👉 हिंदी: मैल्कम हेली ने जिम कॉर्बेट नेशनल पार्क बनाया।",
+            ans: "A",
+            spoken: "सर मैल्कम हेली डेवलप्ड द जिम कॉर्बेट नेशनल पार्क।",
+            exp: "काम करने वाले अंकल (Sir Malcolm) सबसे आगे खड़े होकर काम कर रहे हैं! इसलिए Active Voice (A) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b7",
+            qNo: "Question 7",
+            sentence: "7. The original wooden Mysore Palace was destroyed by fire.",
+            meaning: "👉 हिंदी: लकड़ी का मैसूर महल आग से जल गया था।",
+            ans: "P",
+            spoken: "द ओरिजिनल वुडन मैसूर पैलेस वॉज़ डिस्ट्रॉयड बाय फायर।",
+            exp: "सुंदर महल आगे है और आग 'by fire' पीछे है! इसलिए यह Passive Voice (P) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b8",
+            qNo: "Question 8",
+            sentence: "8. The Ellora Caves were carved out of volcanic deposits.",
+            meaning: "👉 हिंदी: एलोरा की गुफाएँ पत्थरों को तराश कर बनाई गई थीं।",
+            ans: "P",
+            spoken: "द एलोरा केव्स वर कार्व्ड आउट ऑफ वोल्केनिक डिपॉजिट्स।",
+            exp: "गुफाएँ खुद नहीं बनीं, उन्हें तराशा गया! 'were carved' लगा है, इसलिए Passive Voice (P) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b9",
+            qNo: "Question 9",
+            sentence: "9. Over 1,000 elephants transported heavy materials and supplies for the construction of the Taj Mahal.",
+            meaning: "👉 हिंदी: एक हज़ार से ज्यादा हाथियों ने भारी पत्थर ढोए।",
+            ans: "A",
+            spoken: "ओवर वन थाउज़ेंड एलिफेंट्स ट्रांसपोर्टेड हैवी मटेरियल्स।",
+            exp: "भारी-भरकम प्यारे हाथी खुद पत्थर ढो रहे थे! काम करने वाले आगे हैं, इसलिए Active Voice (A) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          },
+          {
+            id: "b10",
+            qNo: "Question 10",
+            sentence: "10. The chariot shape of the Konark Sun Temple attracts many tourists.",
+            meaning: "👉 हिंदी: कोणार्क सूर्य मंदिर का रथ जैसा रूप लोगों को आकर्षित करता है।",
+            ans: "A",
+            spoken: "द चैरियट शेप ऑफ द कोणार्क सन टेम्पल अट्रैक्ट्स मैनी टूरिस्ट्स।",
+            exp: "मंदिर का सुंदर रथ-आकार खुद लोगों को खींच रहा है! इसलिए यह Active Voice (A) है।",
+            options: [{label: "A (Active)", val: "A"}, {label: "P (Passive)", val: "P"}]
+          }
+        ]
+      },
+      {
+        tabId: "tab-3",
+        guidance: "🎯 <b>Exercise C:</b> Active वाक्य को Passive Voice में बदलो!",
+        guidanceVoice: "बच्चों, पीछे वाली चीज़ को आगे लाओ और सही पैसिव रूप चुनो!",
+        questions: [
+          {
+            id: "c1",
+            qNo: "Question 1",
+            sentence: "1. I clean my room every day.",
+            meaning: "👉 हिंदी: मैं रोज़ अपना कमरा साफ़ करता हूँ।",
+            ans: "My room is cleaned by me every day.",
+            spoken: "आई क्लीन माय रूम एवरी डे।",
+            exp: "कमरा (My room) आगे आ जाएगा! एक कमरा है इसलिए 'is cleaned' और I पीछे जाकर 'by me' बन जाएगा।",
+            options: [
+              {label: "My room is cleaned by me every day.", val: "My room is cleaned by me every day."},
+              {label: "My room was cleaned by me every day.", val: "My room was cleaned by me every day."}
+            ]
+          },
+          {
+            id: "c2",
+            qNo: "Question 2",
+            sentence: "2. The teacher asked a question.",
+            meaning: "👉 हिंदी: मैडम ने एक सवाल पूछा।",
+            ans: "A question was asked by the teacher.",
+            spoken: "द टीचर आस्क्ड अ क्वेश्चन।",
+            exp: "सवाल (A question) आगे आएगा! बात पुरानी है इसलिए 'was asked' और मैडम पीछे जाकर 'by the teacher' बन जाएँगी।",
+            options: [
+              {label: "A question was asked by the teacher.", val: "A question was asked by the teacher."},
+              {label: "A question is asked by the teacher.", val: "A question is asked by the teacher."}
+            ]
+          },
+          {
+            id: "c3",
+            qNo: "Question 3",
+            sentence: "3. The students wrote the answers.",
+            meaning: "👉 हिंदी: बच्चों ने उत्तर लिखे।",
+            ans: "The answers were written by the students.",
+            spoken: "द स्टूडेंट्स रोट द आंसर्स।",
+            exp: "उत्तर बहुत सारे हैं (The answers), इसलिए 'were written' आएगा और बच्चे पीछे जाकर 'by the students' बनेंगे।",
+            options: [
+              {label: "The answers were written by the students.", val: "The answers were written by the students."},
+              {label: "The answers was written by the students.", val: "The answers was written by the students."}
+            ]
+          },
+          {
+            id: "c4",
+            qNo: "Question 4",
+            sentence: "4. My sister was baking a cake in the morning.",
+            meaning: "👉 हिंदी: दीदी सुबह केक बना रही थीं।",
+            ans: "A cake was being baked by my sister in the morning.",
+            spoken: "माय सिस्टर वॉज़ बेकिंग अ केक इन द मॉर्निंग।",
+            exp: "स्वादिष्ट केक (A cake) आगे आएगा! जब काम चल रहा था तो 'was being baked' लगता है।",
+            options: [
+              {label: "A cake was being baked by my sister in the morning.", val: "A cake was being baked by my sister in the morning."},
+              {label: "A cake is being baked by my sister.", val: "A cake is being baked by my sister."}
+            ]
+          },
+          {
+            id: "c5",
+            qNo: "Question 5",
+            sentence: "5. The school has announced a holiday.",
+            meaning: "👉 हिंदी: स्कूल ने छुट्टी की घोषणा कर दी है!",
+            ans: "A holiday has been announced by the school.",
+            spoken: "द स्कूल हैज़ अनाउंस्ड अ हॉलिडे।",
+            exp: "छुट्टी (A holiday) आगे आएगी! 'has announced' बदल कर 'has been announced' बन जाएगा।",
+            options: [
+              {label: "A holiday has been announced by the school.", val: "A holiday has been announced by the school."},
+              {label: "A holiday had been announced by the school.", val: "A holiday had been announced by the school."}
+            ]
+          },
+          {
+            id: "c6",
+            qNo: "Question 6",
+            sentence: "6. They have mowed the lawn.",
+            meaning: "👉 हिंदी: उन्होंने बगीचे की घास काट दी है।",
+            ans: "The lawn has been mowed by them.",
+            spoken: "दे हैव मोड द लॉन।",
+            exp: "बगीचा अकेला है (The lawn), इसलिए have की जगह 'has been mowed' आएगा और They पीछे जाकर 'by them' बन जाएगा।",
+            options: [
+              {label: "The lawn has been mowed by them.", val: "The lawn has been mowed by them."},
+              {label: "The lawn have been mowed by them.", val: "The lawn have been mowed by them."}
+            ]
+          },
+          {
+            id: "c7",
+            qNo: "Question 7",
+            sentence: "7. My aunt is knitting a sweater for me.",
+            meaning: "👉 हिंदी: चाची मेरे लिए स्वेटर बुन रही हैं।",
+            ans: "A sweater is being knitted for me by my aunt.",
+            spoken: "माय आंट इज़ निटिंग अ स्वेटर फॉर मी।",
+            exp: "गर्म स्वेटर (A sweater) आगे आएगा! अभी बुन रही हैं, इसलिए 'is being knitted' आएगा।",
+            options: [
+              {label: "A sweater is being knitted for me by my aunt.", val: "A sweater is being knitted for me by my aunt."},
+              {label: "A sweater was being knitted by my aunt.", val: "A sweater was being knitted by my aunt."}
+            ]
+          },
+          {
+            id: "c8",
+            qNo: "Question 8",
+            sentence: "8. I am packing the gift.",
+            meaning: "👉 हिंदी: मैं गिफ्ट पैक कर रहा हूँ।",
+            ans: "The gift is being packed by me.",
+            spoken: "आई एम पैकिंग द गिफ्ट।",
+            exp: "सुंदर उपहार (The gift) आगे आएगा! अभी काम चल रहा है, इसलिए 'is being packed by me' होगा।",
+            options: [
+              {label: "The gift is being packed by me.", val: "The gift is being packed by me."},
+              {label: "The gift was packed by me.", val: "The gift was packed by me."}
+            ]
+          },
+          {
+            id: "c9",
+            qNo: "Question 9",
+            sentence: "9. The mechanic fixed the car.",
+            meaning: "👉 हिंदी: मैकेनिक अंकल ने कार ठीक कर दी।",
+            ans: "The car was fixed by the mechanic.",
+            spoken: "द मैकेनिक फिक्स्ड द कार।",
+            exp: "गाड़ी (The car) आगे आ जाएगी! काम हो चुका था, इसलिए 'was fixed by the mechanic' सही है।",
+            options: [
+              {label: "The car was fixed by the mechanic.", val: "The car was fixed by the mechanic."},
+              {label: "The car is fixed by the mechanic.", val: "The car is fixed by the mechanic."}
+            ]
+          },
+          {
+            id: "c10",
+            qNo: "Question 10",
+            sentence: "10. The blind woman had grown these plants.",
+            meaning: "👉 हिंदी: उन महिला ने ये पौधे बड़े प्यार से उगाए थे।",
+            ans: "These plants had been grown by the blind woman.",
+            spoken: "द ब्लाइंड वुमन हैड ग्रोन दीज़ प्लांट्स।",
+            exp: "हरे पौधे (These plants) आगे आ जाएँगे! 'had grown' बदलकर 'had been grown' बन जाएगा।",
+            options: [
+              {label: "These plants had been grown by the blind woman.", val: "These plants had been grown by the blind woman."},
+              {label: "These plants have been grown by the blind woman.", val: "These plants have been grown by the blind woman."}
+            ]
+          }
+        ]
+      },
+      {
+        tabId: "tab-4",
+        guidance: "🎯 <b>Exercise D:</b> Passive वाक्य को Active Voice (सीधे तरीके) में बदलो!",
+        guidanceVoice: "बच्चों, पीछे वाले काम करने वाले हीरो को वापस आगे लाओ!",
+        questions: [
+          {
+            id: "d1",
+            qNo: "Question 1",
+            sentence: "1. The window was pushed open by the wind.",
+            meaning: "👉 हिंदी: खिड़की हवा के झोंके से खुल गई।",
+            ans: "The wind pushed open the window.",
+            spoken: "द विंडो वॉज़ पुश्ड ओपन बाय द विंड।",
+            exp: "हवा (The wind) ने खिड़की खोली! हवा आगे आ जाएगी: 'The wind pushed open the window'।",
+            options: [
+              {label: "The wind pushed open the window.", val: "The wind pushed open the window."},
+              {label: "The wind pushes the window.", val: "The wind pushes the window."}
+            ]
+          },
+          {
+            id: "d2",
+            qNo: "Question 2",
+            sentence: "2. The grass has been eaten by the goats.",
+            meaning: "👉 हिंदी: बकरियों ने घास खा ली है।",
+            ans: "The goats have eaten the grass.",
+            spoken: "द ग्रास हैज़ बीन ईटन बाय द गोट्स।",
+            exp: "बकरियाँ (The goats) आगे आ जाएँगी! बहुत सारी बकरियाँ हैं इसलिए 'have eaten the grass' बनेगा।",
+            options: [
+              {label: "The goats have eaten the grass.", val: "The goats have eaten the grass."},
+              {label: "The goats has eaten the grass.", val: "The goats has eaten the grass."}
+            ]
+          },
+          {
+            id: "d3",
+            qNo: "Question 3",
+            sentence: "3. This neat circle has been drawn by a small child.",
+            meaning: "👉 हिंदी: यह सुंदर गोला एक छोटे बच्चे ने बनाया है।",
+            ans: "A small child has drawn this neat circle.",
+            spoken: "दिस नीट सर्कल हैज़ बीन ड्रॉन बाय अ स्मॉल चाइल्ड।",
+            exp: "छोटा बच्चा (A small child) आगे आ जाएगा! एक बच्चा है इसलिए 'has drawn this neat circle' सही है।",
+            options: [
+              {label: "A small child has drawn this neat circle.", val: "A small child has drawn this neat circle."},
+              {label: "A small child drew this neat circle.", val: "A small child drew this neat circle."}
+            ]
+          },
+          {
+            id: "d4",
+            qNo: "Question 4",
+            sentence: "4. Food was served by my father to the guests.",
+            meaning: "👉 हिंदी: पापा ने मेहमानों को खाना खिलाया।",
+            ans: "My father served food to the guests.",
+            spoken: "फूड वॉज़ सर्व्ड बाय माय फादर टू द गेस्ट्स।",
+            exp: "प्यारे पापा (My father) आगे आ जाएँगे! सीधा वाक्य बनेगा: 'My father served food to the guests'।",
+            options: [
+              {label: "My father served food to the guests.", val: "My father served food to the guests."},
+              {label: "My father is serving food to the guests.", val: "My father is serving food to the guests."}
+            ]
+          },
+          {
+            id: "d5",
+            qNo: "Question 5",
+            sentence: "5. We were guided by the map in the forest.",
+            meaning: "👉 हिंदी: जंगल में नक्शे ने हमारा रास्ता दिखाया।",
+            ans: "The map guided us in the forest.",
+            spoken: "वी वर गाइडेड बाय द मैप इन द फॉरेस्ट।",
+            exp: "नक्शा (The map) आगे आएगा और We पीछे जाकर 'us' बन जाएगा: 'The map guided us in the forest'।",
+            options: [
+              {label: "The map guided us in the forest.", val: "The map guided us in the forest."},
+              {label: "The map guides us in the forest.", val: "The map guides us in the forest."}
+            ]
+          },
+          {
+            id: "d6",
+            qNo: "Question 6",
+            sentence: "6. The stray dogs are fed by the kind lady.",
+            meaning: "👉 हिंदी: दयालु आंटी गली के कुत्तों को खाना खिलाती हैं।",
+            ans: "The kind lady feeds the stray dogs.",
+            spoken: "द स्ट्रे डॉग्स आर फेड बाय द काइंड लेडी।",
+            exp: "दयालु आंटी (The kind lady) आगे आ जाएँगी! रोज़ खिलाती हैं इसलिए 'feeds the stray dogs' होगा।",
+            options: [
+              {label: "The kind lady feeds the stray dogs.", val: "The kind lady feeds the stray dogs."},
+              {label: "The kind lady fed the stray dogs.", val: "The kind lady fed the stray dogs."}
+            ]
+          },
+          {
+            id: "d7",
+            qNo: "Question 7",
+            sentence: "7. Money was collected by the students for the poor.",
+            meaning: "👉 हिंदी: बच्चों ने गरीबों की मदद के लिए पैसे इकट्ठे किए।",
+            ans: "The students collected money for the poor.",
+            spoken: "मनी वॉज़ कलेक्टेड बाय द स्टूडेंट्स।",
+            exp: "स्कूल के बच्चे (The students) आगे आ जाएँगे: 'The students collected money for the poor'।",
+            options: [
+              {label: "The students collected money for the poor.", val: "The students collected money for the poor."},
+              {label: "The students collect money for the poor.", val: "The students collect money for the poor."}
+            ]
+          },
+          {
+            id: "d8",
+            qNo: "Question 8",
+            sentence: "8. Gold ornaments are sold by a jeweller.",
+            meaning: "👉 हिंदी: सुनार अंकल सोने के गहने बेचते हैं।",
+            ans: "A jeweller sells gold ornaments.",
+            spoken: "गोल्ड ऑर्नामेंट्स आर सोल्ड बाय अ ज्वैलर।",
+            exp: "सुनार अंकल (A jeweller) आगे आ जाएँगे! अकेला व्यक्ति है इसलिए 'sells gold ornaments' बनेगा।",
+            options: [
+              {label: "A jeweller sells gold ornaments.", val: "A jeweller sells gold ornaments."},
+              {label: "A jeweller sold gold ornaments.", val: "A jeweller sold gold ornaments."}
+            ]
+          },
+          {
+            id: "d9",
+            qNo: "Question 9",
+            sentence: "9. Buildings are designed by architects.",
+            meaning: "👉 हिंदी: आर्किटेक्ट अंकल इमारतों का नक्शा बनाते हैं।",
+            ans: "Architects design buildings.",
+            spoken: "बिल्डिंग्स आर डिज़ाइन्ड बाय आर्किटेक्ट्स।",
+            exp: "आर्किटेक्ट (Architects) आगे आ जाएँगे! सीधा वाक्य बनेगा: 'Architects design buildings'।",
+            options: [
+              {label: "Architects design buildings.", val: "Architects design buildings."},
+              {label: "Architects designed buildings.", val: "Architects designed buildings."}
+            ]
+          },
+          {
+            id: "d10",
+            qNo: "Question 10",
+            sentence: "10. A gold medal had been won by Meeta last year.",
+            meaning: "👉 हिंदी: मीता ने पिछले साल सोने का तमगा जीता था।",
+            ans: "Meeta had won a gold medal last year.",
+            spoken: "अ गोल्ड मेडल हैड बीन वन बाय मीता लास्ट ईयर।",
+            exp: "मीता (Meeta) आगे आ जाएगी! 'had been won' बदल कर 'had won' बन जाएगा।",
+            options: [
+              {label: "Meeta had won a gold medal last year.", val: "Meeta had won a gold medal last year."},
+              {label: "Meeta has won a gold medal last year.", val: "Meeta has won a gold medal last year."}
+            ]
+          }
+        ]
+      },
+      {
+        tabId: "tab-5",
+        guidance: "🎯 <b>Exercise E:</b> हुक्म या प्रार्थना वाले वाक्य (Imperative Sentences) पहचानो!",
+        guidanceVoice: "बच्चों, जब हम किसी को प्यार से कुछ करने को कहते हैं, तो उसे कैसे बोलते हैं? सही विकल्प चुनो!",
+        questions: [
+          {
+            id: "e1",
+            qNo: "Question 1",
+            sentence: "1. दरवाजा बंद करो!",
+            meaning: "👉 अंग्रेजी: Close the door.",
+            ans: "Close the door.",
+            spoken: "क्लोज़ द डोर। दरवाजा बंद करो।",
+            exp: "जब हम किसी को काम करने का हुक्म देते हैं, तो क्रिया सबसे आगे आती है जैसे 'Close the door'।",
+            options: [{label: "Close the door.", val: "Close the door."}, {label: "The door closed.", val: "The door closed."}]
+          },
+          {
+            id: "e2",
+            qNo: "Question 2",
+            sentence: "2. मुझे किताब पकड़ा दो!",
+            meaning: "👉 अंग्रेजी: Pass the book to me.",
+            ans: "Pass the book to me.",
+            spoken: "पास द बुक टू मी।",
+            exp: "सीधे काम बोलो: 'Pass the book to me'। इसमें 'You' छुपा होता है।",
+            options: [{label: "Pass the book to me.", val: "Pass the book to me."}, {label: "Book passed to me.", val: "Book passed to me."}]
+          },
+          {
+            id: "e3",
+            qNo: "Question 3",
+            sentence: "3. फुटबॉल को किक मारो!",
+            meaning: "👉 अंग्रेजी: Kick the ball now.",
+            ans: "Kick the ball now.",
+            spoken: "किक द बॉल नाउ।",
+            exp: "गेंद को लात मारने का हुक्म है, इसलिए 'Kick the ball now' सही है।",
+            options: [{label: "Kick the ball now.", val: "Kick the ball now."}, {label: "Ball kicks you.", val: "Ball kicks you."}]
+          },
+          {
+            id: "e4",
+            qNo: "Question 4",
+            sentence: "4. चुपचाप बैठ जाओ!",
+            meaning: "👉 अंग्रेजी: Sit down quietly.",
+            ans: "Sit down quietly.",
+            spoken: "सिट डाउन क्वाइटली।",
+            exp: "मैडम क्लास में कहती हैं ना—'Sit down quietly'! यह हुक्म वाला वाक्य है।",
+            options: [{label: "Sit down quietly.", val: "Sit down quietly."}, {label: "You sitting quiet.", val: "You sitting quiet."}]
+          },
+          {
+            id: "e5",
+            qNo: "Question 5",
+            sentence: "5. अपने हाथ अच्छे से धो लो!",
+            meaning: "👉 अंग्रेजी: Wash your hands properly.",
+            ans: "Wash your hands properly.",
+            spoken: "वॉश योर हैंड्स प्रॉपर्ली।",
+            exp: "खाना खाने से पहले मम्मी कहती हैं—'Wash your hands properly'।",
+            options: [{label: "Wash your hands properly.", val: "Wash your hands properly."}, {label: "Hands wash you.", val: "Hands wash you."}]
+          }
+        ]
+      }
+    ]
+  },
+
+  "ch9": {
+    name: "Chapter 9: Adverbs (Kinds)",
+    understanding: [
+      {
+        id: "und_adverb_def",
+        type: "concept",
+        badge: "नियम 1 (जादुई मददगार)",
+        sentence: "Adverb क्या होता है?",
+        meaning: "👉 काम के बारे में और बताने वाला शब्द!",
+        desc: "जब आप दौड़ते हो (Run), तो आप कैसे दौड़े? <b>तेज़ (Fast)</b> या <b>धीमे (Slow)</b>? जो शब्द यह बताए कि काम <b>कैसे (How)</b>, <b>कहाँ (Where)</b> या <b>कब (When)</b> हुआ, उसे <b>Adverb</b> कहते हैं!",
+        tts: "एडवर्ब हमें बताता है कि कोई काम कैसे हुआ, कहाँ हुआ, या कब हुआ! जैसे चीता तेज़ दौड़ता है।"
+      },
+      {
+        id: "und_adverb_kinds",
+        type: "concept",
+        badge: "नियम 2 (चार प्यारे दोस्त)",
+        sentence: "Adverbs के प्रकार (Kinds)",
+        meaning: "👉 Manner, Place, Time, Frequency & Degree",
+        desc: "👉 <b>Manner (कैसे?):</b> softly, happily (ज्यादातर -ly वाले)<br>👉 <b>Place (कहाँ?):</b> upstairs, outside, here<br>👉 <b>Time (कब?):</b> today, soon, early<br>👉 <b>Frequency (कितनी बार?):</b> daily, always, never<br>👉 <b>Degree (कितना ज्यादा?):</b> very, almost, completely",
+        tts: "चार सवाल पूछो: कैसे, कहाँ, कब, और कितनी बार? आपको तुरंत एडवर्ब का प्रकार मिल जाएगा!"
+      },
+      {
+        id: "und_ly_magic",
+        type: "magic",
+        badge: "जादुई फॉर्मूला",
+        badgeStyle: "background:#D1FAE5;color:#047857;",
+        sentence: "⭐ 90% वाला -ly जादुई नियम",
+        meaning: "👉 -ly दिखा तो Manner पक्का!",
+        desc: "जब किसी गुण (Adjective) के पीछे <b>-ly</b> लग जाता है (जैसे slow + ly = slowly, loud + ly = loudly), तो वो 90% काम करने का तरीका (Manner) बताता है!",
+        tts: "जादुई फॉर्मूला याद रखो! अगर शब्द के पीछे एल वाई लगा है तो नब्बे परसेंट वो एडवर्ब ऑफ मैनर है!"
+      }
+    ],
+    exercises: [
+      {
+        tabId: "tab-1",
+        guidance: "🎯 <b>Exercise A:</b> वाक्य में Adverb पहचानो!",
+        guidanceVoice: "बच्चों, देखो कि काम की खासियत कौन सा शब्द बता रहा है, और सही एडवर्ब चुनो!",
+        questions: [
+          {
+            id: "a1",
+            qNo: "Question 1",
+            sentence: "1. It has rained (enough).",
+            meaning: "👉 हिंदी: काफी बारिश हो चुकी है।",
+            ans: "enough",
+            spoken: "इट हैज़ रेंड इनफ।",
+            exp: "बारिश कितनी हुई? 'enough' यानी काफी! यह मात्रा (Degree) बता रहा है, इसलिए 'enough' एडवर्ब है।",
+            options: [{label: "enough", val: "enough"}, {label: "rained", val: "rained"}]
+          },
+          {
+            id: "a2",
+            qNo: "Question 2",
+            sentence: "2. The students recited the poem loudly.",
+            meaning: "👉 हिंदी: बच्चों ने ज़ोर-ज़ोर से कविता सुनाई।",
+            ans: "loudly",
+            spoken: "द स्टूडेंट्स रिसाइटेड द पोयम लाउडली।",
+            exp: "बच्चों ने कविता कैसे सुनाई? ज़ोर से (loudly)! अंत में -ly लगा है, इसलिए 'loudly' सही एडवर्ब है।",
+            options: [{label: "loudly", val: "loudly"}, {label: "recited", val: "recited"}]
+          },
+          {
+            id: "a3",
+            qNo: "Question 3",
+            sentence: "3. The painters will paint the house tomorrow.",
+            meaning: "👉 हिंदी: पेंटर अंकल कल घर में रंग करेंगे।",
+            ans: "tomorrow",
+            spoken: "द पेंटर्स विल पेंट द हाउस टुमॉरो।",
+            exp: "पेंटिंग का काम कब होगा? कल (tomorrow)! समय बताने वाला शब्द एडवर्ब होता है, इसलिए 'tomorrow' सही है।",
+            options: [{label: "tomorrow", val: "tomorrow"}, {label: "paint", val: "paint"}]
+          },
+          {
+            id: "a4",
+            qNo: "Question 4",
+            sentence: "4. The bus driver waited patiently for the signal.",
+            meaning: "👉 हिंदी: ड्राइवर अंकल ने शांति से इंतज़ार किया।",
+            ans: "patiently",
+            spoken: "द बस ड्राइवर वेटेड पेशेंटली।",
+            exp: "ड्राइवर अंकल ने कैसे इंतज़ार किया? बिना गुस्सा किए शांति से (patiently)! इसलिए 'patiently' एडवर्ब है।",
+            options: [{label: "patiently", val: "patiently"}, {label: "waited", val: "waited"}]
+          },
+          {
+            id: "a5",
+            qNo: "Question 5",
+            sentence: "5. They will launch the book soon.",
+            meaning: "👉 हिंदी: वे जल्दी ही नई किताब निकालेंगे।",
+            ans: "soon",
+            spoken: "दे विल लॉन्च द बुक सून।",
+            exp: "किताब कब आएगी? जल्दी ही (soon)! यह समय (Time) बता रहा है, इसलिए 'soon' सही एडवर्ब है।",
+            options: [{label: "soon", val: "soon"}, {label: "launch", val: "launch"}]
+          },
+          {
+            id: "a6",
+            qNo: "Question 6",
+            sentence: "6. All the children ran downstairs on seeing the ice cream man.",
+            meaning: "👉 हिंदी: आइसक्रीम वाले को देखकर सारे बच्चे सीढ़ियों से नीचे भागे!",
+            ans: "downstairs",
+            spoken: "ऑल द चिल्ड्रन रैन डाउनस्टेयर्स।",
+            exp: "बच्चे कहाँ भागे? नीचे सीढ़ियों की तरफ (downstairs)! यह जगह (Place) बता रहा है, इसलिए 'downstairs' एडवर्ब है।",
+            options: [{label: "downstairs", val: "downstairs"}, {label: "ran", val: "ran"}]
+          },
+          {
+            id: "a7",
+            qNo: "Question 7",
+            sentence: "7. Roma almost hit the tree while riding a bicycle.",
+            meaning: "👉 हिंदी: रोमा साइकिल चलाते हुए पेड़ से टकराते-टकराते बची!",
+            ans: "almost",
+            spoken: "रोमा ऑलमोस्ट हिट द ट्री।",
+            exp: "बस टकरा ही गई थी (almost - लगभग)! यह Degree बता रहा है, इसलिए 'almost' सही उत्तर है।",
+            options: [{label: "almost", val: "almost"}, {label: "hit", val: "hit"}]
+          },
+          {
+            id: "a8",
+            qNo: "Question 8",
+            sentence: "8. My grandfather has not gone to the library today.",
+            meaning: "👉 हिंदी: दादाजी आज लाइब्रेरी नहीं गए।",
+            ans: "today",
+            spoken: "माय ग्रैंडफादर हैज़ नॉट गॉन टू द लाइब्रेरी टुडे।",
+            exp: "दादाजी कब नहीं गए? आज (today)! आज का दिन समय (Time) है, इसलिए 'today' सही एडवर्ब है।",
+            options: [{label: "today", val: "today"}, {label: "library", val: "library"}]
+          },
+          {
+            id: "a9",
+            qNo: "Question 9",
+            sentence: "9. Mansi walked onto the stage proudly.",
+            meaning: "👉 हिंदी: मानसी गर्व से मुस्कुराते हुए स्टेज पर गई।",
+            ans: "proudly",
+            spoken: "मानसी वॉक्ड ऑन टू द स्टेज प्राउडली।",
+            exp: "मानसी स्टेज पर कैसे गई? शान से (proudly)! -ly लगा है, इसलिए 'proudly' सही एडवर्ब है।",
+            options: [{label: "proudly", val: "proudly"}, {label: "walked", val: "walked"}]
+          },
+          {
+            id: "a10",
+            qNo: "Question 10",
+            sentence: "10. Guneet always speaks confidently in meetings.",
+            meaning: "👉 हिंदी: गुनीत हमेशा आत्मविश्वास से बोलता है।",
+            ans: "always, confidently",
+            spoken: "गुनीत ऑलवेज़ स्पीक्स कॉन्फिडेंटली।",
+            exp: "कितनी बार? हमेशा (always)! और कैसे? हिम्मत के साथ (confidently)! इस वाक्य में दो एडवर्ब्स हैं।",
+            options: [{label: "always, confidently", val: "always, confidently"}, {label: "speaks, meetings", val: "speaks, meetings"}]
+          }
+        ]
+      },
+      {
+        tabId: "tab-2",
+        guidance: "🎯 <b>Exercise B:</b> बॉक्स में से सही Adverb चुनो और उसका प्रकार (Kind) समझो!",
+        guidanceVoice: "बच्चों, खाली जगह में सबसे प्यारा और सही शब्द भरो!",
+        questions: [
+          {
+            id: "b1",
+            qNo: "Question 1",
+            sentence: "1. Zumba classes are held in the clubhouse _______.",
+            meaning: "👉 हिंदी: ज़ुम्बा डांस क्लास रोज़ होती है।",
+            ans: "daily",
+            spoken: "ज़ुम्बा क्लासेस आर हेल्ड इन द क्लबहाउस डेली।",
+            exp: "डांस क्लास कितनी बार होती है? हर रोज़ (daily)! यह Frequency बता रहा है, इसलिए 'daily' सही है।",
+            options: [{label: "daily (Frequency)", val: "daily"}, {label: "never (Frequency)", val: "never"}]
+          },
+          {
+            id: "b2",
+            qNo: "Question 2",
+            sentence: "2. The plane had _______ landed when it started raining.",
+            meaning: "👉 हिंदी: बारिश शुरू होते ही हवाई जहाज बस उतर ही चुका था।",
+            ans: "almost",
+            spoken: "द प्लेन हैड ऑलमोस्ट लैंडेड व्हेन इट स्टार्टेड रेनिंग।",
+            exp: "हवाई जहाज लगभग ज़मीन छू चुका था! लगभग को 'almost' (Degree) कहते हैं।",
+            options: [{label: "almost (Degree)", val: "almost"}, {label: "daily (Frequency)", val: "daily"}]
+          },
+          {
+            id: "b3",
+            qNo: "Question 3",
+            sentence: "3. I did not go swimming as the water was _______ cold.",
+            meaning: "👉 हिंदी: मैं तैरने नहीं गया क्योंकि पानी बहुत ज्यादा ठंडा था!",
+            ans: "extremely",
+            spoken: "आई डिड नॉट गो स्विमिंग ऐज़ द वाटर वॉज़ एक्सट्रीमली कोल्ड।",
+            exp: "पानी कितना ठंडा था? बर्फ जैसा बहुत ज्यादा (extremely)! इसलिए 'extremely' सही है।",
+            options: [{label: "extremely (Degree)", val: "extremely"}, {label: "annually (Time)", val: "annually"}]
+          },
+          {
+            id: "b4",
+            qNo: "Question 4",
+            sentence: "4. My mother _______ goes for a run in the morning.",
+            meaning: "👉 हिंदी: मम्मी अक्सर सुबह दौड़ने जाती हैं।",
+            ans: "usually",
+            spoken: "माय मदर यूज़ुअली गोज़ फॉर अ रन इन द मॉर्निंग।",
+            exp: "मम्मी ज्यादातर दिनों में जाती हैं, इसलिए 'usually' (Frequency) सही है।",
+            options: [{label: "usually (Frequency)", val: "usually"}, {label: "quite (Degree)", val: "quite"}]
+          },
+          {
+            id: "b5",
+            qNo: "Question 5",
+            sentence: "5. Are you old _______ to drive a car?",
+            meaning: "👉 हिंदी: क्या तुम कार चलाने जितने बड़े हो गए हो?",
+            ans: "enough",
+            spoken: "आर यू ओल्ड इनफ टू ड्राइव अ कार?",
+            exp: "क्या तुम्हारी उम्र काफी (enough) बड़ी है? इसलिए यहाँ 'enough' (Degree) आएगा।",
+            options: [{label: "enough (Degree)", val: "enough"}, {label: "almost (Degree)", val: "almost"}]
+          },
+          {
+            id: "b6",
+            qNo: "Question 6",
+            sentence: "6. My parents pay their taxes _______.",
+            meaning: "👉 हिंदी: मम्मी-पापा साल में एक बार टैक्स भरते हैं।",
+            ans: "annually",
+            spoken: "माय पेरेंट्स पे देयर टैक्सेस एनुअली।",
+            exp: "साल में एक बार होने वाले काम को 'annually' (Time/Frequency) कहते हैं।",
+            options: [{label: "annually (Frequency)", val: "annually"}, {label: "daily (Frequency)", val: "daily"}]
+          },
+          {
+            id: "b7",
+            qNo: "Question 7",
+            sentence: "7. Mallika is _______ late for school; she is very punctual.",
+            meaning: "👉 हिंदी: मल्लिका कभी स्कूल लेट नहीं होती, वो बहुत अच्छी बच्ची है।",
+            ans: "never",
+            spoken: "मल्लिका इज़ नेवर लेट फॉर स्कूल।",
+            exp: "समय पर आने वाली बच्ची 'कभी नहीं' लेट होती! कभी नहीं को 'never' कहते हैं।",
+            options: [{label: "never (Frequency)", val: "never"}, {label: "always (Frequency)", val: "always"}]
+          },
+          {
+            id: "b8",
+            qNo: "Question 8",
+            sentence: "8. Vihaan is _______ fidgeting around in the class.",
+            meaning: "👉 हिंदी: विहान हमेशा क्लास में मस्ती करता रहता है।",
+            ans: "always",
+            spoken: "विहान इज़ ऑलवेज़ फिजेटिंग अराउंड इन द क्लास।",
+            exp: "जो बच्चा हर समय उछल-कूद करता है, उसके लिए 'always' (हमेशा) आता है।",
+            options: [{label: "always (Frequency)", val: "always"}, {label: "never (Frequency)", val: "never"}]
+          },
+          {
+            id: "b9",
+            qNo: "Question 9",
+            sentence: "9. This new book is _______ interesting.",
+            meaning: "👉 हिंदी: यह नई कहानी की किताब काफी मज़ेदार है।",
+            ans: "quite",
+            spoken: "दिस न्यू बुक इज़ क्वाइट इंटरेस्टिंग।",
+            exp: "किताब सच में बहुत अच्छी है! काफी अच्छी को 'quite' (Degree) कहते हैं।",
+            options: [{label: "quite (Degree)", val: "quite"}, {label: "annually (Time)", val: "annually"}]
+          },
+          {
+            id: "b10",
+            qNo: "Question 10",
+            sentence: "10. The coach was not _______ satisfied with the team's performance.",
+            meaning: "👉 हिंदी: कोच सर पूरी तरह खुश नहीं थे।",
+            ans: "completely",
+            spoken: "द कोच वॉज़ नॉट कम्प्लीटली सैटिस्फाइड।",
+            exp: "पूरी तरह से संतुष्ट होने को 'completely' कहते हैं। इसलिए 'completely' सही है।",
+            options: [{label: "completely (Degree)", val: "completely"}, {label: "daily (Frequency)", val: "daily"}]
+          }
+        ]
+      },
+      {
+        tabId: "tab-3",
+        guidance: "🎯 <b>Exercise C:</b> ब्रैकेट वाले Adverb को सही जगह पर बैठाओ!",
+        guidanceVoice: "बच्चों, देखो कि ब्रैकेट वाला जादुई शब्द वाक्य में कहाँ सबसे सुंदर लगेगा!",
+        questions: [
+          {
+            id: "c1",
+            qNo: "Question 1",
+            sentence: "1. The dog barked at the naughty boys teasing it. (angrily)",
+            meaning: "👉 हिंदी: कुत्ते ने चिढ़ाने वाले बच्चों पर गुस्से में भौंका।",
+            ans: "The dog barked angrily at the naughty boys teasing it.",
+            spoken: "द डॉग बार्क्ड एंग्रिली।",
+            exp: "कुत्ता कैसे भौंका? गुस्से में! इसलिए barked के तुरंत बाद 'angrily' बैठेगा।",
+            options: [
+              {label: "The dog barked angrily at the naughty boys teasing it.", val: "The dog barked angrily at the naughty boys teasing it."},
+              {label: "The dog angrily barked teasing boys.", val: "The dog angrily barked teasing boys."}
+            ]
+          },
+          {
+            id: "c2",
+            qNo: "Question 2",
+            sentence: "2. I could not find the ball though I searched for it. (everywhere)",
+            meaning: "👉 हिंदी: मुझे गेंद नहीं मिली, चाहे मैंने सब जगह ढूँढ लिया।",
+            ans: "I could not find the ball though I searched everywhere for it.",
+            spoken: "आई सर्चड एव्रीव्हेयर फॉर इट।",
+            exp: "कहाँ ढूँढा? हर जगह (everywhere)! ढूँढने (searched) के बाद 'everywhere' आएगा।",
+            options: [
+              {label: "I could not find the ball though I searched everywhere for it.", val: "I could not find the ball though I searched everywhere for it."},
+              {label: "Everywhere I could not find ball.", val: "Everywhere I could not find ball."}
+            ]
+          },
+          {
+            id: "c3",
+            qNo: "Question 3",
+            sentence: "3. Karan spends the weekends in his hill house. (sometimes)",
+            meaning: "👉 हिंदी: करन कभी-कभी पहाड़ों वाले घर में छुट्टियाँ बिताता है।",
+            ans: "Karan sometimes spends the weekends in his hill house.",
+            spoken: "करन समटाइम्स स्पेंड्स द वीकेंड्स।",
+            exp: "करन के तुरंत बाद काम करने से पहले 'sometimes' (कभी-कभी) आएगा।",
+            options: [
+              {label: "Karan sometimes spends the weekends in his hill house.", val: "Karan sometimes spends the weekends in his hill house."},
+              {label: "Karan spends sometimes weekends.", val: "Karan spends sometimes weekends."}
+            ]
+          },
+          {
+            id: "c4",
+            qNo: "Question 4",
+            sentence: "4. My parents call me to know how I am. (often)",
+            meaning: "👉 हिंदी: मम्मी-पापा मुझे अक्सर फोन करके हाल-चाल पूछते हैं।",
+            ans: "My parents often call me to know how I am.",
+            spoken: "माय पेरेंट्स ऑफन कॉल मी।",
+            exp: "फोन करने (call) से ठीक पहले 'often' (अक्सर) बैठता है।",
+            options: [
+              {label: "My parents often call me to know how I am.", val: "My parents often call me to know how I am."},
+              {label: "My parents call often me.", val: "My parents call often me."}
+            ]
+          },
+          {
+            id: "c5",
+            qNo: "Question 5",
+            sentence: "5. Kriti and Rohan were drenched by the time they got home. (completely)",
+            meaning: "👉 हिंदी: घर पहुँचते-पहुँचते कृति और रोहन बारिश में पूरी तरह भीग गए!",
+            ans: "Kriti and Rohan were completely drenched by the time they got home.",
+            spoken: "वर कम्प्लीटली ड्रेंच्ड।",
+            exp: "कितना भीगे? सिर से पैर तक पूरे (completely)! इसलिए were के बाद 'completely' आएगा।",
+            options: [
+              {label: "Kriti and Rohan were completely drenched by the time they got home.", val: "Kriti and Rohan were completely drenched by the time they got home."},
+              {label: "Kriti and Rohan completely were drenched.", val: "Kriti and Rohan completely were drenched."}
+            ]
+          },
+          {
+            id: "c6",
+            qNo: "Question 6",
+            sentence: "6. You must spell all the words to win the spelling contest. (correctly)",
+            meaning: "👉 हिंदी: प्रतियोगिता जीतने के लिए सारे शब्दों की स्पेलिंग सही लिखनी होगी।",
+            ans: "You must spell all the words correctly to win the spelling contest.",
+            spoken: "स्पेल ऑल द वर्ड्स करेक्टली।",
+            exp: "स्पेलिंग कैसे लिखनी है? एकदम सही (correctly)! इसलिए शब्दों (words) के बाद 'correctly' आएगा।",
+            options: [
+              {label: "You must spell all the words correctly to win the spelling contest.", val: "You must spell all the words correctly to win the spelling contest."},
+              {label: "You correctly must spell all words.", val: "You correctly must spell all words."}
+            ]
+          },
+          {
+            id: "c7",
+            qNo: "Question 7",
+            sentence: "7. This part of the city may be crowded but it is beautiful. (fairly)",
+            meaning: "👉 हिंदी: यह इलाका भीड़ वाला है, लेकिन काफी सुंदर है।",
+            ans: "This part of the city may be crowded but it is fairly beautiful.",
+            spoken: "इट इज़ फेयरली ब्यूटीफुल।",
+            exp: "सुंदरता कितनी है? काफी अच्छी (fairly)! इसलिए beautiful से ठीक पहले 'fairly' आएगा।",
+            options: [
+              {label: "This part of the city may be crowded but it is fairly beautiful.", val: "This part of the city may be crowded but it is fairly beautiful."},
+              {label: "This part of city fairly is beautiful.", val: "This part of city fairly is beautiful."}
+            ]
+          },
+          {
+            id: "c8",
+            qNo: "Question 8",
+            sentence: "8. Are there any good hotels? (nearby)",
+            meaning: "👉 हिंदी: क्या यहाँ पास में कोई अच्छा होटल है?",
+            ans: "Are there any good hotels nearby?",
+            spoken: "आर देयर एनी गुड होटल्स नियरबाय?",
+            exp: "कहाँ ढूँढ रहे हैं? पास में (nearby)! वाक्य के अंत में 'nearby' बैठेगा।",
+            options: [
+              {label: "Are there any good hotels nearby?", val: "Are there any good hotels nearby?"},
+              {label: "Nearby are there any hotels?", val: "Nearby are there any hotels?"}
+            ]
+          },
+          {
+            id: "c9",
+            qNo: "Question 9",
+            sentence: "9. We listen to Indian classical music. (generally)",
+            meaning: "👉 हिंदी: हम आमतौर पर भारतीय शास्त्रीय संगीत सुनते हैं।",
+            ans: "We generally listen to Indian classical music.",
+            spoken: "वी जनरली लिसन टू इंडियन क्लासिकल म्यूजिक।",
+            exp: "गाने सुनने (listen) से पहले आदत बताने वाला शब्द 'generally' बैठेगा।",
+            options: [
+              {label: "We generally listen to Indian classical music.", val: "We generally listen to Indian classical music."},
+              {label: "We listen generally music.", val: "We listen generally music."}
+            ]
+          },
+          {
+            id: "c10",
+            qNo: "Question 10",
+            sentence: "10. The country has been hit by droughts in the past decade. (frequently)",
+            meaning: "👉 हिंदी: पिछले दस सालों में देश में बार-बार सूखा पड़ा है।",
+            ans: "The country has been frequently hit by droughts in the past decade.",
+            spoken: "हैज़ बीन फ्रीक्वेंटली हिट।",
+            exp: "सूखा कितनी बार पड़ा? बार-बार (frequently)! इसलिए has been के बाद 'frequently' आएगा।",
+            options: [
+              {label: "The country has been frequently hit by droughts in the past decade.", val: "The country has been frequently hit by droughts in the past decade."},
+              {label: "Frequently the country hit droughts.", val: "Frequently the country hit droughts."}
+            ]
+          }
+        ]
+      },
+      {
+        tabId: "tab-4",
+        guidance: "🎯 <b>Exercise D:</b> हर काम के लिए 3 सही Adverbs पहचानो!",
+        guidanceVoice: "बच्चों, देखो कि दी गई क्रिया के साथ कौन-कौन से तीन शब्द बिल्कुल सही बैठते हैं!",
+        questions: [
+          {
+            id: "d1",
+            qNo: "Question 1",
+            sentence: "1. reach (time - समय)",
+            meaning: "👉 पहुँचना कब हुआ?",
+            ans: "early, late, soon",
+            spoken: "रीच: अर्ली, लेट, सून।",
+            exp: "हम स्कूल कब पहुँच सकते हैं? जल्दी (early), देर से (late) या बस अभी (soon)! ये तीनों समय बताते हैं।",
+            options: [{label: "early, late, soon", val: "early, late, soon"}, {label: "loudly, softly, sweet", val: "loudly, softly, sweet"}]
+          },
+          {
+            id: "d2",
+            qNo: "Question 2",
+            sentence: "2. sing (manner - तरीका)",
+            meaning: "👉 गाना कैसे गाया?",
+            ans: "sweetly, beautifully, softly",
+            spoken: "सिंग: स्वीटली, ब्यूटीफुली, सॉफ्टली।",
+            exp: "गाना कैसे गा सकते हैं? मीठी आवाज़ में (sweetly), सुंदरता से (beautifully) या धीमे से (softly)!",
+            options: [{label: "sweetly, beautifully, softly", val: "sweetly, beautifully, softly"}, {label: "yesterday, tomorrow, now", val: "yesterday, tomorrow, now"}]
+          },
+          {
+            id: "d3",
+            qNo: "Question 3",
+            sentence: "3. camp (place - जगह)",
+            meaning: "👉 तंबू कहाँ लगाया?",
+            ans: "outside, here, nearby",
+            spoken: "कैंप: आउटसाइड, हियर, नियरबाय।",
+            exp: "तंबू कहाँ गाड़ेंगे? बाहर (outside), यहाँ (here) या पास में (nearby)!",
+            options: [{label: "outside, here, nearby", val: "outside, here, nearby"}, {label: "slowly, quickly, fast", val: "slowly, quickly, fast"}]
+          },
+          {
+            id: "d4",
+            qNo: "Question 4",
+            sentence: "4. bake (degree - कितना)",
+            meaning: "👉 केक कितना पका?",
+            ans: "completely, thoroughly, well",
+            spoken: "बेक: कम्प्लीटली, थरली, वेल।",
+            exp: "केक ओवन में कितना बेक हुआ? पूरा अच्छी तरह (completely), बढ़िया से (thoroughly) या खूब अच्छा (well)!",
+            options: [{label: "completely, thoroughly, well", val: "completely, thoroughly, well"}, {label: "daily, never, often", val: "daily, never, often"}]
+          },
+          {
+            id: "d5",
+            qNo: "Question 5",
+            sentence: "5. shout (manner - तरीका)",
+            meaning: "👉 चिल्लाना कैसे हुआ?",
+            ans: "loudly, angrily, fiercely",
+            spoken: "शाउट: लाउडली, एंग्रिली, फियर्सली।",
+            exp: "चीख कैसे निकली? तेज़ आवाज़ में (loudly), गुस्से में (angrily) या भयानक रूप से (fiercely)!",
+            options: [{label: "loudly, angrily, fiercely", val: "loudly, angrily, fiercely"}, {label: "here, there, upstairs", val: "here, there, upstairs"}]
+          },
+          {
+            id: "d6",
+            qNo: "Question 6",
+            sentence: "6. quarrel (frequency - कितनी बार)",
+            meaning: "👉 झगड़ा कितनी बार करते हैं?",
+            ans: "often, seldom, always",
+            spoken: "क्वारल: ऑफन, सेल्डम, ऑलवेज़।",
+            exp: "झगड़ा कितनी बार हुआ? अक्सर (often), कभी-कभार (seldom) या हमेशा (always)!",
+            options: [{label: "often, seldom, always", val: "often, seldom, always"}, {label: "brightly, clearly, nicely", val: "brightly, clearly, nicely"}]
+          },
+          {
+            id: "d7",
+            qNo: "Question 7",
+            sentence: "7. kick (manner - तरीका)",
+            meaning: "👉 फुटबॉल को किक कैसे मारी?",
+            ans: "hard, powerfully, skillfully",
+            spoken: "किक: हार्ड, पावरफुली, स्किलफुली।",
+            exp: "किक कैसे मारी? ज़ोर से (hard), पूरी ताकत से (powerfully) या हुनर से (skillfully)!",
+            options: [{label: "hard, powerfully, skillfully", val: "hard, powerfully, skillfully"}, {label: "tomorrow, today, later", val: "tomorrow, today, later"}]
+          },
+          {
+            id: "d8",
+            qNo: "Question 8",
+            sentence: "8. keep (place - जगह)",
+            meaning: "👉 खिलौना कहाँ रखा?",
+            ans: "inside, away, safely",
+            spoken: "कीप: इनसाइड, अवे, सेफली।",
+            exp: "चीज़ कहाँ संभाल कर रखी? बक्से के अंदर (inside), दूर (away) या सुरक्षित (safely)!",
+            options: [{label: "inside, away, safely", val: "inside, away, safely"}, {label: "loudly, greedily, happily", val: "loudly, greedily, happily"}]
+          },
+          {
+            id: "d9",
+            qNo: "Question 9",
+            sentence: "9. eat (manner - तरीका)",
+            meaning: "👉 खाना कैसे खाया?",
+            ans: "slowly, greedily, quietly",
+            spoken: "ईट: स्लोली, ग्रीडिली, क्वाइटली।",
+            exp: "खाना कैसे खाया? चबा-चबा कर धीमे (slowly), जल्दी-जल्दी लालच से (greedily) या चुपचाप (quietly)!",
+            options: [{label: "slowly, greedily, quietly", val: "slowly, greedily, quietly"}, {label: "yearly, weekly, daily", val: "yearly, weekly, daily"}]
+          },
+          {
+            id: "d10",
+            qNo: "Question 10",
+            sentence: "10. travel (frequency - कितनी बार)",
+            meaning: "👉 घूमने कितनी बार जाते हैं?",
+            ans: "frequently, rarely, regularly",
+            spoken: "ट्रैवल: फ्रीक्वेंटली, रेयरली, रेगुलरली।",
+            exp: "घूमने जाना कितनी बार होता है? बार-बार (frequently), बहुत कम (rarely) या नियम से हर साल (regularly)!",
+            options: [{label: "frequently, rarely, regularly", val: "frequently, rarely, regularly"}, {label: "deeply, high, low", val: "deeply, high, low"}]
+          }
+        ]
+      },
+      {
+        tabId: "tab-5",
+        guidance: "🎯 <b>Exercise E:</b> जंगल में शेर दिखा! कहानी में सही Adverbs भरो!",
+        guidanceVoice: "बच्चों, रणथंभौर के जंगल की रोमांचक कहानी में सही शब्द चुनकर भरो!",
+        questions: [
+          {
+            id: "e1",
+            qNo: "Part 1",
+            sentence: "We _______ go to the forests of Ranthambore.",
+            meaning: "👉 हिंदी: हम अक्सर रणथंभौर के जंगलों में घूमने जाते हैं।",
+            ans: "often",
+            spoken: "वी ऑफन गो टू द फॉरेस्ट्स।",
+            exp: "हम कितनी बार जंगल जाते हैं? अक्सर (often)! इसलिए 'often' सही है।",
+            options: [{label: "often", val: "often"}, {label: "rarely", val: "rarely"}]
+          },
+          {
+            id: "e2",
+            qNo: "Part 2",
+            sentence: "We were _______ surprised to find a tiger when we had _______ given up.",
+            meaning: "👉 हिंदी: हम बहुत खुशी से हैरान हो गए जब हमने लगभग उम्मीद छोड़ दी थी!",
+            ans: "pleasantly, almost",
+            spoken: "प्लेज़ेंटली सरप्राइज्ड, ऑलमोस्ट गिवेन अप।",
+            exp: "खुशी वाली हैरानी को 'pleasantly' और लगभग हार मान लेने को 'almost' कहते हैं।",
+            options: [{label: "pleasantly, almost", val: "pleasantly, almost"}, {label: "loudly, slowly", val: "loudly, slowly"}]
+          },
+          {
+            id: "e3",
+            qNo: "Part 3",
+            sentence: "We were still moving _______ looking for pugmarks.",
+            meaning: "👉 हिंदी: हम गाड़ी से धीमे-धीमे आगे बढ़ रहे थे और पंजों के निशान ढूँढ रहे थे।",
+            ans: "slowly",
+            spoken: "मूविंग स्लोली।",
+            exp: "जंगल में गाड़ी तेज़ नहीं चलाते, बिल्कुल धीमे (slowly) चलाते हैं!",
+            options: [{label: "slowly", val: "slowly"}, {label: "eagerly", val: "eagerly"}]
+          },
+          {
+            id: "e4",
+            qNo: "Part 4",
+            sentence: "We heard a tiger roar _______.",
+            meaning: "👉 हिंदी: हमने शेर की ज़ोर से दहाड़ने की आवाज़ सुनी!",
+            ans: "loudly",
+            spoken: "हर्ड अ टाइगर रोर लाउडली।",
+            exp: "शेर कैसे दहाड़ता है? बहुत ज़ोर की आवाज़ में (loudly)! इसलिए 'loudly' आएगा।",
+            options: [{label: "loudly", val: "loudly"}, {label: "quietly", val: "quietly"}]
+          },
+          {
+            id: "e5",
+            qNo: "Part 5",
+            sentence: "Dad _______ turned the vehicle towards the waterhole.",
+            meaning: "👉 हिंदी: पापा ने तुरंत गाड़ी पानी के तालाब की तरफ मोड़ दी।",
+            ans: "immediately",
+            spoken: "डैड इमीडिएटली टर्न्ड द व्हीकल।",
+            exp: "दहाड़ सुनते ही बिना देर किए तुरंत (immediately) गाड़ी मोड़ी!",
+            options: [{label: "immediately", val: "immediately"}, {label: "rarely", val: "rarely"}]
+          },
+          {
+            id: "e6",
+            qNo: "Part 6",
+            sentence: "There stood a tiger _______ drinking water!",
+            meaning: "👉 हिंदी: वहाँ बाघ प्यास बुझाने के लिए गट-गट पानी पी रहा था!",
+            ans: "thirstily",
+            spoken: "टाइगर थर्सटिली ड्रिंकिंग वाटर।",
+            exp: "बाघ बहुत प्यासा था, इसलिए वो प्यासों की तरह (thirstily) पानी पी रहा था।",
+            options: [{label: "thirstily", val: "thirstily"}, {label: "fairly", val: "fairly"}]
+          },
+          {
+            id: "e7",
+            qNo: "Part 7",
+            sentence: "We parked our vehicle _______ and waited _______ for the tiger to quench its thirst.",
+            meaning: "👉 हिंदी: हमने गाड़ी एक किनारे खड़ी की और बेसब्री से इंतज़ार करने लगे।",
+            ans: "aside, eagerly",
+            spoken: "पार्क्ड असाइड एंड वेटेड ईगर्ली।",
+            exp: "गाड़ी एक तरफ (aside) लगाई और खुशी-खुशी उत्सुकता से (eagerly) देखने लगे।",
+            options: [{label: "aside, eagerly", val: "aside, eagerly"}, {label: "slowly, never", val: "slowly, never"}]
+          },
+          {
+            id: "e8",
+            qNo: "Part 8",
+            sentence: "We _______ waited for its next move.",
+            meaning: "👉 हिंदी: हम सब चुपचाप साँस थाम कर बैठे रहे।",
+            ans: "quietly",
+            spoken: "वी क्वाइटली वेटेड।",
+            exp: "शेर के सामने आवाज़ नहीं करते, बिल्कुल शांत (quietly) रहते हैं!",
+            options: [{label: "quietly", val: "quietly"}, {label: "loudly", val: "loudly"}]
+          }
+        ]
+      },
+      {
+        tabId: "tab-6",
+        guidance: "🎯 <b>Exercise F:</b> सवालों के पूरे जवाब Adverb लगाकर दो!",
+        guidanceVoice: "बच्चों, पूछे गए सवाल का सही और पूरा जवाब Adverb के साथ चुनो!",
+        questions: [
+          {
+            id: "f1",
+            qNo: "Question 1",
+            sentence: "1. How did the dancers perform?",
+            meaning: "👉 हिंदी: डांस करने वालों ने कैसा डांस किया?",
+            ans: "The dancers performed gracefully.",
+            spoken: "हाउ डिड द डांसर्स परफॉर्म?",
+            exp: "डांस कैसे किया? सुंदरता और नज़ाकत से (gracefully)! इसलिए 'gracefully' सही Adverb है।",
+            options: [
+              {label: "The dancers performed gracefully.", val: "The dancers performed gracefully."},
+              {label: "The dancers danced yesterday.", val: "The dancers danced yesterday."}
+            ]
+          },
+          {
+            id: "f2",
+            qNo: "Question 2",
+            sentence: "2. When do you wake up in the morning?",
+            meaning: "👉 हिंदी: तुम सुबह कब सोकर उठते हो?",
+            ans: "I wake up early in the morning.",
+            spoken: "व्हेन डू यू वेक अप इन द मॉर्निंग?",
+            exp: "अच्छे बच्चे सुबह कब उठते हैं? सवेरे जल्दी (early)! इसलिए समय बताने वाला शब्द 'early' आएगा।",
+            options: [
+              {label: "I wake up early in the morning.", val: "I wake up early in the morning."},
+              {label: "I wake up softly in morning.", val: "I wake up softly in morning."}
+            ]
+          },
+          {
+            id: "f3",
+            qNo: "Question 3",
+            sentence: "3. How often do you attend school?",
+            meaning: "👉 हिंदी: तुम स्कूल कितनी बार जाते हो?",
+            ans: "I attend school regularly.",
+            spoken: "हाउ ऑफन डू यू अटेंड स्कूल?",
+            exp: "स्कूल रोज़ नियम से जाना चाहिए! नियम से जाने को 'regularly' कहते हैं।",
+            options: [
+              {label: "I attend school regularly.", val: "I attend school regularly."},
+              {label: "I attend school upstairs.", val: "I attend school upstairs."}
+            ]
           }
         ]
       }
