@@ -64,7 +64,6 @@ function loginAdmin() {
     alert("❌ गलत पासवर्ड!");
   }
 }
-
 function authenticateSuccess(role, name) {
   currentUserRole = role;
   document.getElementById('login-screen').style.display = 'none';
@@ -73,24 +72,37 @@ function authenticateSuccess(role, name) {
   const roleBadge = document.getElementById('role-badge');
   const displayUser = document.getElementById('display-username');
   const adminPanel = document.getElementById('admin-panel');
-  const recButtons = document.querySelectorAll('.btn-rec');
 
   if (role === 'admin') {
+    document.body.classList.add('admin-mode'); // 👈 Yeh class saare record buttons ko turant visible kar degi
     roleBadge.className = 'user-badge badge-admin';
     roleBadge.innerText = '👑 Admin';
     displayUser.innerText = 'शिक्षक मोड (Active)';
     adminPanel.style.display = 'block';
-    recButtons.forEach(b => b.style.display = 'block');
   } else {
+    document.body.classList.remove('admin-mode');
     roleBadge.className = 'user-badge badge-student';
     roleBadge.innerText = '👦 Student';
     displayUser.innerText = name;
     adminPanel.style.display = 'none';
-    recButtons.forEach(b => b.style.display = 'none');
   }
 
   loadAllSavedAudios();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// logout function ke andar bhi body se class hata dein:
+function logout() {
+  document.body.classList.remove('admin-mode'); // 👈 Logout par class hat jayegi
+  stopAllPlayback();
+  currentUserRole = null;
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('admin-login-box').style.display = 'none';
+  document.getElementById('student-login-box').style.display = 'block';
+  document.getElementById('login-subtext').innerText = "इंग्लिश ग्रामर पाठशाला में लॉगिन करें:";
+  document.getElementById('stu-username').value = "";
+  document.getElementById('stu-pass').value = "";
 }
 
 function logout() {
@@ -209,16 +221,92 @@ function setupWordHighlighting(containerEl) {
   };
 }
 
+// function toggleUnifiedTTS(txt, btn, highlightEl = null) {
+//   const statusBar = document.getElementById('status-bar');
+//   const voicePicker = document.getElementById('selected-voice');
+//   const selectedVoice = voicePicker ? voicePicker.value : 'hi-IN-MadhurNeural';
+
+//   // Play / Pause टॉगल
+//   if (currentActiveBtn === btn && currentSoundType === 'neural-tts' && currentCustomPlayer) {
+//     if (!currentCustomPlayer.paused) {
+//       currentCustomPlayer.pause();
+//       btn.innerHTML = "▶️ चालू करें (Resume)";
+//       btn.classList.remove('is-playing');
+//       if (statusBar) statusBar.innerText = "⏸️ आवाज़ रुकी हुई है";
+//     } else {
+//       currentCustomPlayer.play();
+//       btn.innerHTML = "⏸️ पॉज़ करें";
+//       btn.classList.add('is-playing');
+//       if (statusBar) statusBar.innerText = "🗣️ बोल रहा है...";
+//     }
+//     return;
+//   }
+
+//   stopAllPlayback();
+
+//   currentSoundType = 'neural-tts';
+//   currentActiveBtn = btn;
+//   defaultBtnHtml = btn.innerHTML;
+
+//   btn.innerHTML = "⏳ लोड हो रहा है...";
+//   if (statusBar) {
+//     statusBar.style.background = '#FEF08A';
+//     statusBar.style.color = '#854D0E';
+//     statusBar.innerText = "⏳ आवाज़ लोड हो रही है...";
+//   }
+
+//   // खाली स्थान को साफ 'डैश' बोलना
+//   let cleanText = txt.replace(/_{2,}/g, ' डैश ');
+
+//   const streamUrl = `${MY_API_BASE_URL}/speak?voice=${encodeURIComponent(selectedVoice)}&text=${encodeURIComponent(cleanText)}`;
+
+//   currentCustomPlayer = new Audio(streamUrl);
+
+//   // बच्चों के समझने लायक आरामदायक गति (0.90x गति - न ज्यादा तेज, न धीमी)
+//   const targetSpeed = 0.90;
+//   currentCustomPlayer.playbackRate = targetSpeed;
+
+//   currentCustomPlayer.onloadedmetadata = function() {
+//     currentCustomPlayer.playbackRate = targetSpeed;
+//     setupWordHighlighting(highlightEl);
+//   };
+
+//   currentCustomPlayer.onplay = function() {
+//     currentCustomPlayer.playbackRate = targetSpeed;
+//     btn.innerHTML = "⏸️ पॉज़ करें";
+//     btn.classList.add('is-playing');
+//     const speakerName = selectedVoice.includes('Madhur') ? 'Madhur (हिंदी पुरुष)' :
+//                         selectedVoice.includes('Swara') ? 'Swara (हिंदी महिला)' : 'Neerja (Indian English)';
+//     if (statusBar) {
+//       statusBar.innerText = "🗣️ " + speakerName + " बोल रहा है...";
+//     }
+//   };
+
+//   currentCustomPlayer.onended = function() {
+//     stopAllPlayback();
+//   };
+
+//   currentCustomPlayer.onerror = function() {
+//     alert("ऑडियो लोड नहीं हो सका! कृपया इंटरनेट चेक करें।");
+//     stopAllPlayback();
+//   };
+
+//   currentCustomPlayer.play().catch(e => {
+//     console.error(e);
+//     stopAllPlayback();
+//   });
+// }
+
 function toggleUnifiedTTS(txt, btn, highlightEl = null) {
   const statusBar = document.getElementById('status-bar');
   const voicePicker = document.getElementById('selected-voice');
   const selectedVoice = voicePicker ? voicePicker.value : 'hi-IN-MadhurNeural';
 
-  // Play / Pause टॉगल
+  // 1. अगर पहले से वही आवाज़ चल रही है तो सिर्फ पॉज़ / रिज़्यूम करें
   if (currentActiveBtn === btn && currentSoundType === 'neural-tts' && currentCustomPlayer) {
     if (!currentCustomPlayer.paused) {
       currentCustomPlayer.pause();
-      btn.innerHTML = "▶️ चालू करें (Resume)";
+      btn.innerHTML = "▶️ चालू करें";
       btn.classList.remove('is-playing');
       if (statusBar) statusBar.innerText = "⏸️ आवाज़ रुकी हुई है";
     } else {
@@ -236,37 +324,60 @@ function toggleUnifiedTTS(txt, btn, highlightEl = null) {
   currentActiveBtn = btn;
   defaultBtnHtml = btn.innerHTML;
 
-  btn.innerHTML = "⏳ लोड हो रहा है...";
+  // 🌟 2. SweetAlert2 का लोडिंग पॉप-अप (आपके पिक्सेल आइकन के साथ)
+  if (typeof Swal !== "undefined") {
+    Swal.fire({
+      title: 'आवाज़ तैयार हो रही है...',
+      html: `
+        <div style="margin: 15px 0;">
+          <svg viewBox="0 0 16 16" width="48" height="48" style="animation: spinPixels 1.2s linear infinite;">
+            <rect x="9" y="1" width="3" height="3" fill="#dc2626" />
+            <rect x="5" y="5" width="2" height="2" fill="#f59e0b" />
+            <rect x="10" y="7" width="4" height="4" fill="#f59e0b" />
+            <rect x="1" y="9" width="4" height="4" fill="#dc2626" />
+            <rect x="6" y="11" width="4" height="4" fill="#f59e0b" />
+          </svg>
+        </div>
+        <p style="font-size: 14px; color: #64748B; font-weight: 600;">बस कुछ ही सेकंड में आवाज़ शुरू होगी! 🎧</p>
+      `,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      background: '#FFFFFF',
+      customClass: {
+        popup: 'sweet-round-popup'
+      }
+    });
+  }
+
   if (statusBar) {
     statusBar.style.background = '#FEF08A';
     statusBar.style.color = '#854D0E';
-    statusBar.innerText = "⏳ आवाज़ लोड हो रही है...";
+    statusBar.innerText = "⏳ आवाज़ तैयार हो रही है...";
   }
 
-  // खाली स्थान को साफ 'डैश' बोलना
   let cleanText = txt.replace(/_{2,}/g, ' डैश ');
-
   const streamUrl = `${MY_API_BASE_URL}/speak?voice=${encodeURIComponent(selectedVoice)}&text=${encodeURIComponent(cleanText)}`;
 
   currentCustomPlayer = new Audio(streamUrl);
-
-  // बच्चों के समझने लायक आरामदायक गति (0.90x गति - न ज्यादा तेज, न धीमी)
-  const targetSpeed = 0.90;
-  currentCustomPlayer.playbackRate = targetSpeed;
+  currentCustomPlayer.playbackRate = 0.90;
 
   currentCustomPlayer.onloadedmetadata = function() {
-    currentCustomPlayer.playbackRate = targetSpeed;
     setupWordHighlighting(highlightEl);
   };
 
+  // 🔊 3. जैसे ही ऑडियो बजना शुरू होगा, SweetAlert2 तुरंत बंद हो जाएगा
   currentCustomPlayer.onplay = function() {
-    currentCustomPlayer.playbackRate = targetSpeed;
-    btn.innerHTML = "⏸️ पॉज़ करें";
+    if (typeof Swal !== "undefined" && Swal.isVisible()) {
+      Swal.close(); // पॉप-अप तुरंत बंद
+    }
+
     btn.classList.add('is-playing');
-    const speakerName = selectedVoice.includes('Madhur') ? 'Madhur (हिंदी पुरुष)' :
-                        selectedVoice.includes('Swara') ? 'Swara (हिंदी महिला)' : 'Neerja (Indian English)';
+    btn.innerHTML = "⏸️ पॉज़ करें";
+
     if (statusBar) {
-      statusBar.innerText = "🗣️ " + speakerName + " बोल रहा है...";
+      statusBar.style.background = '#DCFCE7';
+      statusBar.style.color = '#166534';
+      statusBar.innerText = "🗣️ AI बोल रहा है...";
     }
   };
 
@@ -275,7 +386,14 @@ function toggleUnifiedTTS(txt, btn, highlightEl = null) {
   };
 
   currentCustomPlayer.onerror = function() {
-    alert("ऑडियो लोड नहीं हो सका! कृपया इंटरनेट चेक करें।");
+    if (typeof Swal !== "undefined") {
+      Swal.fire({
+        icon: 'error',
+        title: 'इंटरनेट धीमा है!',
+        text: 'आवाज़ लोड नहीं हो सकी, कृपया दोबारा कोशिश करें।',
+        confirmButtonColor: '#2563EB'
+      });
+    }
     stopAllPlayback();
   };
 
@@ -284,6 +402,7 @@ function toggleUnifiedTTS(txt, btn, highlightEl = null) {
     stopAllPlayback();
   });
 }
+
 
 function toggleUnifiedCustomAudio(id, btn) {
   if (!db) return;
@@ -415,27 +534,6 @@ dbReq.onsuccess = function(e) {
   loadCloudVoices();
 };
 
-async function loadCloudVoices() {
-  try {
-    const response = await fetch('My_Grammar_Voices.json?v=' + new Date().getTime());
-    if (!response.ok) return;
-    const items = await response.json();
-
-    const tx = db.transaction("recordings", "readwrite");
-    const store = tx.objectStore("recordings");
-    items.forEach(item => store.put(item));
-
-    tx.oncomplete = () => {
-      loadAllSavedAudios();
-      const statusBar = document.getElementById('status-bar');
-      if (statusBar) {
-        statusBar.innerText = "🎉 शिक्षक की रिकॉर्ड की हुई आवाज़ लोड हो चुकी है!";
-      }
-    };
-  } catch (e) {
-    console.log("Offline or cloud voices not synced yet:", e);
-  }
-}
 
 let mediaRecorder;
 let audioChunks = [];
@@ -515,24 +613,83 @@ function loadAllSavedAudios() {
     }
   };
 }
+// ✅ वर्तमान में खुले चैप्टर की सही ID पता करना
+function getCurrentChapterKey() {
+  const select = document.getElementById("selected-chapter");
+  if (select && select.value) return select.value;
+  if (typeof APP_DATA !== "undefined" && typeof ALL_CHAPTERS !== "undefined") {
+    return Object.keys(ALL_CHAPTERS).find(k => ALL_CHAPTERS[k] === APP_DATA) || "ch1";
+  }
+  return "ch1";
+}
 
+// ✅ हर चैप्टर की अलग-अलग वॉइस फाइल GitHub से अपने-आप लोड करने वाला इंजन
+async function loadCloudVoices() {
+  const currentCh = getCurrentChapterKey();
+  const fileName = `${currentCh}_voices.json`; // उदा. ch1_voices.json, ch19_voices.json
+
+  try {
+    const response = await fetch(`${fileName}?v=${new Date().getTime()}`);
+    if (!response.ok) {
+      console.log(`ℹ️ इस चैप्टर (${fileName}) की रिकॉर्डिंग GitHub पर अभी नहीं है।`);
+      return;
+    }
+    const items = await response.json();
+
+    if (!db) return;
+    const tx = db.transaction("recordings", "readwrite");
+    const store = tx.objectStore("recordings");
+    items.forEach(item => store.put(item));
+
+    tx.oncomplete = () => {
+      loadAllSavedAudios();
+      const statusBar = document.getElementById('status-bar');
+      if (statusBar) {
+        statusBar.innerText = `🎉 ${currentCh.toUpperCase()} की शिक्षक रिकॉर्डिंग लोड हो गई!`;
+      }
+    };
+  } catch (e) {
+    console.log("Offline or cloud voices not synced yet:", e);
+  }
+}
+
+// ✅ केवल उसी चैप्टर की आवाज़ें एक्सपोर्ट करना जो अभी खुला है
 function exportVoices() {
   if (!db) return;
+  const currentCh = getCurrentChapterKey();
+
   const tx = db.transaction("recordings", "readonly");
   const req = tx.objectStore("recordings").getAll();
+
   req.onsuccess = function() {
     if (!req.result || req.result.length === 0) {
       alert("कोई आवाज़ रिकॉर्ड नहीं है!");
       return;
     }
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(req.result));
+
+    // केवल सक्रिय चैप्टर की रिकॉर्डिंग्स फ़िल्टर करें
+    const filteredVoices = req.result.filter(item => {
+      if (currentCh === "ch1") {
+        return !item.id.includes("_") || item.id.startsWith("ch1_") || item.id.startsWith("und_");
+      }
+      return item.id.startsWith(`${currentCh}_`);
+    });
+
+    if (filteredVoices.length === 0) {
+      alert(`इस चैप्टर (${currentCh}) के लिए कोई आवाज़ रिकॉर्ड नहीं मिली!`);
+      return;
+    }
+
+    const exportFileName = `${currentCh}_voices.json`;
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(filteredVoices, null, 2));
     const a = document.createElement('a');
     a.setAttribute("href", dataStr);
-    a.setAttribute("download", "My_Grammar_Voices.json");
+    a.setAttribute("download", exportFileName);
     document.body.appendChild(a);
     a.click();
     a.remove();
-    alert("✅ वॉइस बैकअप फ़ाइल डाउनलोड हो गई!");
+
+    alert(`✅ ${exportFileName} डाउनलोड हो गई! इसे GitHub पर अपलोड कर दें।`);
   };
 }
 
